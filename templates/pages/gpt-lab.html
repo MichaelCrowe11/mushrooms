@@ -1,0 +1,47 @@
+<!-- templates/pages/gpt-lab.html -->
+{{#partial "page"}}
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+  <main class="page">
+    <h1 class="page-heading">Crowe GPT Lab</h1>
+    
+    <section class="gpt-wrapper">
+      <div class="gpt-header">
+        <div class="crowe-avatar">
+          <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936" 
+               alt="Crowe AI Assistant" 
+               class="crowe-logo">
+        </div>
+        <h2>Crowe AI Assistant</h2>
+        <p>Ask Crowe anything about mushroom cultivation, growing techniques, or product recommendations.</p>
+      </div>
+      
+      <iframe
+        src="https://app.crowelogic.ai/embed?store={{settings.store_hash}}&theme={{#if theme}}{{theme}}{{else}}light{{/if}}"
+        title="Crowe GPT Lab - AI Mushroom Cultivation Assistant"
+        loading="lazy"
+        allow="clipboard-write; microphone; camera"
+        class="gpt-frame"
+        id="gpt-iframe">
+      </iframe>
+      
+      <div class="gpt-fallback" id="gpt-fallback" style="display: none;">
+        <div class="fallback-content">
+          <div class="crowe-avatar">
+            <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936" 
+                 alt="Crowe AI Assistant" 
+                 class="crowe-logo">
+          </div>
+          <h3>Crowe AI Assistant Temporarily Unavailable</h3>
+          <p>Our AI assistant is currently being updated. Please try again in a few minutes or contact our support team for immediate assistance.</p>
+          <div class="fallback-actions">
+            <a href="/contact" class="btn btn-primary">Contact Support</a>
+            <a href="/cultures" class="btn btn-secondary">Browse Cultures</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{{/partial}}
+
+{{> layout/base}} 

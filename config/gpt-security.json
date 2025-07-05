@@ -1,0 +1,31 @@
+{
+  "gpt_lab": {
+    "iframe_url": "https://app.crowelogic.ai/embed",
+    "allowed_origins": [
+      "https://app.crowelogic.ai",
+      "https://*.crowelogic.ai"
+    ],
+    "permissions": [
+      "clipboard-write",
+      "microphone",
+      "camera"
+    ],
+    "timeout_ms": 10000,
+    "fallback_enabled": true,
+    "theme_sync": true,
+    "security_headers": {
+      "X-Frame-Options": "SAMEORIGIN",
+      "Content-Security-Policy": "frame-src https://app.crowelogic.ai;"
+    }
+  },
+  "api_keys": {
+    "gpt_service": "{{GPT_API_KEY}}",
+    "store_hash": "{{STORE_HASH}}"
+  },
+  "features": {
+    "post_message_handling": true,
+    "error_fallback": true,
+    "theme_switching": true,
+    "responsive_design": true
+  }
+} 

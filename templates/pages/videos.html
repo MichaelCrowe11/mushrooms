@@ -1,0 +1,70 @@
+<!-- templates/pages/videos.html -->
+{{#partial "page"}}
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+  <main class="page">
+    <h1 class="page-heading">Video Library</h1>
+
+    <section class="youtube-gallery">
+      <div class="container">
+        <p class="mb-4">Facility tours, grow‑tech tutorials &amp; short fungus facts.</p>
+
+        <div class="video-grid">
+          <div class="video-placeholder" data-video-id="mNnTXNS76Dw" data-title="Facility Tour">
+            <img src="https://img.youtube.com/vi/mNnTXNS76Dw/maxresdefault.jpg" 
+                 alt="Facility Tour thumbnail" 
+                 loading="lazy"
+                 onerror="this.src='https://img.youtube.com/vi/mNnTXNS76Dw/hqdefault.jpg'">
+            <button class="play-button" aria-label="Play Facility Tour video">
+              <span class="play-icon">▶</span>
+            </button>
+            <div class="video-fallback" style="display: none;">
+              <p>Video unavailable. <a href="/contact">Contact us</a> for more information.</p>
+            </div>
+          </div>
+          
+          <div class="video-placeholder" data-video-id="ZvlAuVzsEIA" data-title="Reishi Benefits">
+            <img src="https://img.youtube.com/vi/ZvlAuVzsEIA/maxresdefault.jpg" 
+                 alt="Reishi Benefits thumbnail" 
+                 loading="lazy"
+                 onerror="this.src='https://img.youtube.com/vi/ZvlAuVzsEIA/hqdefault.jpg'">
+            <button class="play-button" aria-label="Play Reishi Benefits video">
+              <span class="play-icon">▶</span>
+            </button>
+            <div class="video-fallback" style="display: none;">
+              <p>Video unavailable. <a href="/contact">Contact us</a> for more information.</p>
+            </div>
+          </div>
+          
+          <div class="video-placeholder" data-video-id="oUz88cKABuA" data-title="Sterile Inoculation Tips">
+            <img src="https://img.youtube.com/vi/oUz88cKABuA/maxresdefault.jpg" 
+                 alt="Sterile Inoculation Tips thumbnail" 
+                 loading="lazy"
+                 onerror="this.src='https://img.youtube.com/vi/oUz88cKABuA/hqdefault.jpg'">
+            <button class="play-button" aria-label="Play Sterile Inoculation Tips video">
+              <span class="play-icon">▶</span>
+            </button>
+            <div class="video-fallback" style="display: none;">
+              <p>Video unavailable. <a href="/contact">Contact us</a> for more information.</p>
+            </div>
+          </div>
+          
+          <div class="video-placeholder" data-video-id="bubeb-tnPo0" data-title="Lion's Mane Flush">
+            <img src="https://img.youtube.com/vi/bubeb-tnPo0/maxresdefault.jpg" 
+                 alt="Lion's Mane Flush thumbnail" 
+                 loading="lazy"
+                 onerror="this.src='https://img.youtube.com/vi/bubeb-tnPo0/hqdefault.jpg'">
+            <button class="play-button" aria-label="Play Lion's Mane Flush video">
+              <span class="play-icon">▶</span>
+            </button>
+            <div class="video-fallback" style="display: none;">
+              <p>Video unavailable. <a href="/contact">Contact us</a> for more information.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{{/partial}}
+
+{{> layout/base}}
