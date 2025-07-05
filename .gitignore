@@ -98,4 +98,9 @@ stencil.conf.js
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# BigCommerce / Stencil specific
+stencil.conf.js
+.stencil-cache/
+.stencilignore 
