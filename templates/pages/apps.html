@@ -1,0 +1,102 @@
+<!-- templates/pages/apps.html -->
+{{#partial "page"}}
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+  <main class="page">
+    <h1 class="page-heading">Apps Hub</h1>
+    
+    <section class="apps-wrapper">
+      <div class="apps-header">
+        <p class="apps-description">
+          Discover powerful tools and integrations to enhance your mushroom cultivation journey.
+        </p>
+      </div>
+      
+      <div class="apps-grid">
+        <div class="app-card featured">
+          <div class="app-icon">
+            <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936" 
+                 alt="Crowe AI Assistant" 
+                 class="app-logo">
+          </div>
+          <div class="app-content">
+            <h3>Crowe GPT Lab</h3>
+            <p>AI-powered mushroom cultivation assistant. Get expert advice, growing tips, and personalized recommendations.</p>
+            <div class="app-meta">
+              <span class="app-badge">Featured</span>
+              <span class="app-badge">AI Assistant</span>
+            </div>
+          </div>
+          <div class="app-actions">
+            <a href="/gpt-lab" class="btn btn-primary">Launch App</a>
+          </div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"/>
+            </svg>
+          </div>
+          <div class="app-content">
+            <h3>Cultivation Tracker</h3>
+            <p>Track your mushroom growing progress, harvest yields, and environmental conditions.</p>
+            <div class="app-meta">
+              <span class="app-badge">Coming Soon</span>
+              <span class="app-badge">Productivity</span>
+            </div>
+          </div>
+          <div class="app-actions">
+            <button class="btn btn-secondary" disabled>Coming Soon</button>
+          </div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+            </svg>
+          </div>
+          <div class="app-content">
+            <h3>Analytics Dashboard</h3>
+            <p>Monitor your store performance, customer behavior, and product insights.</p>
+            <div class="app-meta">
+              <span class="app-badge">Coming Soon</span>
+              <span class="app-badge">Analytics</span>
+            </div>
+          </div>
+          <div class="app-actions">
+            <button class="btn btn-secondary" disabled>Coming Soon</button>
+          </div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <div class="app-content">
+            <h3>Quality Control</h3>
+            <p>Ensure product quality with automated inspection tools and compliance tracking.</p>
+            <div class="app-meta">
+              <span class="app-badge">Coming Soon</span>
+              <span class="app-badge">Quality</span>
+            </div>
+          </div>
+          <div class="app-actions">
+            <button class="btn btn-secondary" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="apps-cta">
+        <h3>Need a Custom Solution?</h3>
+        <p>Contact our team to discuss custom app development for your specific needs.</p>
+        <a href="/contact" class="btn btn-outline">Contact Us</a>
+      </div>
+    </section>
+  </main>
+{{/partial}}
+
+{{> layout/base}}

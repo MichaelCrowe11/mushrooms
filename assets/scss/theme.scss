@@ -2409,3 +2409,179 @@
     }
   }
 }
+
+// =============================================================================
+// APPS HUB PAGE STYLES
+// =============================================================================
+
+.apps-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  
+  .apps-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    .apps-description {
+      font-size: 1.125rem;
+      color: var(--color-textSecondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .app-card {
+    background: var(--card-backgroundColor);
+    border: 1px solid var(--card-borderColor);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border-color: var(--color-primary);
+    }
+    
+    &.featured {
+      border: 2px solid var(--color-primary);
+      background: linear-gradient(135deg, var(--card-backgroundColor) 0%, rgba(var(--color-primary-rgb), 0.05) 100%);
+      
+      &::before {
+        content: "★";
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--color-primary);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  .app-icon {
+    margin-bottom: 1.5rem;
+    
+    .app-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+    }
+    
+    .icon {
+      width: 64px;
+      height: 64px;
+      color: var(--color-primary);
+    }
+  }
+  
+  .app-content {
+    flex-grow: 1;
+    
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--color-textBase);
+    }
+    
+    p {
+      color: var(--color-textSecondary);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  .app-meta {
+    margin-bottom: 1.5rem;
+    
+    .app-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--color-greyLighter);
+      color: var(--color-textSecondary);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      
+      &:first-child {
+        background: var(--color-primary);
+        color: white;
+      }
+    }
+  }
+  
+  .app-actions {
+    margin-top: auto;
+    
+    .btn {
+      width: 100%;
+      text-align: center;
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  .apps-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--card-backgroundColor);
+    border: 1px solid var(--card-borderColor);
+    border-radius: 12px;
+    
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-textBase);
+    }
+    
+    p {
+      color: var(--color-textSecondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .apps-wrapper {
+    padding: 1rem;
+    
+    .apps-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .app-card {
+      padding: 1.5rem;
+    }
+    
+    .apps-cta {
+      padding: 2rem 1rem;
+    }
+  }
+}
