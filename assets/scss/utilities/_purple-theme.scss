@@ -1,0 +1,185 @@
+// =============================================================================
+// CROWE LOGIC PURPLE THEME - Simplified Professional Color System
+// =============================================================================
+
+:root {
+  // Crowe Logic Purple Theme - Light Mode
+  --clr-bg: #FAFAFA;
+  --clr-surface: #FFFFFF;
+  --clr-surface-alt: #F7F7F8;
+  --clr-accent: #1A0B2E;       // Deep purple-black (Crowe Logic inspired)
+  --clr-secondary: #7209B7;    // Royal purple
+  --clr-text: #0D0A14;         // Almost black (maximum contrast)
+  --clr-text-secondary: #2D1B3D;
+  --clr-text-muted: #4A4458;
+  
+  // Interactive states
+  --clr-hover: #2D1B3D;
+  --clr-focus: #16082A;
+  --clr-active: #0F0621;
+  
+  // Borders and dividers
+  --clr-border: #E1E1E3;
+  --clr-border-light: #F0F0F1;
+  --clr-divider: #D0D0D2;
+  
+  // Status colors
+  --clr-success: #059669;
+  --clr-warning: #F59E0B;
+  --clr-error: #DC2626;
+  --clr-info: #7209B7;
+  
+  // Glass-morphism
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(26, 11, 46, 0.15);
+  --glass-shadow: 0 4px 24px rgba(26, 11, 46, 0.08);
+  --glass-backdrop: blur(16px);
+  
+  // Gradients
+  --gradient-primary: linear-gradient(135deg, #1A0B2E 0%, #2D1B3D 50%, #4A4458 100%);
+  --gradient-secondary: linear-gradient(135deg, #7209B7 0%, #A855F7 50%, #C084FC 100%);
+  --gradient-neutral: linear-gradient(135deg, #F7F7F8 0%, #E1E1E3 50%, #D0D0D2 100%);
+}
+
+// Dark Theme - Enhanced Purple Mode
+[data-theme='dark'] {
+  --clr-bg: #0A0510;           // Deep black-purple
+  --clr-surface: #1A0B2E;      // Dark purple (Crowe Logic)
+  --clr-surface-alt: #2D1B3D;
+  --clr-accent: #A855F7;       // Bright purple accent
+  --clr-secondary: #E879F9;    // Bright magenta
+  --clr-text: #FFFFFF;         // Pure white (maximum contrast)
+  --clr-text-secondary: #E5E5E7;
+  --clr-text-muted: #B4B4B8;
+  
+  // Interactive states (dark)
+  --clr-hover: #C084FC;
+  --clr-focus: #D8B4FE;
+  --clr-active: #E879F9;
+  
+  // Borders (dark)
+  --clr-border: #4A4458;
+  --clr-border-light: #2D1B3D;
+  --clr-divider: #6B5B6F;
+  
+  // Status colors (dark)
+  --clr-success: #22C55E;
+  --clr-warning: #FCD34D;
+  --clr-error: #F87171;
+  --clr-info: #C084FC;
+  
+  // Glass-morphism (dark)
+  --glass-bg: rgba(26, 11, 46, 0.90);
+  --glass-border: rgba(168, 85, 247, 0.25);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.40);
+  
+  // Gradients (dark)
+  --gradient-primary: linear-gradient(135deg, #0A0510 0%, #1A0B2E 50%, #2D1B3D 100%);
+  --gradient-secondary: linear-gradient(135deg, #581C87 0%, #7C3AED 50%, #A855F7 100%);
+  --gradient-neutral: linear-gradient(135deg, #1A0B2E 0%, #2D1B3D 50%, #4A4458 100%);
+}
+
+// Enhanced Font Contrast
+body {
+  color: var(--clr-text) !important;
+  background-color: var(--clr-bg) !important;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// High contrast text classes
+.text-primary { color: var(--clr-text) !important; font-weight: 500; }
+.text-secondary { color: var(--clr-text-secondary) !important; font-weight: 450; }
+.text-muted { color: var(--clr-text-muted) !important; font-weight: 400; }
+
+// Force contrast on all text elements
+h1, h2, h3, h4, h5, h6 { color: var(--clr-text) !important; font-weight: 600; }
+p, span, div, li, td, th, label { color: var(--clr-text) !important; }
+
+// Links with proper contrast
+a {
+  color: var(--clr-accent) !important;
+  &:hover, &:focus { color: var(--clr-secondary) !important; }
+}
+
+// Sidebar with purple gradient and proper logo visibility
+.sidebar-nav {
+  background: var(--gradient-primary) !important;
+  color: #FFFFFF !important;
+  
+  .brand {
+    .brand-logo {
+      // Ensure logo is visible on purple background
+      filter: brightness(1.1) contrast(1.2) saturate(1.1) drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      padding: 8px !important;
+      border-radius: 8px !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      
+      &:hover {
+        filter: brightness(1.2) contrast(1.3) saturate(1.2) drop-shadow(0 4px 8px rgba(0,0,0,0.4)) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+      }
+    }
+  }
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+  }
+  
+  .theme-toggle button {
+    color: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+  }
+}
+
+// Dark theme overrides for maximum contrast
+[data-theme='dark'] {
+  body, p, span, div, li, td, th { color: var(--clr-text) !important; }
+  h1, h2, h3, h4, h5, h6 { color: var(--clr-text) !important; font-weight: 600; }
+  
+  .card, .product-card, .card-body {
+    background: var(--clr-surface) !important;
+    color: var(--clr-text) !important;
+    border: 1px solid var(--clr-border);
+  }
+}
+
+// Button styles with high contrast
+.btn-primary {
+  background: var(--clr-accent) !important;
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 600;
+  
+  &:hover {
+    background: var(--clr-hover) !important;
+    color: #FFFFFF !important;
+  }
+}
+
+.btn-secondary {
+  background: var(--clr-secondary) !important;
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 600;
+  
+  &:hover {
+    background: var(--clr-accent) !important;
+    color: #FFFFFF !important;
+  }
+}

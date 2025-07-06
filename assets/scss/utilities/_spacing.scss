@@ -6,48 +6,48 @@
 main,
 .main-content,
 .page-content {
-  margin-bottom: 2rem !important; // Reduced from default large margins
+  margin-bottom: 1rem !important; // Further reduced for tighter layout
 }
 
 // Content spacing improvements
 .container {
-  padding-bottom: 1rem; // Reduced bottom padding
+  padding-bottom: 0.5rem; // Minimal bottom padding
 }
 
 // Section spacing optimization
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem; // Reduced from 2rem
   
   &:last-child {
-    margin-bottom: 1rem; // Minimal bottom margin for last sections
+    margin-bottom: 0.5rem; // Very minimal for last sections
   }
 }
 
 // Product grid spacing
 .product-grid,
 .products-grid {
-  margin-bottom: 1.5rem; // Reduced bottom margin
+  margin-bottom: 1rem; // Reduced further
 }
 
 // Category page spacing
 .category-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; // Reduced from 2rem
 }
 
 .category-content {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; // Reduced from 1.5rem
 }
 
 // Footer spacing optimization
 .footer {
-  margin-top: 2rem !important; // Reduced from 4rem to 2rem
-  padding: 2rem 0 !important;  // Reduced padding
+  margin-top: 1rem !important; // Reduced from 2rem to 1rem
+  padding: 1.5rem 0 !important; // Reduced padding further
   
   .footer-info {
-    padding: 1rem 0;
+    padding: 0.5rem 0; // Reduced from 1rem
     
     .footer-info-col {
-      margin-bottom: 1rem; // Reduced margin
+      margin-bottom: 0.75rem; // Reduced margin
     }
   }
 }
@@ -143,5 +143,15 @@ section {
   
   section {
     margin-bottom: 1rem;
+  }
+}
+
+// Video gallery page specific spacing fixes
+.youtube-gallery {
+  margin-bottom: 0.5rem !important; // Minimal bottom margin
+  padding-bottom: 1rem !important; // Reduced internal padding
+  
+  .video-grid {
+    margin-bottom: 0 !important; // No bottom margin on grid
   }
 }

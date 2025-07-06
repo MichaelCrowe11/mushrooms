@@ -132,3 +132,67 @@
     }
   }
 }
+
+// Small social media icons for sidebar
+.social-icons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--clr-text-muted);
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    
+    &:hover {
+      color: var(--clr-accent);
+      background: rgba(114, 9, 183, 0.1);
+      transform: translateY(-1px);
+    }
+    
+    svg {
+      width: 1rem;
+      height: 1rem;
+      transition: all 0.2s ease;
+    }
+  }
+}
+
+// Social links container in sidebar
+.social-links {
+  margin-top: auto;
+  padding: 1rem 0 0.5rem 0;
+  border-top: 1px solid rgba(114, 9, 183, 0.2);
+  
+  h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--clr-text-muted);
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+// Dark theme social icons
+[data-theme='dark'] {
+  .social-icons a {
+    color: var(--clr-text-muted);
+    
+    &:hover {
+      color: var(--clr-accent);
+      background: rgba(114, 9, 183, 0.15);
+    }
+  }
+  
+  .social-links {
+    border-top-color: rgba(114, 9, 183, 0.3);
+  }
+}
