@@ -1,0 +1,64 @@
+{
+  "analytics": {
+    "google_analytics_4": {
+      "name": "Google Analytics 4 - Southwest Mushrooms",
+      "description": "Track website performance and user behavior",
+      "location": "head",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n  gtag('config', 'GA_MEASUREMENT_ID', {\n    'custom_map': {\n      'custom_parameter_1': 'store_id',\n      'custom_parameter_2': 'theme_version'\n    }\n  });\n  \n  // Enhanced ecommerce tracking\n  gtag('config', 'GA_MEASUREMENT_ID', {\n    'send_page_view': true,\n    'anonymize_ip': true\n  });\n</script>",
+      "consent_category": "analytics"
+    },
+    "google_tag_manager": {
+      "name": "Google Tag Manager - Southwest Mushrooms",
+      "description": "Manage all tracking tags from one place",
+      "location": "head",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>\n<!-- End Google Tag Manager -->",
+      "consent_category": "analytics"
+    }
+  },
+  "marketing": {
+    "facebook_pixel": {
+      "name": "Facebook Pixel - Southwest Mushrooms",
+      "description": "Track conversions and retarget website visitors",
+      "location": "head",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<!-- Facebook Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s)\n{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};\nif(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\nn.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];\ns.parentNode.insertBefore(t,s)}(window, document,'script',\n'https://connect.facebook.net/en_US/fbevents.js');\nfbq('init', 'FACEBOOK_PIXEL_ID');\nfbq('track', 'PageView');\n</script>\n<noscript><img height=\"1\" width=\"1\" style=\"display:none\"\nsrc=\"https://www.facebook.com/tr?id=FACEBOOK_PIXEL_ID&ev=PageView&noscript=1\"\n/></noscript>\n<!-- End Facebook Pixel Code -->",
+      "consent_category": "marketing"
+    }
+  },
+  "customer_support": {
+    "crisp_chat": {
+      "name": "Crisp Live Chat - Southwest Mushrooms",
+      "description": "Provide real-time customer support",
+      "location": "footer",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<script type=\"text/javascript\">\nwindow.$crisp=[];window.CRISP_WEBSITE_ID=\"CRISP_WEBSITE_ID\";\n(function(){\nd=document;s=d.createElement(\"script\");\ns.src=\"https://client.crisp.chat/l.js\";\ns.async=1;d.getElementsByTagName(\"head\")[0].appendChild(s);\n})();\n</script>",
+      "consent_category": "functional"
+    },
+    "hotjar": {
+      "name": "Hotjar Analytics - Southwest Mushrooms", 
+      "description": "User behavior analytics and heatmaps",
+      "location": "head",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<!-- Hotjar Tracking Code -->\n<script>\n(function(h,o,t,j,a,r){\nh.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\nh._hjSettings={hjid:HOTJAR_ID,hjsv:6};\na=o.getElementsByTagName('head')[0];\nr=o.createElement('script');r.async=1;\nr.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\na.appendChild(r);\n})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n</script>",
+      "consent_category": "analytics"
+    }
+  },
+  "performance": {
+    "custom_performance": {
+      "name": "Performance Monitoring - Southwest Mushrooms",
+      "description": "Monitor page load times and Core Web Vitals",
+      "location": "footer",
+      "auto_uninstall": true,
+      "load_method": "default",
+      "script": "<script>\n// Performance monitoring\n(function() {\n  // Core Web Vitals monitoring\n  function sendToAnalytics(metric) {\n    if (typeof gtag !== 'undefined') {\n      gtag('event', metric.name, {\n        event_category: 'Web Vitals',\n        event_label: metric.id,\n        value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),\n        non_interaction: true\n      });\n    }\n  }\n  \n  // Load web-vitals library\n  if ('requestIdleCallback' in window) {\n    requestIdleCallback(() => {\n      import('https://unpkg.com/web-vitals@3/dist/web-vitals.js')\n        .then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {\n          getCLS(sendToAnalytics);\n          getFID(sendToAnalytics);\n          getFCP(sendToAnalytics);\n          getLCP(sendToAnalytics);\n          getTTFB(sendToAnalytics);\n        });\n    });\n  }\n})();\n</script>",
+      "consent_category": "analytics"
+    }
+  }
+}

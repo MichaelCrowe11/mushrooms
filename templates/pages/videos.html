@@ -1,4 +1,31 @@
 <!-- templates/pages/videos.html -->
+{{#partial "head"}}
+  <meta name="description" content="Watch mushroom cultivation videos, facility tours, and growing tutorials from Southwest Mushrooms. Learn professional techniques from our experts.">
+  <meta name="keywords" content="mushroom videos, cultivation tutorials, growing guides, facility tour, fungiculture, mycology">
+  <meta property="og:title" content="Video Library - Southwest Mushrooms">
+  <meta property="og:description" content="Watch mushroom cultivation videos, facility tours, and growing tutorials from Southwest Mushrooms.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://img.youtube.com/vi/mNnTXNS76Dw/maxresdefault.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Video Library - Southwest Mushrooms">
+  <meta name="twitter:description" content="Watch mushroom cultivation videos, facility tours, and growing tutorials from Southwest Mushrooms.">
+  <link rel="canonical" href="{{urls.home}}/videos">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGallery",
+    "name": "Southwest Mushrooms Video Library",
+    "description": "Educational videos about mushroom cultivation, facility tours, and growing techniques",
+    "url": "{{urls.home}}/videos",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Southwest Mushrooms",
+      "url": "{{urls.home}}"
+    }
+  }
+  </script>
+{{/partial}}
+
 {{#partial "page"}}
   {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 

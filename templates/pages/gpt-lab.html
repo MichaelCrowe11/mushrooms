@@ -1,4 +1,38 @@
 <!-- templates/pages/gpt-lab.html -->
+{{#partial "head"}}
+  <meta name="description" content="Get expert mushroom cultivation advice from Crowe, our AI assistant. Ask questions about growing techniques, products, and troubleshooting.">
+  <meta name="keywords" content="AI assistant, mushroom advice, growing help, cultivation assistant, crowe, mycology AI, fungiculture help">
+  <meta property="og:title" content="Crowe GPT Lab - AI Mushroom Cultivation Assistant">
+  <meta property="og:description" content="Get expert mushroom cultivation advice from Crowe, our AI assistant. Ask questions about growing techniques and products.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crowe GPT Lab - AI Mushroom Assistant">
+  <meta name="twitter:description" content="Get expert mushroom cultivation advice from our AI assistant. Ask questions about growing techniques and products.">
+  <link rel="canonical" href="{{urls.home}}/gpt-lab">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Crowe GPT Lab",
+    "description": "AI-powered mushroom cultivation assistant providing expert advice and growing tips",
+    "url": "{{urls.home}}/gpt-lab",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Southwest Mushrooms",
+      "url": "{{urls.home}}"
+    }
+  }
+  </script>
+{{/partial}}
+
 {{#partial "page"}}
   {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 

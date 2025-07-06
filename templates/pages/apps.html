@@ -1,4 +1,43 @@
 <!-- templates/pages/apps.html -->
+{{#partial "head"}}
+  <meta name="description" content="Discover powerful tools and integrations to enhance your mushroom cultivation journey. Apps for tracking, analytics, and quality control.">
+  <meta name="keywords" content="apps, tools, integrations, cultivation apps, mushroom tools, farming software, mycology apps">
+  <meta property="og:title" content="Apps Hub - Southwest Mushrooms Tools & Integrations">
+  <meta property="og:description" content="Discover powerful tools and integrations to enhance your mushroom cultivation journey.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Apps Hub - Mushroom Cultivation Tools">
+  <meta name="twitter:description" content="Discover powerful tools and integrations to enhance your mushroom cultivation journey.">
+  <link rel="canonical" href="{{urls.home}}/apps">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Southwest Mushrooms Apps Hub",
+    "description": "Collection of tools and applications for mushroom cultivation and business management",
+    "url": "{{urls.home}}/apps",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Cultivation Apps",
+      "numberOfItems": 4,
+      "itemListElement": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Crowe GPT Lab",
+          "description": "AI-powered mushroom cultivation assistant"
+        }
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Southwest Mushrooms",
+      "url": "{{urls.home}}"
+    }
+  }
+  </script>
+{{/partial}}
+
 {{#partial "page"}}
   {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
