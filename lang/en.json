@@ -180,6 +180,10 @@
         "private": "Private",
         "view_all": "View All",
         "all": "All",
+        "navigation": "Navigation",
+        "skip_to_main": "Skip to main content",
+        "toggle_navigation": "Toggle navigation",
+        "toggle_theme": "Toggle theme",
         "paginator": {
             "page_of": "Page {current} of {total}"
         },
@@ -1034,5 +1038,17 @@
         "privacy_policy": "Privacy Policy",
         "allow_category_tracking": "Allow [CATEGORY_NAME] tracking",
         "disallow_category_tracking": "Disallow [CATEGORY_NAME] tracking"
+    },
+    "nav": {
+        "main": "Main navigation",
+        "home": "Home",
+        "explore": "Explore",
+        "videos": "Videos",
+        "gpt_lab": "GPT Lab",
+        "apps": "Apps",
+        "account": "Account",
+        "my_account": "My Account",
+        "orders": "Orders",
+        "theme_toggle": "Toggle theme"
     }
 }

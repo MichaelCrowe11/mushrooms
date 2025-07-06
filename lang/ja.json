@@ -178,6 +178,7 @@
         "delete": "削除する",
         "public": "公式",
         "private": "プライベート",
+        "skip_to_main": "メインコンテンツへスキップ",
         "view_all": "すべて表示",
         "all": "全体",
         "paginator": {

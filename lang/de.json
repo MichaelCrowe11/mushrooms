@@ -178,6 +178,7 @@
         "delete": "Löschen",
         "public": "Öffentlich",
         "private": "Privat",
+        "skip_to_main": "Zum Hauptinhalt springen",
         "view_all": "Alle anzeigen",
         "all": "Alle",
         "paginator": {
