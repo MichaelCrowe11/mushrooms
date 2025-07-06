@@ -37,7 +37,7 @@
 ### ✅ **Professional Navigation Icons**
 - **Video Library**: Modern monitor with play button - represents education and tutorials
 - **AI Lab**: Circuit board with analysis elements - cutting-edge technology
-- **Apps Hub**: Modular app grid with connection points - integration and flexibility
+- **Crowe Apps**: Modular app grid with connection points - integration and flexibility
 - **Extracts**: Star with center refinement - premium quality and purity
 - **Blog**: Document with content lines - knowledge sharing and expertise
 
