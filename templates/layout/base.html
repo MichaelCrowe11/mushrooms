@@ -23,7 +23,7 @@
     <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
     
     <!-- Preload critical fonts -->
-    <link rel="preload" href="/assets/fonts/system-ui.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/system-ui.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     
     <!-- Critical CSS inline for better performance -->
     <style>
@@ -41,6 +41,10 @@
         .js { visibility: visible; }
         .openai-sidebar { z-index: 1000; }
         .sidebar-overlay { z-index: 999; }
+        .focusable:active, .focusable:focus {
+            outline: 2px solid var(--clr-focus, #10a37f);
+            outline-offset: 2px;
+        }
     </style>
 
     <!-- JavaScript detection and polyfills -->
@@ -70,6 +74,18 @@
             hFac: 0.8,
             loadHidden: false
         };
+        // Defer non-critical scripts
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var scripts = document.querySelectorAll('script[data-defer]');
+                scripts.forEach(function(script) {
+                    var s = document.createElement('script');
+                    s.src = script.dataset.src;
+                    s.async = true;
+                    document.body.appendChild(s);
+                });
+            }, 200);
+        });
     </script>
     
     <!-- Async scripts for performance -->
@@ -81,6 +97,7 @@
 
     <!-- Main theme stylesheet -->
     {{{stylesheet '/assets/css/theme.css'}}}
+    <link rel="preload" href="/assets/css/theme.css" as="style" crossorigin>
     
     <!-- Custom head scripts -->
     {{{head.scripts}}}
@@ -102,12 +119,25 @@
     {{~inject 'giftWrappingRemoveMessage' (lang 'cart.gift_wrapping.remove_confirm')}}
 </head>
 
-<body class="openai-theme has-sidebar {{#if template}}template-{{template}}{{/if}} {{#if page_type}}page-{{page_type}}{{/if}}">
+<body class="openai-theme has-sidebar {{#if template}}template-{{template}}{{/if}} {{#if page_type}}page-{{page_type}}{{/if}}" aria-busy="false">
+    <!-- Immersive Loading Screen -->
+    <div class="loading-overlay-immersive" id="loading-overlay" role="status" aria-live="polite">
+        <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884" 
+             alt="{{settings.store_name}} Logo" 
+             class="loading-logo"
+             width="100" 
+             height="100">
+        <span class="visually-hidden">{{lang 'common.loading'}}</span>
+    </div>
+
     <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">{{lang 'common.skip_to_main'}}</a>
+    <a href="#main-content" class="skip-link visually-hidden focusable">{{lang 'common.skip_to_main'}}</a>
+    
+    <!-- SVG Icon Sprite System for Optimized Icons -->
+    {{> components/common/icons/icon-sprite }}
     
     <!-- OpenAI-Inspired Sidebar Navigation -->
-    <aside class="openai-sidebar" id="openai-sidebar" aria-label="{{lang 'common.navigation'}}">
+    <aside class="openai-sidebar" id="openai-sidebar" aria-label="{{lang 'common.navigation'}}" role="navigation">
         <!-- Sidebar Header -->
         <div class="sidebar-header">
             <a href="{{urls.home}}" class="sidebar-brand" aria-label="{{lang 'header.logo_alt' name=settings.store_name}}">
@@ -115,7 +145,10 @@
                      alt="{{settings.store_name}}" 
                      class="sidebar-logo"
                      width="32" 
-                     height="32">
+                     height="32"
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="high">
                 <span class="sidebar-brand-text">{{settings.store_name}}</span>
             </a>
             
@@ -124,16 +157,17 @@
                     id="sidebar-toggle" 
                     aria-label="{{lang 'common.toggle_navigation'}}"
                     aria-expanded="false"
-                    aria-controls="openai-sidebar">
-                <svg class="sidebar-toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    aria-controls="openai-sidebar"
+                    tabindex="0">
+                <svg class="sidebar-toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
                     <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
                 </svg>
-                <span class="sr-only">Toggle navigation</span>
+                <span class="visually-hidden">Toggle navigation</span>
             </button>
         </div>
         
         <!-- Sidebar Navigation -->
-        <nav class="sidebar-nav" role="navigation" aria-label="{{lang 'nav.main'}}">
+        <nav class="sidebar-nav" role="menubar" aria-label="{{lang 'nav.main'}}">
             <!-- Main Navigation Section -->
             <div class="nav-section">
                 <ul class="nav-list" role="menubar">
@@ -189,7 +223,7 @@
                            role="menuitem">
                             <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm3 2.5a.5.5 0 01.8-.4l4.5 3a.5.5 0 010 .8l-4.5 3a.5.5 0 01-.8-.4v-6z" clip-rule="evenodd"/>
-                            </svg>
+                        </svg>
                             <span class="nav-link-text">{{lang 'nav.videos'}}</span>
                         </a>
                     </li>
@@ -213,6 +247,17 @@
                                 <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
                             </svg>
                             <span class="nav-link-text">{{lang 'nav.apps'}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="https://southwestmushrooms.com/michaelcrowemycology" 
+                           class="nav-link" 
+                           role="menuitem"
+                           target="_blank">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 005.5 16c1.255 0 2.443-.29 3.5-.804V4.804zM14.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 0114.5 16c1.255 0 2.443-.29 3.5-.804v-10A7.968 7.968 0 0014.5 4z" />
+                            </svg>
+                            <span class="nav-link-text">Michael Crowe Mycology</span>
                         </a>
                     </li>
                 </ul>
@@ -285,13 +330,26 @@
                 <span class="theme-text">{{lang 'nav.theme_toggle'}}</span>
             </button>
             
-            <!-- Footer info -->
-            <p class="sidebar-footer-text">
-                Powered by CroweOS Systems
-            </p>
-            <p class="sidebar-footer-text-small">
-                Built by Michael Crowe
-            </p>
+            <!-- Footer info with Crowe Logic branding -->
+            <div class="sidebar-footer-branding">
+                <div class="crowe-avatar">
+                    <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/crowe-logic-avatar.png?t=1751756884" 
+                         alt="Michael Crowe" 
+                         class="avatar-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="avatar-fallback" style="display:none;">
+                        <span class="avatar-initials">MC</span>
+                    </div>
+                </div>
+                <div class="branding-text">
+                    <p class="sidebar-footer-text">
+                        Powered by CroweOS Systems
+                    </p>
+                    <p class="sidebar-footer-text-small">
+                        Built by Michael Crowe
+                    </p>
+                </div>
+            </div>
         </div>
     </aside>
     
@@ -418,6 +476,14 @@
         // Performance monitoring
         if ('performance' in window) {
             window.addEventListener('load', function() {
+                // Hide immersive loading screen
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    setTimeout(() => {
+                        loadingOverlay.classList.add('is-hidden');
+                    }, 250); // Brief delay to prevent flash of unstyled content
+                }
+
                 setTimeout(function() {
                     const perfData = performance.getEntriesByType('navigation')[0];
                     if (perfData) {

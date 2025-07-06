@@ -788,6 +788,7 @@
         "pre_order": "Pre-Order Now",
         "choose_options": "Choose Options",
         "quick_view": "Quick view",
+        "grid_aria_label": "Product grid listing",
         "compare": "Compare",
         "max_filesize": "Maximum file size is",
         "kilobytes_abbreviation": "KB",

@@ -1,0 +1,294 @@
+// =============================================================================
+// PRODUCT LAYOUT ENHANCEMENT - CroweOS Design System
+// Perfect sizing, alignment, and responsive behavior for product components
+// =============================================================================
+
+// Enhanced product grid container
+.product-grid-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  
+  @media (min-width: 768px) {
+    padding: 0 1.5rem;
+  }
+  
+  @media (min-width: 1200px) {
+    padding: 0 2rem;
+  }
+}
+
+// Override legacy product grid with modern CSS Grid
+.productGrid,
+.product-grid,
+.productGrid--maxCol2,
+.productGrid--maxCol3,
+.productGrid--maxCol4,
+.productGrid--maxCol5,
+.productGrid--maxCol6,
+[data-product-type="featured"] .productGrid,
+[data-product-type="top_sellers"] .productGrid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px)) !important;
+  gap: 2rem 1.5rem !important;
+  padding: 1.5rem 0 !important;
+  margin: 0 !important;
+  align-items: start !important;
+  justify-content: center !important;
+  font-size: inherit !important;
+  width: 100% !important;
+  list-style: none !important;
+  
+  // Enhanced spacing for larger screens
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 320px)) !important;
+    gap: 2.5rem 2rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+  
+  // Medium screens
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 320px)) !important;
+  }
+  
+  // Tablet optimization
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 1.5rem 1rem !important;
+    padding: 1rem 0 !important;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  // Override legacy float-based layout
+  .product,
+  li.product {
+    display: block !important;
+    width: auto !important;
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+}
+
+// Enhanced page layout for product listings
+.page-content {
+  width: 100% !important;
+  max-width: none !important;
+  
+  // When sidebar is present, adjust layout
+  .page-sidebar + & {
+    @media (min-width: 768px) {
+      display: flex !important;
+      gap: 2rem !important;
+      align-items: flex-start !important;
+    }
+  }
+}
+
+// Sidebar enhancements
+.page-sidebar {
+  @media (min-width: 768px) {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+// Product listing container optimization
+#product-listing-container {
+  flex: 1 !important;
+  min-width: 0 !important;
+  
+  // Ensure proper spacing
+  .product-grid,
+  .productGrid {
+    margin-top: 0 !important;
+  }
+}
+
+// Category page enhancements
+.category-page {
+  .page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    
+    @media (min-width: 768px) {
+      padding: 0 1.5rem;
+    }
+    
+    @media (min-width: 1200px) {
+      padding: 0 2rem;
+    }
+  }
+}
+
+// Search results page optimization
+.search-page {
+  .product-grid,
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    }
+  }
+}
+
+// Brand page optimization
+.brand-page {
+  .product-grid,
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  }
+}
+
+// Enhanced pagination container
+.pagination {
+  margin: 3rem 0 2rem !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+// Filter bar enhancements
+.actionBar,
+.product-filter {
+  margin-bottom: 2rem !important;
+  padding: 0 !important;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+// Product listing responsive containers
+.product-listing-wrapper {
+  width: 100%;
+  overflow: hidden;
+  
+  // Ensure proper alignment in all contexts
+  .product-grid,
+  .productGrid {
+    justify-items: center;
+    
+    @media (min-width: 1200px) {
+      justify-items: stretch;
+    }
+  }
+}
+
+// Loading state optimization
+.product-listing-loading {
+  .product-grid,
+  .productGrid {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+// Empty state styling
+.no-products-found {
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+  padding: 3rem 1rem !important;
+  color: var(--clr-text-secondary, #64748b) !important;
+  font-size: 1.125rem !important;
+}
+
+// Enhanced product card spacing in grid
+.product-grid .product-card,
+.productGrid .product-card {
+  width: 100% !important;
+  max-width: 320px !important;
+  margin: 0 auto !important;
+}
+
+// Ensure cards don't stretch too wide on very large screens
+@media (min-width: 1600px) {
+  .product-grid,
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+  }
+}
+
+// Print styles
+@media print {
+  .product-grid,
+  .productGrid {
+    display: block !important;
+    
+    .product-card {
+      break-inside: avoid !important;
+      margin-bottom: 1rem !important;
+    }
+  }
+}
+
+// Specific fixes for featured and top seller sections
+.main.full {
+  // Ensure proper container for all homepage product sections
+  > * {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    
+    @media (min-width: 768px) {
+      padding: 0 1.5rem;
+    }
+    
+    @media (min-width: 1200px) {
+      padding: 0 2rem;
+    }
+  }
+}
+
+// Featured products section
+[data-product-type="featured"] {
+  .page-heading {
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .productGrid {
+    justify-content: center !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+}
+
+// Top sellers section
+[data-product-type="top_sellers"] {
+  .page-heading {
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .productGrid {
+    justify-content: center !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+}
+
+// Ensure all homepage sections have consistent spacing
+.main.full > *:not(:last-child) {
+  margin-bottom: 3rem;
+}

@@ -1,0 +1,20 @@
+// Custom styles for marketing sections
+
+.video-hero,
+.featured-showcase,
+.testimonials,
+.cta-section,
+.newsletter-signup {
+    padding: var(--space-6) 0;
+    background-color: var(--surface-secondary);
+    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--space-5);
+
+    @media (min-width: 768px) {
+        padding: var(--space-8) 0;
+    }
+}
+
+.video-hero {
+    background-color: var(--surface-primary);
+}

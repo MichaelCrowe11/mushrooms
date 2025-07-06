@@ -1,170 +1,189 @@
 ---
+# front-matter intact
 products:
-    new:
-        limit: {{theme_settings.homepage_new_products_count}}
-    featured:
-        limit: {{theme_settings.homepage_featured_products_count}}
-    top_sellers:
-        limit: {{theme_settings.homepage_top_products_count}}
-carousel: {{theme_settings.homepage_show_carousel}}
+  featured:
+    limit: {{theme_settings.homepage_featured_products_count}}
+  top_sellers:
+    limit: {{theme_settings.homepage_top_products_count}}
+  new:
+    limit: {{theme_settings.homepage_new_products_count}}
+carousel: true            # leave this; BigCommerce sets up the object
 blog:
-    recent_posts:
-        limit: {{theme_settings.homepage_blog_posts_count}}
+  recent_posts:
+    limit: {{theme_settings.homepage_blog_posts_count}}
 ---
-{{#partial "hero"}}
-    {{{region name="home_below_menu"}}}
-    {{#and carousel carousel.slides.length}}
-        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
-    {{/and}}
-    {{{region name="home_below_carousel"}}}
-{{/partial}}
+
+{{!-- 1️⃣ Kill the empty hero wrapper --}}
+{{#partial "hero"}}{{!-- intentionally left blank --}}{{/partial}}
 
 {{#partial "page"}}
+  {{#each shipping_messages}}
+    {{> components/common/alert/alert-info message}}
+  {{/each}}
 
-    {{#each shipping_messages}}
-        {{> components/common/alert/alert-info message}}
-    {{/each}}
+  <div class="main full">
 
-<div class="main full">
+    {{!-- core product rows ----------------------------------}}
     {{#if products.featured}}
-        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+      {{> components/products/featured
+          products=products.featured
+          columns=theme_settings.homepage_featured_products_column_count
+          quick_add=true }}
     {{/if}}
-    {{{region name="home_below_featured_products"}}}
 
     {{#if products.top_sellers}}
-        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+      {{> components/products/top
+          products=products.top_sellers
+          columns=theme_settings.homepage_top_products_column_count
+          quick_add=true }}
     {{/if}}
-    {{{region name="home_below_top_products"}}}
 
     {{#if products.new}}
-        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+      {{> components/products/new
+          products=products.new
+          columns=theme_settings.homepage_new_products_column_count
+          quick_add=true }}
     {{/if}}
+
+    {{!-- 2️⃣ Custom marketing blocks NOW live in the same container --}}
     {{{region name="home_below_new_products"}}}
-</div>
 
-<!-- Enhanced Video Hero Section -->
-<section class="video-hero">
-  <div class="container">
-    <h2>Inside Our Cultivation Facility</h2>
-    <p>Step inside our lab and explore how we grow Lion's Mane, Reishi, and more.</p>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/mNnTXNS76Dw"
-              title="Inside Our Mushroom Cultivation Facility"
-              allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- Featured Products Showcase -->
-<section class="featured-showcase">
-  <div class="container">
-    <div class="section-header">
-      <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884" 
-           alt="Southwest Mushrooms" 
-           class="section-logo">
-      <h2>Premium Mushroom Cultures</h2>
-      <p>Discover our most popular and highly-rated mushroom varieties</p>
-    </div>
-    <div class="showcase-grid">
-      <div class="showcase-item">
-        <div class="showcase-icon">🍄</div>
-        <h3>Lion's Mane</h3>
-        <p>Known for cognitive enhancement and nerve regeneration</p>
-        <a href="/cultures/lions-mane" class="btn btn-primary">Learn More</a>
-      </div>
-      <div class="showcase-item">
-        <div class="showcase-icon">🍄</div>
-        <h3>Reishi</h3>
-        <p>The "Mushroom of Immortality" for immune support</p>
-        <a href="/cultures/reishi" class="btn btn-primary">Learn More</a>
-      </div>
-      <div class="showcase-item">
-        <div class="showcase-icon">🍄</div>
-        <h3>Cordyceps</h3>
-        <p>Energy and endurance enhancement naturally</p>
-        <a href="/cultures/cordyceps" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials Section -->
-<section class="testimonials">
-  <div class="container">
-    <div class="section-header">
-      <h2>What Our Customers Say</h2>
-      <p>Join thousands of satisfied mushroom enthusiasts</p>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"The quality of these cultures is outstanding. My Lion's Mane harvest was incredible!"</p>
+    {{!-- Video hero --------------------------------------------------}}
+    <section class="video-hero">
+      <div class="container">
+        <h2>Inside Our Cultivation Facility</h2>
+        <p>Step inside our lab and explore how we grow Lion's Mane, Reishi, and more.</p>
+        <div class="video-wrapper" itemscope itemtype="https://schema.org/VideoObject">
+          <iframe src="https://www.youtube.com/embed/mNnTXNS76Dw?rel=0&modestbranding=1&showinfo=0&controls=1&autoplay=0&mute=0&loop=0&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0"
+                  title="Inside Our Mushroom Cultivation Facility"
+                  frameborder="0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  itemprop="embedUrl"></iframe>
+          <meta itemprop="name" content="Inside Our Mushroom Cultivation Facility">
+          <meta itemprop="description" content="Step inside our lab and explore how we grow Lion's Mane, Reishi, and more.">
+          <meta itemprop="uploadDate" content="2024-01-01">
         </div>
-        <div class="testimonial-author">
-          <div class="author-avatar">👤</div>
-          <div class="author-info">
-            <h4>Sarah M.</h4>
-            <span>Verified Customer</span>
+      </div>
+    </section>
+
+    {{!-- Showcase / Testimonials / CTA / Newsletter -----------------}}
+    <section class="featured-showcase">
+      <div class="container">
+        <div class="section-header">
+          <h2>Premium Mushroom Cultures</h2>
+          <p>Discover our most popular and highly-rated mushroom varieties</p>
+        </div>
+        <div class="showcase-grid">
+          <div class="showcase-item">
+            <div class="showcase-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <h3>Lion's Mane</h3>
+            <p>Known for cognitive enhancement and nerve regeneration</p>
+            <a href="/cultures/lions-mane" class="btn btn-primary">Learn More</a>
+          </div>
+          <div class="showcase-item">
+            <div class="showcase-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 11H7v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9h-2v11h-8v-9zm3-7C10.34 4 9 5.34 9 7s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+              </svg>
+            </div>
+            <h3>Reishi</h3>
+            <p>The "Mushroom of Immortality" for immune support</p>
+            <a href="/cultures/reishi" class="btn btn-primary">Learn More</a>
+          </div>
+          <div class="showcase-item">
+            <div class="showcase-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 2v2h3l3-3v3l-3 3h-3v2l4-2v3l-4 2v2h3l3-3v3l-3 3h-3v3l-1-1-1 1v-3H8l-3 3v-3l3-3H8v-2l-4 2v-3l4-2V7H5L2 4v3l3 3h3V8l1 1 1-1v2h3L16 7v3l-3 3h-3V8l1-1-1-1V4z"/>
+              </svg>
+            </div>
+            <h3>Cordyceps</h3>
+            <p>Energy and endurance enhancement naturally</p>
+            <a href="/cultures/cordyceps" class="btn btn-primary">Learn More</a>
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"Southwest Mushrooms has the best grow kits I've ever used. Highly recommended!"</p>
+    </section>
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Our Customers Say</h2>
+          <p>Join thousands of satisfied mushroom enthusiasts</p>
         </div>
-        <div class="testimonial-author">
-          <div class="author-avatar">👤</div>
-          <div class="author-info">
-            <h4>Mike R.</h4>
-            <span>Verified Customer</span>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <p>"The quality of these cultures is outstanding. My Lion's Mane harvest was incredible!"</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👤</div>
+              <div class="author-info">
+                <h4>Sarah M.</h4>
+                <span>Verified Customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <p>"Southwest Mushrooms has the best grow kits I've ever used. Highly recommended!"</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👤</div>
+              <div class="author-info">
+                <h4>Mike R.</h4>
+                <span>Verified Customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <p>"Amazing customer service and the Reishi extract has transformed my wellness routine."</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👤</div>
+              <div class="author-info">
+                <h4>Lisa K.</h4>
+                <span>Verified Customer</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          <p>"Amazing customer service and the Reishi extract has transformed my wellness routine."</p>
-        </div>
-        <div class="testimonial-author">
-          <div class="author-avatar">👤</div>
-          <div class="author-info">
-            <h4>Lisa K.</h4>
-            <span>Verified Customer</span>
+    </section>
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Start Your Mushroom Journey?</h2>
+          <p>Join our community of mushroom enthusiasts and discover the incredible benefits of functional mushrooms.</p>
+          <div class="cta-buttons">
+            <a href="/cultures" class="btn btn-primary">Browse Cultures</a>
+            <a href="/grow-kits" class="btn btn-secondary">View Grow Kits</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Call to Action Section -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-content">
-      <h2>Ready to Start Your Mushroom Journey?</h2>
-      <p>Join our community of mushroom enthusiasts and discover the incredible benefits of functional mushrooms.</p>
-      <div class="cta-buttons">
-        <a href="/cultures" class="btn btn-primary">Browse Cultures</a>
-        <a href="/grow-kits" class="btn btn-secondary">View Grow Kits</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Newsletter Signup -->
-<section class="newsletter-signup">
-  <div class="container">
-    <div class="newsletter-content">
-      <h3>Stay Updated</h3>
-      <p>Get the latest mushroom growing tips, new product announcements, and exclusive offers.</p>
-      <form class="newsletter-form" action="/newsletter/subscribe" method="POST">
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Enter your email address" required>
-          <button type="submit" class="btn btn-primary">Subscribe</button>
+    </section>
+    <section class="newsletter-signup">
+      <div class="container">
+        <div class="newsletter-content">
+          <h3>Stay Updated</h3>
+          <p>Get the latest mushroom growing tips, new product announcements, and exclusive offers.</p>
+          <form class="newsletter-form" action="/newsletter/subscribe" method="POST">
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Enter your email address" required>
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
+  </div><!-- /.main full -->
 {{/partial}}
+
 {{> layout/base}}

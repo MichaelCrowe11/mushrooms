@@ -1,7 +1,22 @@
-<ul class="product-grid">
-    {{#each products}}
-    <li class="product">
-            {{>components/products/card settings=../settings show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event position=(add @index 1)}}
-    </li>
-    {{/each}}
-</ul>
+<div class="product-grid-container">
+    <div class="product-grid productGrid" 
+         role="grid" 
+         aria-label="{{lang 'products.grid_aria_label'}}"
+         data-test-id="product-grid">
+        {{#each products}}
+            <div class="product product-grid-item" 
+                 role="gridcell" 
+                 data-product-id="{{id}}"
+                 data-position="{{add @index 1}}">
+                {{>components/products/card 
+                    settings=../settings 
+                    show_compare=../show_compare 
+                    show_rating=../settings.show_product_rating 
+                    theme_settings=../theme_settings 
+                    customer=../customer 
+                    event=../event 
+                    position=(add @index 1)}}
+            </div>
+        {{/each}}
+    </div>
+</div>

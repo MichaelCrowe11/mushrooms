@@ -1,0 +1,11 @@
+{{!-- 
+  Icon Helper Component
+  Usage: {{> components/common/icons/icon name="home" size="20" class="nav-icon"}}
+--}}
+<svg class="icon {{#if class}}{{class}}{{/if}}" 
+     width="{{#if size}}{{size}}{{else}}20{{/if}}" 
+     height="{{#if size}}{{size}}{{else}}20{{/if}}" 
+     {{#if aria_label}}aria-label="{{aria_label}}"{{else}}aria-hidden="true"{{/if}}
+     {{#if role}}role="{{role}}"{{/if}}>
+  <use href="#icon-{{name}}"></use>
+</svg>

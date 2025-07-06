@@ -187,19 +187,24 @@ p, h1, h2, h3, h4, h5, h6,
 }
 
 // Enhanced focus states for accessibility
-*:focus {
-  outline: 3px solid var(--clr-focus);
+*:focus-visible {
+  outline: 2px solid var(--clr-focus, #10a37f);
   outline-offset: 2px;
-  box-shadow: 0 0 0 1px var(--clr-surface);
+  box-shadow: 0 0 0 2px var(--clr-surface, #fff);
+  transition: outline-color 0.2s, box-shadow 0.2s;
 }
 
-button:focus,
-input:focus,
-select:focus,
-textarea:focus,
-.nav-link:focus {
-  outline: 3px solid var(--clr-focus);
-  outline-offset: 2px;
+// Visually hidden utility for a11y
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 // Dark theme specific fixes
