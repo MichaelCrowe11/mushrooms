@@ -1,0 +1,46 @@
+{{! 
+  This file is a new component for the sidebar navigation.
+  It includes a list of links that will be styled according to the new OpenAI-inspired theme.
+}}
+<nav class="sidebar-nav">
+    <div class="sidebar-header">
+        <a href="{{urls.home}}" class="sidebar-brand">
+            <img src="{{cdn 'assets/img/logo-small.svg'}}" alt="{{settings.store_logo.title}}" class="sidebar-logo">
+            <span class="sidebar-brand-text">{{settings.store_logo.title}}</span>
+        </a>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+            <a href="{{urls.home}}" class="sidebar-menu-link">
+                <span class="sidebar-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="sidebar-menu-text">Home</span>
+            </a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href="/videos/" class="sidebar-menu-link">
+                <span class="sidebar-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                </span>
+                <span class="sidebar-menu-text">Videos</span>
+            </a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href="/gpt-lab/" class="sidebar-menu-link">
+                <span class="sidebar-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </span>
+                <span class="sidebar-menu-text">GPT Lab</span>
+            </a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href="/apps/" class="sidebar-menu-link">
+                <span class="sidebar-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 12l-4-4"/><path d="M12 12l4 4"/><path d="M12 12l-4 4"/><path d="M12 12l4-4"/></svg>
+                </span>
+                <span class="sidebar-menu-text">Apps</span>
+            </a>
+        </li>
+    </ul>
+</nav>

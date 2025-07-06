@@ -1,0 +1,430 @@
+// =============================================================================
+// MODERN CARD COMPONENTS
+// Glass-morphism cards with OpenAI-inspired design
+// =============================================================================
+
+// BASE CARD STYLES
+// -----------------------------------------------------------------------------
+
+.card {
+  @include card-base;
+  
+  // Container query for responsive cards
+  container-type: inline-size;
+  
+  // Enhanced glass-morphism for elevated feel
+  @include frosted-glass(medium);
+  
+  // Hover interactions
+  &:hover:not(.card-static) {
+    @include hover-lift(4px, 1.01);
+    box-shadow: var(--card-shadow-hover);
+  }
+  
+  // Focus state for accessibility
+  &:focus-within {
+    @include focus-visible(var(--interactive-primary), 2px, 0);
+  }
+  
+  // Loading state
+  &.card-loading {
+    pointer-events: none;
+    
+    .card-content > * {
+      @include skeleton-loading;
+      border-radius: var(--radius-sm);
+      height: 1em;
+      margin-bottom: var(--space-2);
+      
+      &:last-child {
+        width: 60%;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// CARD VARIANTS
+// -----------------------------------------------------------------------------
+
+.card-elevated {
+  box-shadow: var(--elevation-4);
+  
+  &:hover {
+    box-shadow: var(--elevation-6);
+  }
+}
+
+.card-outlined {
+  background: var(--surface-primary);
+  border: 2px solid var(--border-default);
+  box-shadow: none;
+  
+  &:hover {
+    border-color: var(--interactive-primary);
+    box-shadow: var(--elevation-2);
+  }
+}
+
+.card-flat {
+  background: var(--surface-primary);
+  border: none;
+  box-shadow: none;
+}
+
+.card-glass {
+  @include frosted-glass(heavy);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// CARD COMPONENTS
+// -----------------------------------------------------------------------------
+
+.card-header {
+  padding: var(--space-6) var(--space-6) 0;
+  
+  // When card has no body padding
+  .card:not(.card-padded) & {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
+
+.card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2);
+  line-height: var(--line-height-tight);
+}
+
+.card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.card-content {
+  padding: var(--space-6);
+  
+  .card-header + & {
+    padding-top: var(--space-4);
+  }
+  
+  // Typography in cards
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+  }
+}
+
+.card-footer {
+  padding: 0 var(--space-6) var(--space-6);
+  
+  // When following content
+  .card-content + & {
+    padding-top: 0;
+  }
+  
+  // Bordered footer
+  &.card-footer-bordered {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--space-4);
+  }
+}
+
+.card-actions {
+  @include flex-center(var(--space-3));
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  
+  &.card-actions-end {
+    justify-content: flex-end;
+  }
+  
+  &.card-actions-center {
+    justify-content: center;
+  }
+  
+  &.card-actions-between {
+    justify-content: space-between;
+  }
+}
+
+// CARD MEDIA
+// -----------------------------------------------------------------------------
+
+.card-media {
+  position: relative;
+  overflow: hidden;
+  
+  // Image handling
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--easing-ease-out);
+  }
+  
+  // Media at top of card
+  .card > &:first-child {
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+  }
+  
+  // Media at bottom of card
+  .card > &:last-child {
+    border-radius: 0 0 var(--card-radius) var(--card-radius);
+  }
+  
+  // Hover effect
+  .card:hover & img {
+    transform: scale(1.05);
+  }
+  
+  // Media overlay
+  .card-media-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      transparent 100%
+    );
+    color: white;
+    padding: var(--space-6);
+    
+    .card-title,
+    .card-subtitle {
+      color: inherit;
+    }
+  }
+}
+
+// ASPECT RATIO UTILITIES
+// -----------------------------------------------------------------------------
+
+.card-media-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.card-media-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.card-media-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.card-media-3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+// SPECIALIZED CARD TYPES
+// -----------------------------------------------------------------------------
+
+// Product Card
+.product-card {
+  position: relative;
+  cursor: pointer;
+  
+  @include hover-lift(6px, 1.02);
+  
+  .product-badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    background: var(--error);
+    color: var(--text-inverse);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    z-index: var(--z-base);
+  }
+  
+  .product-wishlist {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: var(--radius-full);
+    @include flex-center;
+    transition: all var(--duration-fast) var(--easing-ease-out);
+    
+    &:hover {
+      background: var(--error);
+      color: white;
+      transform: scale(1.1);
+    }
+  }
+  
+  .product-price {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--interactive-primary);
+  }
+  
+  .product-price-original {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+    margin-left: var(--space-2);
+  }
+  
+  .product-rating {
+    @include flex-center(var(--space-1));
+    margin: var(--space-2) 0;
+    
+    .star {
+      width: 14px;
+      height: 14px;
+      color: var(--warning);
+    }
+  }
+}
+
+// Stats Card
+.stats-card {
+  text-align: center;
+  
+  .stats-number {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--interactive-primary);
+    display: block;
+    line-height: 1;
+  }
+  
+  .stats-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    margin-top: var(--space-2);
+  }
+  
+  .stats-trend {
+    @include flex-center(var(--space-1));
+    justify-content: center;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-xs);
+    
+    &.trend-up {
+      color: var(--success);
+    }
+    
+    &.trend-down {
+      color: var(--error);
+    }
+  }
+}
+
+// Testimonial Card
+.testimonial-card {
+  .testimonial-quote {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    font-style: italic;
+    margin-bottom: var(--space-6);
+    
+    &::before {
+      content: '"';
+      font-size: var(--font-size-3xl);
+      color: var(--interactive-primary);
+      line-height: 1;
+      margin-right: var(--space-1);
+    }
+  }
+  
+  .testimonial-author {
+    @include flex-center(var(--space-3));
+    justify-content: flex-start;
+  }
+  
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+  
+  .testimonial-name {
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+  }
+  
+  .testimonial-role {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+}
+
+// RESPONSIVE CARD LAYOUTS
+// -----------------------------------------------------------------------------
+
+// Card grid system
+.card-grid {
+  @include auto-grid(280px, var(--space-6));
+  
+  // Responsive adjustments
+  @container (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Card spacing in grids
+.card-grid-tight {
+  gap: var(--space-4);
+}
+
+.card-grid-loose {
+  gap: var(--space-8);
+}
+
+// ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+// Reduced motion support
+@include reduced-motion {
+  .card,
+  .card img,
+  .product-wishlist {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+// High contrast mode
+@include high-contrast {
+  .card {
+    border: 2px solid ButtonText;
+    background: ButtonFace;
+  }
+  
+  .card-title {
+    color: ButtonText;
+  }
+}
+
+// Print optimization
+@include print-only {
+  .card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .card-actions,
+  .product-wishlist {
+    display: none;
+  }
+}

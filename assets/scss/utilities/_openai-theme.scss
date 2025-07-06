@@ -1,0 +1,287 @@
+// =============================================================================
+// OPENAI-INSPIRED THEME SYSTEM
+// Midnight black and white with timeless glass components
+// =============================================================================
+
+:root {
+  // Primary Colors - OpenAI inspired
+  --clr-midnight: #0f0f0f;
+  --clr-charcoal: #1a1a1a;
+  --clr-slate: #2a2a2a;
+  --clr-silver: #e5e5e5;
+  --clr-pearl: #f5f5f5;
+  --clr-snow: #ffffff;
+  
+  // Accent Colors
+  --clr-accent-teal: #10a37f;
+  --clr-accent-blue: #347deb;
+  --clr-accent-orange: #ff8c42;
+  --clr-error: #ef4444;
+  --clr-warning: #f59e0b;
+  --clr-success: #10b981;
+  
+  // Semantic Colors
+  --clr-bg: var(--clr-snow);
+  --clr-surface: var(--clr-pearl);
+  --clr-card: var(--clr-snow);
+  --clr-text: var(--clr-midnight);
+  --clr-text-secondary: var(--clr-slate);
+  --clr-text-muted: #6b7280;
+  --clr-border: #e5e7eb;
+  --clr-border-light: #f3f4f6;
+  
+  // Interactive Colors
+  --clr-primary: var(--clr-accent-teal);
+  --clr-primary-hover: #0d8b6b;
+  --clr-secondary: var(--clr-accent-blue);
+  --clr-secondary-hover: #2563eb;
+  
+  // Glass-morphism Effects
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --glass-backdrop: blur(16px);
+  
+  // Shadows
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  
+  // Transitions
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Border Radius
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  // Spacing Scale
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+}
+
+// Dark Theme
+[data-theme="dark"] {
+  --clr-bg: var(--clr-midnight);
+  --clr-surface: var(--clr-charcoal);
+  --clr-card: var(--clr-charcoal);
+  --clr-text: var(--clr-snow);
+  --clr-text-secondary: var(--clr-silver);
+  --clr-text-muted: #9ca3af;
+  --clr-border: #374151;
+  --clr-border-light: #2a2a2a;
+  
+  // Glass-morphism for dark theme
+  --glass-bg: rgba(26, 26, 26, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+// Glass-morphism Mixin
+@mixin glass-morphism($opacity: 0.95) {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+// Hover Lift Effect
+@mixin hover-lift($distance: -8px, $scale: 1.02) {
+  transition: all var(--transition-base);
+  
+  &:hover {
+    transform: translateY($distance) scale($scale);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+// Focus Ring
+@mixin focus-ring($color: var(--clr-primary)) {
+  &:focus {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+// Button Base
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  
+  @include focus-ring;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Primary Button
+@mixin button-primary {
+  @include button-base;
+  background: var(--clr-primary);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: var(--clr-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Secondary Button
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+  
+  &:hover:not(:disabled) {
+    background: var(--clr-surface);
+    border-color: var(--clr-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+// Ghost Button
+@mixin button-ghost {
+  @include button-base;
+  background: transparent;
+  color: var(--clr-text-secondary);
+  
+  &:hover:not(:disabled) {
+    background: var(--clr-surface);
+    color: var(--clr-text);
+  }
+}
+
+// Card Component
+@mixin card-base {
+  @include glass-morphism;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all var(--transition-base);
+}
+
+// Input Base
+@mixin input-base {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: all var(--transition-fast);
+  
+  @include focus-ring;
+  
+  &::placeholder {
+    color: var(--clr-text-muted);
+  }
+  
+  &:hover {
+    border-color: var(--clr-primary);
+  }
+  
+  &:focus {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+  }
+}
+
+// Typography Scale
+@mixin text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@mixin text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@mixin text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@mixin text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+@mixin text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+@mixin text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@mixin text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@mixin text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+// Responsive Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: #{$breakpoint-sm}) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: #{$breakpoint-md}) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: #{$breakpoint-lg}) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: #{$breakpoint-xl}) { @content; }
+  }
+  @if $breakpoint == 2xl {
+    @media (min-width: #{$breakpoint-2xl}) { @content; }
+  }
+}

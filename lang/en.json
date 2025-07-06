@@ -10,7 +10,8 @@
         "info": "Info",
         "categories": "Categories",
         "call_us": "Call us at {phone_number}",
-        "powered_by": "Powered by"
+        "powered_by": "Powered by CroweOS Systems",
+        "built_by": "Built by Michael Crowe"
     },
     "home": {
         "heading": "Home"

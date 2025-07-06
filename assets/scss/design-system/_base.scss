@@ -1,0 +1,442 @@
+// =============================================================================
+// BASE STYLES - MODERN CSS FOUNDATION
+// Production-ready base styles with OpenAI design principles
+// =============================================================================
+
+// CSS RESET & NORMALIZATION
+// -----------------------------------------------------------------------------
+
+// Modern CSS reset based on Josh Comeau's reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+// DOCUMENT FOUNDATION
+// -----------------------------------------------------------------------------
+
+:root {
+  // Enable smooth scrolling with reduced motion respect
+  @include smooth-scroll;
+  
+  // Set color scheme for better browser defaults
+  color-scheme: light dark;
+}
+
+html {
+  // Improve text rendering
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  
+  // Better font rendering on high-DPI displays
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  // Prevent horizontal scrolling
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  transition: background-color var(--duration-normal) var(--easing-ease-out),
+              color var(--duration-normal) var(--easing-ease-out);
+  
+  // Ensure minimum height for short content
+  min-height: 100vh;
+  min-height: 100dvh; // Modern viewport units
+  
+  // Custom scrollbar
+  @include custom-scrollbar;
+  
+  // Disable pull-to-refresh on mobile
+  overscroll-behavior: none;
+  
+  // OpenAI theme class
+  &.openai-theme {
+    --primary-brand-color: var(--brand-primary);
+    --secondary-brand-color: var(--brand-secondary);
+  }
+}
+
+// TYPOGRAPHY SYSTEM
+// -----------------------------------------------------------------------------
+
+// Heading hierarchy with fluid scaling
+h1, .h1 {
+  @include fluid-text(var(--font-size-3xl), var(--font-size-5xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+}
+
+h2, .h2 {
+  @include fluid-text(var(--font-size-2xl), var(--font-size-4xl));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+}
+
+h3, .h3 {
+  @include fluid-text(var(--font-size-xl), var(--font-size-3xl));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+}
+
+h4, .h4 {
+  @include fluid-text(var(--font-size-lg), var(--font-size-2xl));
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+}
+
+h5, .h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+}
+
+h6, .h6 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Paragraph and text styles
+p {
+  margin-bottom: var(--space-4);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.text-small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.text-large {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.text-muted {
+  color: var(--text-tertiary);
+}
+
+.text-emphasis {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+// INTERACTIVE ELEMENTS
+// -----------------------------------------------------------------------------
+
+// Links with modern styling
+a {
+  color: var(--interactive-primary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--easing-ease-out);
+  
+  @include focus-visible;
+  
+  &:hover {
+    color: var(--interactive-primary-hover);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// Button reset and base styles
+button {
+  @include button-base;
+  
+  &.btn-primary {
+    height: var(--button-height-md);
+    background: var(--interactive-primary);
+    color: var(--text-inverse);
+    
+    &:hover:not(:disabled) {
+      background: var(--interactive-primary-hover);
+      @include hover-lift(2px, 1.01);
+    }
+  }
+  
+  &.btn-secondary {
+    height: var(--button-height-md);
+    background: transparent;
+    color: var(--interactive-primary);
+    border: 1px solid var(--interactive-primary);
+    
+    &:hover:not(:disabled) {
+      background: var(--interactive-primary);
+      color: var(--text-inverse);
+    }
+  }
+  
+  &.btn-ghost {
+    height: var(--button-height-md);
+    background: transparent;
+    color: var(--text-secondary);
+    
+    &:hover:not(:disabled) {
+      background: var(--surface-secondary);
+      color: var(--text-primary);
+    }
+  }
+  
+  &.btn-sm {
+    height: var(--button-height-sm);
+    font-size: var(--font-size-sm);
+    padding: 0 var(--space-3);
+  }
+  
+  &.btn-lg {
+    height: var(--button-height-lg);
+    font-size: var(--font-size-lg);
+    padding: 0 var(--space-6);
+  }
+}
+
+// Form elements
+input,
+textarea,
+select {
+  @include input-base;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+// LAYOUT COMPONENTS
+// -----------------------------------------------------------------------------
+
+// Container system
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  
+  @include breakpoint(md) {
+    padding: 0 var(--space-6);
+  }
+}
+
+// Grid system
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  
+  &.grid-2 {
+    @include auto-grid(250px);
+  }
+  
+  &.grid-3 {
+    @include auto-grid(200px);
+  }
+  
+  &.grid-4 {
+    @include auto-grid(150px);
+  }
+}
+
+// Flex utilities
+.flex {
+  display: flex;
+  
+  &.flex-center {
+    @include flex-center;
+  }
+  
+  &.flex-between {
+    @include flex-between;
+  }
+  
+  &.flex-col {
+    flex-direction: column;
+  }
+  
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  &.gap-2 { gap: var(--space-2); }
+  &.gap-4 { gap: var(--space-4); }
+  &.gap-6 { gap: var(--space-6); }
+  &.gap-8 { gap: var(--space-8); }
+}
+
+// UTILITY CLASSES
+// -----------------------------------------------------------------------------
+
+// Spacing utilities
+.m-0 { margin: 0; }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+.p-0 { padding: 0; }
+.p-2 { padding: var(--space-2); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+// Display utilities
+.hidden { display: none; }
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+// Positioning utilities
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { @include sticky; }
+
+// Accessibility utilities
+.sr-only {
+  @include visually-hidden;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  z-index: var(--z-skiplink);
+  transition: top var(--duration-fast) var(--easing-ease-out);
+  
+  &:focus {
+    top: 6px;
+  }
+}
+
+// ANIMATION UTILITIES
+// -----------------------------------------------------------------------------
+
+.animate-fadeIn {
+  animation: fadeIn var(--duration-normal) var(--easing-ease-out);
+}
+
+.animate-slideUp {
+  animation: slideUp var(--duration-normal) var(--easing-ease-out);
+}
+
+.animate-scale {
+  animation: scale var(--duration-normal) var(--easing-spring);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// REDUCED MOTION
+// -----------------------------------------------------------------------------
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

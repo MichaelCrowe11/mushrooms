@@ -1,17 +1,17 @@
 {
-  "name": "Southwest Mushrooms - Crowe Logic Purple",
-  "version": "1.3.1",
+  "name": "Southwest Mushrooms - CroweOS Design",
+  "version": "1.4.0",
   "template_engine": "handlebars_v4",
   "meta": {
     "price": 0,
     "documentation_url": "https://southwestmushrooms.com/",
-    "author_name": "Southwest Mushrooms",
-    "author_email": "support@southwestmushrooms.com",
-    "author_support_url": "https://southwestmushrooms.com/contact-us/",
+    "author_name": "Michael Crowe - CroweOS Systems",
+    "author_email": "support@croweossystems.com",
+    "author_support_url": "https://croweossystems.com/support/",
     "composed_image": "composed.png",
     "features": [
       "fully_responsive",
-      "crowe_logic_branding",
+      "croweos_design_system",
       "purple_theme_system",
       "custom_svg_icons",
       "mega_navigation",

@@ -1,14 +1,15 @@
-# Southwest Mushrooms - BigCommerce Theme
+# Southwest Mushrooms - CroweOS Design Theme
 
-A premium BigCommerce theme designed specifically for Southwest Mushrooms, featuring modern UI/UX, AI-powered assistance, and comprehensive mushroom cultivation resources.
+A premium BigCommerce theme powered by CroweOS Systems and built by Michael Crowe, featuring modern UI/UX, AI-powered assistance, and comprehensive mushroom cultivation resources.
 
 ## 🌟 Features
 
-### **Core Theme Features**
+### **CroweOS Design System**
 - **Responsive Design**: Mobile-first approach with perfect scaling across all devices
 - **Dark Mode Toggle**: Seamless theme switching with localStorage persistence
-- **Modern UI/UX**: Premium gradients, animations, and interactive elements
+- **Modern UI/UX**: Premium gradients, glass-morphism, and interactive elements
 - **Accessibility**: WCAG 2.1 compliant with proper ARIA labels and keyboard navigation
+- **Custom Icons**: Professional SVG icon system
 
 ### **AI Integration**
 - **Crowe GPT Lab**: AI-powered mushroom cultivation assistant

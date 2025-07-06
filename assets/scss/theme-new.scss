@@ -86,7 +86,7 @@ body.openai-theme {
   // Enable sidebar layout
   &.has-sidebar {
     .body {
-      @media (min-width: 992px) {
+      @include breakpoint(lg) {
         margin-left: var(--sidebar-width);
         transition: margin-left var(--sidebar-transition);
         

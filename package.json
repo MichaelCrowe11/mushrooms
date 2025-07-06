@@ -1,9 +1,9 @@
 {
-  "name": "bigcommerce-cornerstone",
-  "description": "The BigCommerce reference theme for the Stencil platform",
-  "version": "6.16.2",
+  "name": "croweos-design-theme",
+  "description": "Southwest Mushrooms theme powered by CroweOS Systems and built by Michael Crowe",
+  "version": "1.4.0",
   "private": true,
-  "author": "BigCommerce",
+  "author": "Michael Crowe - CroweOS Systems",
   "license": "MIT",
   "dependencies": {
     "@bigcommerce/stencil-utils": "6.19.0",
