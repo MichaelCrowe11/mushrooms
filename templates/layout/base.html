@@ -105,8 +105,24 @@
       <!-- Theme Toggle -->
       <div class="theme-toggle">
         <button id="theme-toggle" aria-label="Toggle dark mode" title="Switch between light and dark themes">
-          <span class="sun-icon" aria-hidden="true">☀️</span>
-          <span class="moon-icon" aria-hidden="true">🌙</span>
+          <span class="sun-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </span>
+          <span class="moon-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </span>
         </button>
       </div>
       <ul role="menubar">
@@ -122,7 +138,7 @@
           </a>
         </li>
         <li role="none">
-          <a href="/cultures" class="nav-link" role="menuitem" aria-label="Browse mushroom cultures and spores">
+          <a href="https://southwestmushrooms.com/cultures/" class="nav-link" role="menuitem" aria-label="Browse mushroom cultures and spores">
             <span class="nav-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <!-- DNA double helix representing cultures -->
@@ -148,7 +164,54 @@
           </a>
         </li>
         <li role="none">
-          <a href="/grow-kits" class="nav-link" role="menuitem" aria-label="View mushroom grow kits and supplies">
+          <a href="https://southwestmushrooms.com/dried-mushrooms/" class="nav-link" role="menuitem" aria-label="Browse premium dried mushrooms">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Dried mushroom slices -->
+                <ellipse cx="8" cy="8" rx="3" ry="1.5" opacity="0.8"/>
+                <ellipse cx="16" cy="12" rx="2.5" ry="1.2" opacity="0.7"/>
+                <ellipse cx="12" cy="16" rx="3.5" ry="1.8" opacity="0.9"/>
+                
+                <!-- Dried texture lines -->
+                <path d="M6 7.5h4" stroke-width="0.5" opacity="0.5"/>
+                <path d="M6.5 8.5h3" stroke-width="0.5" opacity="0.5"/>
+                <path d="M14 11.5h4" stroke-width="0.5" opacity="0.5"/>
+                <path d="M14.5 12.5h3" stroke-width="0.5" opacity="0.5"/>
+                <path d="M9 15.5h6" stroke-width="0.5" opacity="0.5"/>
+                <path d="M9.5 16.5h5" stroke-width="0.5" opacity="0.5"/>
+                
+                <!-- Preservation marks -->
+                <circle cx="10" cy="6" r="0.5" fill="currentColor" opacity="0.4"/>
+                <circle cx="18" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                <circle cx="14" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </span>Dried Mushrooms
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/ebook/" class="nav-link" role="menuitem" aria-label="Access cultivation eBook and guides">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- eBook/tablet device -->
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                <rect x="6" y="4" width="12" height="16" rx="1" ry="1" fill="none" stroke-width="1" opacity="0.7"/>
+                
+                <!-- Text lines representing content -->
+                <line x1="8" y1="8" x2="16" y2="8" stroke-width="1" opacity="0.6"/>
+                <line x1="8" y1="10" x2="14" y2="10" stroke-width="1" opacity="0.6"/>
+                <line x1="8" y1="12" x2="16" y2="12" stroke-width="1" opacity="0.6"/>
+                <line x1="8" y1="14" x2="13" y2="14" stroke-width="1" opacity="0.6"/>
+                <line x1="8" y1="16" x2="15" y2="16" stroke-width="1" opacity="0.6"/>
+                
+                <!-- Digital indicator -->
+                <circle cx="12" cy="6" r="0.8" fill="currentColor" opacity="0.8"/>
+                <path d="M11.5 5.5l0.5 0.5 1-1" stroke-width="0.5" fill="none"/>
+              </svg>
+            </span>eBook
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/mushroom-grow-kits/" class="nav-link" role="menuitem" aria-label="View mushroom grow kits and supplies">
             <span class="nav-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <!-- Grow kit container -->
@@ -176,11 +239,40 @@
                 <circle cx="15" cy="17.2" r="0.3" fill="currentColor" opacity="0.4"/>
                 <circle cx="18" cy="16.8" r="0.3" fill="currentColor" opacity="0.4"/>
               </svg>
-            </span>Grow Kits
+            </span>Mushroom Grow Kits
           </a>
         </li>
         <li role="none">
-          <a href="/tinctures" class="nav-link" role="menuitem" aria-label="Shop Crowe Logic Formulations extracts and tinctures">
+          <a href="https://southwestmushrooms.com/mycelium-grain-spawn/" class="nav-link" role="menuitem" aria-label="Browse mycelium grain spawn products">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Grain particles -->
+                <circle cx="8" cy="6" r="1.2" opacity="0.8"/>
+                <circle cx="16" cy="8" r="1" opacity="0.7"/>
+                <circle cx="12" cy="10" r="1.3" opacity="0.9"/>
+                <circle cx="6" cy="12" r="0.8" opacity="0.6"/>
+                <circle cx="18" cy="14" r="1.1" opacity="0.8"/>
+                <circle cx="10" cy="16" r="1" opacity="0.7"/>
+                <circle cx="14" cy="18" r="1.2" opacity="0.9"/>
+                
+                <!-- Mycelium network connecting grains -->
+                <path d="M8 6c1 1 2 2 4 4" stroke-width="0.5" opacity="0.5"/>
+                <path d="M16 8c-2 1 -3 2 -4 2" stroke-width="0.5" opacity="0.5"/>
+                <path d="M12 10c-3 1 -5 2 -6 2" stroke-width="0.5" opacity="0.5"/>
+                <path d="M12 10c3 2 6 4 6 4" stroke-width="0.5" opacity="0.5"/>
+                <path d="M6 12c2 2 4 4 4 4" stroke-width="0.5" opacity="0.5"/>
+                <path d="M18 14c-2 2 -4 4 -4 4" stroke-width="0.5" opacity="0.5"/>
+                
+                <!-- Growth indicators -->
+                <circle cx="9" cy="8" r="0.3" fill="currentColor" opacity="0.4"/>
+                <circle cx="14" cy="12" r="0.3" fill="currentColor" opacity="0.4"/>
+                <circle cx="11" cy="14" r="0.3" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </span>Mycelium Grain Spawn
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/tinctures/" class="nav-link" role="menuitem" aria-label="Shop Crowe Logic Formulations extracts and tinctures">
             <span class="nav-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <!-- Flask/beaker shape representing formulations -->
@@ -205,11 +297,55 @@
                 <line x1="15.5" y1="12" x2="14" y2="13" stroke-width="0.5" opacity="0.6"/>
                 <line x1="12" y1="10.5" x2="12" y2="12" stroke-width="0.5" opacity="0.6"/>
               </svg>
-            </span>Extracts
+        <li role="none">
+          <a href="https://southwestmushrooms.com/tinctures/" class="nav-link" role="menuitem" aria-label="Shop Crowe Logic Formulations extracts and tinctures">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Flask/beaker shape representing formulations -->
+                <path d="M9 2v6.5L6 14v6a2 2 0 002 2h8a2 2 0 002-2v-6l-3-5.5V2"/>
+                <path d="M9 2h6"/>
+                
+                <!-- Liquid level in flask -->
+                <path d="M7 16h10" stroke-width="1" opacity="0.7"/>
+                <path d="M8 18h8" stroke-width="1" opacity="0.5"/>
+                
+                <!-- Crowe Logic "C" element -->
+                <circle cx="12" cy="14" r="2" fill="none" stroke-width="1.5"/>
+                <path d="M10.5 13.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5" fill="none" stroke-width="1"/>
+                
+                <!-- Molecular structure dots -->
+                <circle cx="8" cy="12" r="0.5" fill="currentColor"/>
+                <circle cx="16" cy="12" r="0.5" fill="currentColor"/>
+                <circle cx="12" cy="10" r="0.5" fill="currentColor"/>
+                
+                <!-- Connection lines -->
+                <line x1="8.5" y1="12" x2="10" y2="13" stroke-width="0.5" opacity="0.6"/>
+                <line x1="15.5" y1="12" x2="14" y2="13" stroke-width="0.5" opacity="0.6"/>
+                <line x1="12" y1="10.5" x2="12" y2="12" stroke-width="0.5" opacity="0.6"/>
+              </svg>
+            </span>Tinctures
           </a>
         </li>
         <li role="none">
-          <a href="/videos" class="nav-link" role="menuitem" aria-label="Watch mushroom cultivation videos and tutorials">
+          <a href="https://southwestmushrooms.com/privacy-policy/" class="nav-link" role="menuitem" aria-label="View privacy policy and data protection information">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Shield representing privacy protection -->
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                
+                <!-- Lock icon inside shield -->
+                <rect x="9" y="10" width="6" height="4" rx="1" ry="1"/>
+                <circle cx="12" cy="8" r="1.5" fill="none"/>
+                <path d="M10.5 10V8.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5V10"/>
+                
+                <!-- Privacy dots -->
+                <circle cx="12" cy="12" r="0.5" fill="currentColor"/>
+              </svg>
+            </span>Privacy Policy
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/videos/" class="nav-link" role="menuitem" aria-label="Watch mushroom cultivation videos and tutorials">
             <span class="nav-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -221,7 +357,44 @@
           </a>
         </li>
         <li role="none">
-          <a href="/blog" class="nav-link" role="menuitem" aria-label="Read mushroom growing articles and guides">
+          <a href="https://southwestmushrooms.com/shipping-returns/" class="nav-link" role="menuitem" aria-label="Shipping and returns information">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Delivery truck -->
+                <rect x="1" y="9" width="16" height="6" rx="1"/>
+                <rect x="17" y="10" width="6" height="4" rx="1"/>
+                <circle cx="5" cy="18" r="2"/>
+                <circle cx="19" cy="18" r="2"/>
+                <path d="M17 10V6a1 1 0 00-1-1H3a1 1 0 00-1 1v3"/>
+                
+                <!-- Package inside -->
+                <rect x="4" y="11" width="4" height="2" rx="0.5" opacity="0.7"/>
+                <rect x="9" y="11" width="3" height="2" rx="0.5" opacity="0.7"/>
+                
+                <!-- Speed lines -->
+                <line x1="1" y1="6" x2="3" y2="6" stroke-width="1" opacity="0.5"/>
+                <line x1="1" y1="4" x2="4" y2="4" stroke-width="1" opacity="0.5"/>
+                <line x1="1" y1="2" x2="2" y2="2" stroke-width="1" opacity="0.5"/>
+              </svg>
+            </span>Shipping & Returns
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/contact-us/" class="nav-link" role="menuitem" aria-label="Contact us for support and inquiries">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Phone/contact icon -->
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                
+                <!-- Contact indicator -->
+                <circle cx="18" cy="6" r="3" fill="none" stroke-width="1.5" opacity="0.7"/>
+                <circle cx="18" cy="6" r="1" fill="currentColor" opacity="0.8"/>
+              </svg>
+            </span>Contact Us
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/blog/" class="nav-link" role="menuitem" aria-label="Read mushroom growing articles and guides">
             <span class="nav-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -233,6 +406,37 @@
             </span>Blog
           </a>
         </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/my-account/login.php" class="nav-link" role="menuitem" aria-label="Sign in to your account">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- User profile icon -->
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+                
+                <!-- Login arrow -->
+                <path d="M15 11l3-3-3-3" stroke-width="1.5" opacity="0.7"/>
+                <line x1="18" y1="8" x2="22" y2="8" stroke-width="1.5" opacity="0.7"/>
+              </svg>
+            </span>Sign In
+          </a>
+        </li>
+        <li role="none">
+          <a href="https://southwestmushrooms.com/my-account/create_account.php" class="nav-link" role="menuitem" aria-label="Register for a new account">
+            <span class="nav-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- User plus icon -->
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+                
+                <!-- Plus sign -->
+                <line x1="19" y1="8" x2="19" y2="14" stroke-width="1.5" opacity="0.7"/>
+                <line x1="22" y1="11" x2="16" y2="11" stroke-width="1.5" opacity="0.7"/>
+              </svg>
+            </span>Register
+          </a>
+        </li>
+        <li role="none">
         <li role="none">
           <a href="/gpt-lab" class="nav-link" role="menuitem" aria-label="Access Crowe AI assistant for mushroom cultivation help">
             <span class="nav-icon" aria-hidden="true">
@@ -264,6 +468,39 @@
           </a>
         </li>
       </ul>
+      
+      <!-- Social Media Links -->
+      <div class="social-links">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/SouthwestMushrooms" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/southwestmushrooms" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@SouthwestMushrooms" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/SWMushrooms" target="_blank" rel="noopener" aria-label="Follow us on Twitter/X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@southwestmushrooms" target="_blank" rel="noopener" aria-label="Follow us on TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
       <div class="avatar-footer">
         <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/320w/image-manager/untitled-design.png?t=1744348936" alt="Crowe Avatar" loading="lazy">
         <p>Powered by Crowe Logic</p>

@@ -1,0 +1,237 @@
+// =============================================================================
+// PROFESSIONAL LOGO STYLING
+// =============================================================================
+
+.brand {
+  position: relative;
+  
+  .brand-logo {
+    // Enhanced professional styling
+    max-width: 220px !important;
+    max-height: 70px !important;
+    height: auto;
+    width: auto;
+    
+    // Professional filter effects for better integration
+    filter: 
+      brightness(0) 
+      invert(1) 
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25))
+      drop-shadow(0 1px 4px rgba(0, 0, 0, 0.15));
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    // Smooth hover effects
+    &:hover {
+      transform: scale(1.03);
+      filter: 
+        brightness(0) 
+        invert(1) 
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+    }
+    
+    // Professional focus state
+    &:focus {
+      outline: 3px solid rgba(248, 249, 250, 0.6);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+  }
+  
+  // Enhanced decorative underline
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      rgba(248, 249, 250, 0.3) 0%, 
+      rgba(248, 249, 250, 0.9) 50%, 
+      rgba(248, 249, 250, 0.3) 100%
+    );
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100px;
+    background: linear-gradient(90deg, 
+      rgba(248, 249, 250, 0.4) 0%, 
+      rgba(248, 249, 250, 1) 50%, 
+      rgba(248, 249, 250, 0.4) 100%
+    );
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+// Dark theme adjustments for logo
+[data-theme='dark'] .brand {
+  .brand-logo {
+    filter: 
+      brightness(0) 
+      invert(1) 
+      drop-shadow(0 2px 8px rgba(255, 255, 255, 0.15))
+      drop-shadow(0 1px 4px rgba(255, 255, 255, 0.1));
+    
+    &:hover {
+      filter: 
+        brightness(0) 
+        invert(1) 
+        drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2))
+        drop-shadow(0 2px 6px rgba(255, 255, 255, 0.15));
+    }
+    
+    &:focus {
+      outline-color: rgba(240, 246, 252, 0.6);
+    }
+  }
+  
+  &::after {
+    background: linear-gradient(90deg, 
+      rgba(240, 246, 252, 0.2) 0%, 
+      rgba(240, 246, 252, 0.8) 50%, 
+      rgba(240, 246, 252, 0.2) 100%
+    );
+  }
+  
+  &:hover::after {
+    background: linear-gradient(90deg, 
+      rgba(240, 246, 252, 0.3) 0%, 
+      rgba(240, 246, 252, 0.9) 50%, 
+      rgba(240, 246, 252, 0.3) 100%
+    );
+  }
+}
+
+// Header logo when not in sidebar (if applicable)
+.header .brand-logo {
+  max-width: 180px !important;
+  max-height: 50px !important;
+  filter: none; // Remove invert filter for header
+  
+  // Add subtle professional styling for header context
+  filter: 
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1))
+    contrast(1.1)
+    saturate(1.05);
+  
+  &:hover {
+    transform: scale(1.02);
+    filter: 
+      drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15))
+      contrast(1.15)
+      saturate(1.1);
+  }
+}
+
+// Professional logo container enhancements
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  // Add subtle background enhancement
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    right: -15px;
+    bottom: -10px;
+    background: rgba(248, 249, 250, 0.05);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// Responsive logo adjustments
+@media (max-width: 768px) {
+  .brand .brand-logo {
+    max-width: 160px !important;
+    max-height: 50px !important;
+  }
+  
+  .header .brand-logo {
+    max-width: 140px !important;
+    max-height: 40px !important;
+  }
+  
+  .brand::after {
+    width: 60px;
+    bottom: -8px;
+  }
+  
+  .brand:hover::after {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand .brand-logo {
+    max-width: 140px !important;
+    max-height: 45px !important;
+  }
+  
+  .header .brand-logo {
+    max-width: 120px !important;
+    max-height: 35px !important;
+  }
+}
+
+// Loading state for logo
+.brand-logo {
+  &.loading {
+    opacity: 0.7;
+    animation: logoLoading 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes logoLoading {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+// Error state for logo (fallback)
+.brand-logo {
+  &.error {
+    opacity: 0.5;
+    filter: grayscale(100%);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .brand .brand-logo {
+    filter: 
+      brightness(0) 
+      invert(1) 
+      contrast(2)
+      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) !important;
+  }
+  
+  [data-theme='dark'] .brand .brand-logo {
+    filter: 
+      brightness(0) 
+      invert(1) 
+      contrast(2)
+      drop-shadow(0 2px 4px rgba(255, 255, 255, 0.5)) !important;
+  }
+}

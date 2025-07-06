@@ -1,76 +1,170 @@
 // =============================================================================
-// PALETTE UTILITIES - Professional Modern Timeless Color System
+// PALETTE UTILITIES - Crowe Logic Black-Purple Professional Theme
 // =============================================================================
 
 :root {
-  // Primary Palette - Light Theme (Professional Modern)
-  --clr-bg: #FAFAFA;           // Pure neutral background
-  --clr-surface: #FFFFFF;      // Clean white - card backgrounds
-  --clr-surface-alt: #F8F9FA;  // Subtle gray - alternate surfaces
-  --clr-accent: #0B5FFF;       // Professional blue - primary accent
-  --clr-secondary: #00B8A3;    // Modern teal - secondary accent
-  --clr-text: #1A1D21;         // Rich charcoal - primary text
-  --clr-text-secondary: #4A5568; // Professional gray - secondary text
-  --clr-text-muted: #718096;   // Muted gray - tertiary text
+  // Primary Palette - Light Theme (Refined Black-Purple Professional)
+  --clr-bg: #FAFAFA;           // Ultra-clean background
+  --clr-surface: #FFFFFF;      // Pure white - card backgrounds
+  --clr-surface-alt: #F7F7F8;  // Subtle neutral - alternate surfaces
+  --clr-accent: #1A0B2E;       // Deep purple-black - primary accent (Crowe Logic inspired)
+  --clr-secondary: #7209B7;    // Royal purple - secondary accent
+  --clr-text: #0D0A14;         // Almost black - primary text (maximum contrast)
+  --clr-text-secondary: #2D1B3D; // Dark purple-gray - secondary text (enhanced contrast)
+  --clr-text-muted: #4A4458;   // Purple-gray - tertiary text (improved readability)
   
   // Border & Dividers
-  --clr-border: #E2E8F0;       // Clean neutral border
-  --clr-border-light: #EDF2F7; // Lighter border
-  --clr-divider: #CBD5E0;      // Section dividers
+  --clr-border: #E1E1E3;       // Clean neutral border
+  --clr-border-light: #F0F0F1; // Lighter border
+  --clr-divider: #D0D0D2;      // Section dividers
   
   // Interactive States
-  --clr-hover: #1E6DFF;        // Deeper blue for hover
-  --clr-focus: #0852E0;        // Focus state blue
-  --clr-active: #0641CC;       // Active state
+  --clr-hover: #2D1B3D;        // Deeper purple for hover
+  --clr-focus: #16082A;        // Focus state purple
+  --clr-active: #0F0621;       // Active state (darkest)
   
   // Status Colors
-  --clr-success: #00B894;      // Professional success green
-  --clr-warning: #FFB020;      // Modern warning amber
-  --clr-error: #E74C3C;        // Clear error red
-  --clr-info: #0984E3;         // Information blue
+  --clr-success: #059669;      // Professional success green
+  --clr-warning: #F59E0B;      // Modern warning amber
+  --clr-error: #DC2626;        // Clear error red
+  --clr-info: #7209B7;         // Information purple
   
   // Glass-morphism Effects
-  --glass-bg: rgba(255, 255, 255, 0.90);
-  --glass-border: rgba(11, 95, 255, 0.15);
-  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  --glass-backdrop: blur(12px);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(26, 11, 46, 0.15);
+  --glass-shadow: 0 4px 24px rgba(26, 11, 46, 0.08);
+  --glass-backdrop: blur(16px);
   
   // Professional Gradients
-  --gradient-primary: linear-gradient(135deg, #0B5FFF 0%, #1E6DFF 50%, #3B82FF 100%);
-  --gradient-secondary: linear-gradient(135deg, #00B8A3 0%, #00D4B8 50%, #1DE9D0 100%);
-  --gradient-neutral: linear-gradient(135deg, #F8F9FA 0%, #E2E8F0 50%, #CBD5E0 100%);
+  --gradient-primary: linear-gradient(135deg, #1A0B2E 0%, #2D1B3D 50%, #4A4458 100%);
+  --gradient-secondary: linear-gradient(135deg, #7209B7 0%, #A855F7 50%, #C084FC 100%);
+  --gradient-neutral: linear-gradient(135deg, #F7F7F8 0%, #E1E1E3 50%, #D0D0D2 100%);
 }
 
-// Dark Theme Overrides (Professional Dark Mode)
+// Dark Theme Overrides (Professional Black-Purple Dark Mode)
 [data-theme='dark'] {
-  --clr-bg: #0D1117;           // Professional dark background
-  --clr-surface: #161B22;      // Dark card backgrounds  
-  --clr-surface-alt: #21262D;  // Lighter dark - alternate surfaces
-  --clr-accent: #3B82FF;       // Bright blue - primary accent for dark mode
-  --clr-secondary: #1DE9D0;    // Bright teal - secondary accent
-  --clr-text: #F0F6FC;         // Clean white - primary text
-  --clr-text-secondary: #8B949E; // Professional gray - secondary text
-  --clr-text-muted: #6E7681;   // Muted gray - tertiary text
+  --clr-bg: #0A0510;           // Deep black-purple background (maximum contrast)
+  --clr-surface: #1A0B2E;      // Dark purple card backgrounds (Crowe Logic inspired)
+  --clr-surface-alt: #2D1B3D;  // Lighter purple - alternate surfaces
+  --clr-accent: #A855F7;       // Bright purple - primary accent for dark mode
+  --clr-secondary: #E879F9;    // Bright magenta - secondary accent
+  --clr-text: #FFFFFF;         // Pure white - primary text (maximum contrast)
+  --clr-text-secondary: #E5E5E7; // Bright white-gray - secondary text (enhanced contrast)
+  --clr-text-muted: #B4B4B8;   // Light gray - tertiary text (much better contrast)
   
   // Border & Dividers (Dark)
-  --clr-border: #30363D;       // Professional dark border
-  --clr-border-light: #21262D; // Darker border
-  --clr-divider: #484F58;      // Dark section dividers
+  --clr-border: #4A4458;       // Purple-gray border
+  --clr-border-light: #2D1B3D; // Darker purple border
+  --clr-divider: #6B5B6F;      // Purple section dividers
   
   // Interactive States (Dark)
-  --clr-hover: #4C94FF;        // Lighter blue for hover
-  --clr-focus: #2970FF;        // Focus state blue
-  --clr-active: #1E5ECC;       // Active state
+  --clr-hover: #C084FC;        // Lighter purple for hover (enhanced contrast)
+  --clr-focus: #D8B4FE;        // Focus state light purple (improved visibility)
+  --clr-active: #E879F9;       // Active state bright purple (maximum visibility)
+  
+  // Status Colors (Dark theme enhanced)
+  --clr-success: #22C55E;      // Brighter success green
+  --clr-warning: #FCD34D;      // Enhanced warning yellow
+  --clr-error: #F87171;        // Brighter error red
+  --clr-info: #C084FC;         // Enhanced information purple
   
   // Glass-morphism Effects (Dark)
-  --glass-bg: rgba(22, 27, 34, 0.90);
-  --glass-border: rgba(59, 130, 255, 0.15);
-  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.20);
+  --glass-bg: rgba(26, 11, 46, 0.90);
+  --glass-border: rgba(168, 85, 247, 0.25);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.40);
   
   // Professional Gradients (Dark)
-  --gradient-sunset: linear-gradient(135deg, #00DDBB 0%, #00F0CC 50%, #33FFD6 100%);
-  --gradient-desert: linear-gradient(135deg, #1A1A1A 0%, #262626 50%, #2D2D2D 100%);
-  --gradient-green: linear-gradient(135deg, #4CBB8C 0%, #5CC3A7 50%, #6CCBC2 100%);
+  --gradient-primary: linear-gradient(135deg, #0A0510 0%, #1A0B2E 50%, #2D1B3D 100%);
+  --gradient-secondary: linear-gradient(135deg, #581C87 0%, #7C3AED 50%, #A855F7 100%);
+  --gradient-neutral: linear-gradient(135deg, #1A0B2E 0%, #2D1B3D 50%, #4A4458 100%);
+}
+
+// Typography & Font Contrast Enhancements
+// =============================================================================
+
+// High Contrast Typography Classes
+.text-primary {
+  color: var(--clr-text) !important;
+  font-weight: 500;
+}
+
+.text-secondary {
+  color: var(--clr-text-secondary) !important;
+  font-weight: 450;
+}
+
+.text-muted {
+  color: var(--clr-text-muted) !important;
+  font-weight: 400;
+}
+
+// Accessible Font Weight System
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+// Enhanced readability for both themes
+body {
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Force high contrast on all interactive elements
+a, button, .btn, .nav-link {
+  color: var(--clr-text);
+  
+  &:hover, &:focus {
+    color: var(--clr-accent);
+  }
+}
+
+// Sidebar navigation contrast fixes
+.sidebar-nav {
+  background: var(--gradient-primary);
+  color: var(--clr-text);
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Dark theme specific text enhancements
+[data-theme='dark'] {
+  // Override any low-contrast text
+  body, p, span, div, li, td, th {
+    color: var(--clr-text);
+  }
+  
+  // Ensure headers are always high contrast
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--clr-text) !important;
+    font-weight: 600;
+  }
+  
+  // Cards and surfaces
+  .card, .product-card, .card-body {
+    background: var(--clr-surface) !important;
+    color: var(--clr-text) !important;
+    border: 1px solid var(--clr-border);
+  }
+  
+  // Navigation and interactive elements
+  .nav, .navbar, .header {
+    background: var(--clr-surface) !important;
+    color: var(--clr-text) !important;
+  }
 }
 
 // Accessible Color Mixins
@@ -143,24 +237,73 @@
   }
 }
 
-// Desert Gradient Backgrounds
-.bg-desert-gradient {
-  background: var(--gradient-desert);
+// Purple-themed Gradient Backgrounds
+.bg-primary-gradient {
+  background: var(--gradient-primary);
 }
 
-.bg-sunset-gradient {
-  background: var(--gradient-sunset);
+.bg-secondary-gradient {
+  background: var(--gradient-secondary);
 }
 
-.bg-green-gradient {
-  background: var(--gradient-green);
+.bg-neutral-gradient {
+  background: var(--gradient-neutral);
 }
 
-// Utility Classes
-.text-accent { color: var(--clr-accent); }
-.text-green { color: var(--clr-green); }
-.text-muted { color: var(--clr-text-muted); }
-.bg-surface { background-color: var(--clr-surface); }
-.bg-surface-alt { background-color: var(--clr-surface-alt); }
-.border-accent { border-color: var(--clr-accent); }
-.border-green { border-color: var(--clr-green); }
+// Utility Classes for Crowe Logic Purple Theme
+.text-accent { 
+  color: var(--clr-accent) !important; 
+  font-weight: 500;
+}
+
+.text-secondary-accent { 
+  color: var(--clr-secondary) !important; 
+  font-weight: 500;
+}
+
+.text-muted { 
+  color: var(--clr-text-muted) !important; 
+}
+
+.bg-surface { 
+  background-color: var(--clr-surface) !important; 
+  color: var(--clr-text) !important;
+}
+
+.bg-surface-alt { 
+  background-color: var(--clr-surface-alt) !important; 
+  color: var(--clr-text) !important;
+}
+
+.border-accent { 
+  border-color: var(--clr-accent) !important; 
+}
+
+.border-secondary { 
+  border-color: var(--clr-secondary) !important; 
+}
+
+// High contrast button variants
+.btn-primary {
+  background: var(--clr-accent) !important;
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 600;
+  
+  &:hover {
+    background: var(--clr-hover) !important;
+    color: #FFFFFF !important;
+  }
+}
+
+.btn-secondary {
+  background: var(--clr-secondary) !important;
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 600;
+  
+  &:hover {
+    background: var(--clr-accent) !important;
+    color: #FFFFFF !important;
+  }
+}
