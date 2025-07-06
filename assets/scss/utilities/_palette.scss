@@ -1,0 +1,166 @@
+// =============================================================================
+// PALETTE UTILITIES - Professional Modern Timeless Color System
+// =============================================================================
+
+:root {
+  // Primary Palette - Light Theme (Professional Modern)
+  --clr-bg: #FAFAFA;           // Pure neutral background
+  --clr-surface: #FFFFFF;      // Clean white - card backgrounds
+  --clr-surface-alt: #F8F9FA;  // Subtle gray - alternate surfaces
+  --clr-accent: #0B5FFF;       // Professional blue - primary accent
+  --clr-secondary: #00B8A3;    // Modern teal - secondary accent
+  --clr-text: #1A1D21;         // Rich charcoal - primary text
+  --clr-text-secondary: #4A5568; // Professional gray - secondary text
+  --clr-text-muted: #718096;   // Muted gray - tertiary text
+  
+  // Border & Dividers
+  --clr-border: #E2E8F0;       // Clean neutral border
+  --clr-border-light: #EDF2F7; // Lighter border
+  --clr-divider: #CBD5E0;      // Section dividers
+  
+  // Interactive States
+  --clr-hover: #1E6DFF;        // Deeper blue for hover
+  --clr-focus: #0852E0;        // Focus state blue
+  --clr-active: #0641CC;       // Active state
+  
+  // Status Colors
+  --clr-success: #00B894;      // Professional success green
+  --clr-warning: #FFB020;      // Modern warning amber
+  --clr-error: #E74C3C;        // Clear error red
+  --clr-info: #0984E3;         // Information blue
+  
+  // Glass-morphism Effects
+  --glass-bg: rgba(255, 255, 255, 0.90);
+  --glass-border: rgba(11, 95, 255, 0.15);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --glass-backdrop: blur(12px);
+  
+  // Professional Gradients
+  --gradient-primary: linear-gradient(135deg, #0B5FFF 0%, #1E6DFF 50%, #3B82FF 100%);
+  --gradient-secondary: linear-gradient(135deg, #00B8A3 0%, #00D4B8 50%, #1DE9D0 100%);
+  --gradient-neutral: linear-gradient(135deg, #F8F9FA 0%, #E2E8F0 50%, #CBD5E0 100%);
+}
+
+// Dark Theme Overrides (Professional Dark Mode)
+[data-theme='dark'] {
+  --clr-bg: #0D1117;           // Professional dark background
+  --clr-surface: #161B22;      // Dark card backgrounds  
+  --clr-surface-alt: #21262D;  // Lighter dark - alternate surfaces
+  --clr-accent: #3B82FF;       // Bright blue - primary accent for dark mode
+  --clr-secondary: #1DE9D0;    // Bright teal - secondary accent
+  --clr-text: #F0F6FC;         // Clean white - primary text
+  --clr-text-secondary: #8B949E; // Professional gray - secondary text
+  --clr-text-muted: #6E7681;   // Muted gray - tertiary text
+  
+  // Border & Dividers (Dark)
+  --clr-border: #30363D;       // Professional dark border
+  --clr-border-light: #21262D; // Darker border
+  --clr-divider: #484F58;      // Dark section dividers
+  
+  // Interactive States (Dark)
+  --clr-hover: #4C94FF;        // Lighter blue for hover
+  --clr-focus: #2970FF;        // Focus state blue
+  --clr-active: #1E5ECC;       // Active state
+  
+  // Glass-morphism Effects (Dark)
+  --glass-bg: rgba(22, 27, 34, 0.90);
+  --glass-border: rgba(59, 130, 255, 0.15);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.20);
+  
+  // Professional Gradients (Dark)
+  --gradient-sunset: linear-gradient(135deg, #00DDBB 0%, #00F0CC 50%, #33FFD6 100%);
+  --gradient-desert: linear-gradient(135deg, #1A1A1A 0%, #262626 50%, #2D2D2D 100%);
+  --gradient-green: linear-gradient(135deg, #4CBB8C 0%, #5CC3A7 50%, #6CCBC2 100%);
+}
+
+// Accessible Color Mixins
+@mixin accessible-contrast($bg-color) {
+  @if lightness($bg-color) > 50% {
+    color: var(--clr-text);
+  } @else {
+    color: var(--clr-text);
+  }
+}
+
+// Glass-morphism Mixin
+@mixin glass-morphism($opacity: 0.85) {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--glass-border);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+}
+
+// Hover Lift Effect
+@mixin hover-lift($lift: -6px, $scale: 1.02) {
+  transition: transform 180ms cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 180ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &:hover {
+    transform: translateY($lift) scale($scale);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Button Accent Auto-Contrast
+@mixin button-auto-contrast {
+  background: var(--clr-accent);
+  color: var(--clr-surface);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-text);
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+}
+
+// Desert Gradient Backgrounds
+.bg-desert-gradient {
+  background: var(--gradient-desert);
+}
+
+.bg-sunset-gradient {
+  background: var(--gradient-sunset);
+}
+
+.bg-green-gradient {
+  background: var(--gradient-green);
+}
+
+// Utility Classes
+.text-accent { color: var(--clr-accent); }
+.text-green { color: var(--clr-green); }
+.text-muted { color: var(--clr-text-muted); }
+.bg-surface { background-color: var(--clr-surface); }
+.bg-surface-alt { background-color: var(--clr-surface-alt); }
+.border-accent { border-color: var(--clr-accent); }
+.border-green { border-color: var(--clr-green); }

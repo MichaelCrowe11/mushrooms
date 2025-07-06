@@ -51,6 +51,7 @@
 // -----------------------------------------------------------------------------
 
 @import "utilities/utilities";
+@import "utilities/palette"; // Professional modern color system
 @import "../../node_modules/@bigcommerce/citadel/dist/utilities/utilities";
 
 
@@ -59,14 +60,20 @@
 //
 // 1. Import Citadel's normalize dependency.
 // 2. Import Citadel's components.
-// 2. Import Stencil's component additions and custom components.
+// 3. Import Stencil's component additions and custom components.
+// 4. Import custom professional components.
 //
 // -----------------------------------------------------------------------------
 
 @import "../../node_modules/@bigcommerce/citadel/dist/vendor/normalize/normalize"; // 1
 @import "../../node_modules/@bigcommerce/citadel/dist/components/components"; // 2
 @import "common/index"; // 3
-@import "components/components"; // 6
+
+// Custom Components - Professional Design System
+@import "components/icons"; // Professional SVG icon system
+@import "components/components"; // 3
+@import "components/button"; // 4 - Enhanced buttons with auto-contrast
+@import "components/product-card"; // 4 - Glass-morphism product cards
 
 
 // Layouts
@@ -80,25 +87,26 @@
 
 /* ===== SOUTHWEST MUSHROOMS PREMIUM UI/UX ENHANCEMENTS ===== */
 
-// Custom Properties & Variables
+// Legacy color variables for backward compatibility
 :root {
-  --primary-color: #2d5016;
-  --secondary-color: #8bc34a;
-  --accent-color: #ff6b35;
-  --dark-bg: #1a1a1a;
-  --light-bg: #f8f9fa;
-  --text-primary: #2c3e50;
-  --text-secondary: #7f8c8d;
+  // Update existing variables to use new professional palette
+  --primary-color: var(--clr-accent);
+  --secondary-color: var(--clr-secondary);
+  --accent-color: var(--clr-accent);
+  --dark-bg: var(--clr-bg);
+  --light-bg: var(--clr-surface);
+  --text-primary: var(--clr-text);
+  --text-secondary: var(--clr-text-secondary);
   --border-radius: 12px;
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.2);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --gradient-primary: linear-gradient(135deg, #2d5016 0%, #8bc34a 100%);
-  --gradient-secondary: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  --gradient-primary: var(--gradient-primary);
+  --gradient-secondary: var(--gradient-secondary);
 }
 
-// Enhanced Sidebar with Premium Styling
+// Enhanced Sidebar with Professional Modern Gradient
 .sidebar-nav {
   position: fixed;
   top: 0;
@@ -106,27 +114,49 @@
   width: 280px;
   height: 100vh;
   background: var(--gradient-primary);
-  color: #fff;
+  color: var(--clr-surface);
   padding: 2rem;
   z-index: 1000;
   overflow-y: auto;
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  
+  // Professional diagonal gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(250, 250, 250, 0.05) 0%,
+      rgba(11, 95, 255, 0.85) 25%,
+      rgba(30, 109, 255, 0.95) 50%,
+      rgba(59, 130, 255, 0.8) 75%,
+      rgba(248, 249, 250, 0.05) 100%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
   
   .brand {
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
+    z-index: 1;
     
     .brand-logo {
       max-width: 200px;
+      max-height: 60px;
       height: auto;
-      filter: brightness(0) invert(1); /* Makes the logo white */
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
       transition: var(--transition);
       
       &:hover {
         transform: scale(1.05);
-        filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.3));
+        filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0,0,0,0.3));
       }
     }
     
@@ -138,8 +168,9 @@
       transform: translateX(-50%);
       width: 60px;
       height: 3px;
-      background: var(--accent-color);
+      background: var(--clr-surface);
       border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
   }
   
@@ -147,44 +178,61 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    position: relative;
+    z-index: 1;
     
     li {
       margin-bottom: 0.5rem;
       
       a {
-        display: block;
+        display: flex;
+        align-items: center;
         padding: 1rem 1.5rem;
         color: inherit;
         text-decoration: none;
         border-radius: var(--border-radius);
-        transition: var(--transition);
+        transition: all 180ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
         font-weight: 500;
         position: relative;
         overflow: hidden;
+        gap: 0.75rem;
         
+        // Desert-themed hover effect with inset border
         &::before {
           content: '';
           position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: rgba(255,255,255,0.1);
-          transition: var(--transition);
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          border: 2px solid transparent;
+          border-radius: calc(var(--border-radius) - 2px);
+          transition: all 180ms ease;
+          pointer-events: none;
         }
         
         &:hover {
-          background: rgba(255,255,255,0.15);
+          background: rgba(248, 243, 233, 0.2);
           transform: translateX(8px);
-          box-shadow: var(--shadow-sm);
+          box-shadow: inset 0 2px 8px rgba(0,0,0,0.1), 
+                      0 4px 12px rgba(0,0,0,0.15);
           
           &::before {
-            left: 0;
+            border-color: rgba(248, 243, 233, 0.4);
+            background: rgba(248, 243, 233, 0.05);
           }
         }
         
         &:active {
           transform: translateX(4px) scale(0.98);
+        }
+        
+        .nav-icon {
+          font-size: 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 1.5rem;
         }
       }
     }
@@ -276,12 +324,40 @@
   }
 }
 
+// Global Body and Document Styles
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  transition: background-color 300ms ease, color 300ms ease;
+  
+  // Smooth scrolling for the whole page
+  scroll-behavior: smooth;
+  
+  // Better text rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// Theme-aware document root
+html {
+  &[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  
+  &[data-theme='light'] {
+    color-scheme: light;
+  }
+}
+
 // Enhanced Page Wrapper
 .page-wrapper {
   margin-left: 280px;
   padding: 2rem;
   min-height: 100vh;
-  background: var(--light-bg);
+  background: var(--clr-bg);
   transition: var(--transition);
 }
 
@@ -292,14 +368,14 @@
   top: 1.5rem;
   left: 1.5rem;
   font-size: 2.5rem;
-  background: var(--gradient-primary);
+  background: var(--gradient-sunset);
   border: none;
-  color: #fff;
+  color: var(--clr-surface);
   z-index: 1100;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--glass-shadow);
   transition: var(--transition);
   cursor: pointer;
   
@@ -375,6 +451,48 @@
       &:hover {
         transform: scale(1.02);
       }
+    }
+  }
+}
+
+// Header Logo Styling - Desert Theme Compatible
+.header-logo {
+  .header-logo__link {
+    display: inline-block;
+    transition: var(--transition);
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  .header-logo-image-container,
+  .header-logo-image-unknown-size {
+    .header-logo-image,
+    img {
+      max-width: 200px !important;
+      max-height: 60px !important;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      transition: var(--transition);
+      
+      &:hover {
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      }
+    }
+  }
+  
+  .header-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    text-decoration: none;
+    transition: var(--transition);
+    
+    &:hover {
+      color: var(--clr-accent);
     }
   }
 }
