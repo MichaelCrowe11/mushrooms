@@ -1,0 +1,288 @@
+// =============================================================================
+// ENHANCED ALERT SYSTEM
+// Modern alert components with accessibility and animations
+// =============================================================================
+
+// ALERT BASE STYLES
+// -----------------------------------------------------------------------------
+
+.alert {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-modal);
+  min-width: 300px;
+  max-width: 500px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elevation-6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  // Animation
+  animation: slideInRight 0.3s var(--easing-ease-out);
+  transition: all 0.25s var(--easing-ease-out);
+  
+  // Typography
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  
+  // Layout
+  @include flex-center(var(--space-3));
+  align-items: flex-start;
+  
+  // Mobile responsiveness
+  @media (max-width: 480px) {
+    top: var(--space-2);
+    right: var(--space-2);
+    left: var(--space-2);
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+// ALERT VARIANTS
+// -----------------------------------------------------------------------------
+
+.alert-success {
+  background: linear-gradient(135deg, 
+    rgba(16, 163, 127, 0.95) 0%, 
+    rgba(34, 197, 94, 0.95) 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  
+  .alert-icon {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    flex-shrink: 0;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.alert-error {
+  background: linear-gradient(135deg, 
+    rgba(239, 68, 68, 0.95) 0%, 
+    rgba(220, 38, 38, 0.95) 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  
+  .alert-icon {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    flex-shrink: 0;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.95) 0%, 
+    rgba(217, 119, 6, 0.95) 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  
+  .alert-icon {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    flex-shrink: 0;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.alert-info {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.95) 0%, 
+    rgba(37, 99, 235, 0.95) 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  
+  .alert-icon {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    flex-shrink: 0;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+// ALERT COMPONENTS
+// -----------------------------------------------------------------------------
+
+.alert-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s var(--easing-ease-out);
+  width: 20px;
+  height: 20px;
+  @include flex-center;
+  border-radius: var(--radius-sm);
+  
+  &:hover,
+  &:focus {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  &:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+.alert-dismissible {
+  padding-right: var(--space-12);
+}
+
+// LOADING SPINNER
+// -----------------------------------------------------------------------------
+
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 1s ease-in-out infinite;
+  margin-left: var(--space-2);
+}
+
+// FORM FIELD ERRORS
+// -----------------------------------------------------------------------------
+
+.form-field-error {
+  color: var(--error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-1);
+  @include flex-center(var(--space-1));
+  animation: slideInUp 0.2s var(--easing-ease-out);
+  
+  &::before {
+    content: "⚠";
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+  }
+}
+
+// BUTTON LOADING STATES
+// -----------------------------------------------------------------------------
+
+.button--loading {
+  position: relative;
+  pointer-events: none;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: currentColor;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  // Hide button text during loading
+  .button-text {
+    opacity: 0;
+  }
+}
+
+// ANIMATIONS
+// -----------------------------------------------------------------------------
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+// Reduced motion support
+@include reduced-motion {
+  .alert,
+  .form-field-error,
+  .loading-spinner,
+  .button--loading::after {
+    animation: none;
+    transition: none;
+  }
+}
+
+// High contrast mode
+@include high-contrast {
+  .alert {
+    border: 2px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+  
+  .alert-close {
+    border: 1px solid ButtonText;
+  }
+}
+
+// Focus management for alerts
+.alert {
+  &:focus-within {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+  }
+}
+
+// Print styles
+@include print-only {
+  .alert,
+  .loading-spinner {
+    display: none !important;
+  }
+}

@@ -2,14 +2,35 @@
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-<main class="page">
+<main class="page page-404">
     <section class="page-content page-content--centered">
-        <h1 class="page-heading">{{lang 'page_not_found.page_heading'}}</h1>
-        <p class="u-textAlignCenter">
-            {{lang 'page_not_found.message'}}
-        </p>
+        <div class="error-container">
+            <div class="error-icon">
+                <span role="img" aria-label="Page not found">🔍</span>
+            </div>
+            <h1 class="page-heading">{{lang 'page_not_found.page_heading'}}</h1>
+            <p class="u-textAlignCenter error-message">
+                {{lang 'page_not_found.message'}}
+            </p>
 
-        {{> components/common/search-box}}
+            {{> components/common/search-box}}
+            
+            <div class="error-actions">
+                <a href="/" class="button button--primary">{{lang 'common.go_home' 'Go Home'}}</a>
+                <a href="/products" class="button button--secondary">{{lang 'common.browse_products' 'Browse Products'}}</a>
+            </div>
+            
+            <!-- Popular categories for better navigation -->
+            <div class="error-suggestions">
+                <h3>{{lang 'page_not_found.popular_categories' 'Popular Categories'}}</h3>
+                <div class="suggestions-grid">
+                    <a href="/fresh-mushrooms" class="suggestion-link">Fresh Mushrooms</a>
+                    <a href="/dried-mushrooms" class="suggestion-link">Dried Mushrooms</a>
+                    <a href="/specialty-varieties" class="suggestion-link">Specialty Varieties</a>
+                    <a href="/bulk-orders" class="suggestion-link">Bulk Orders</a>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 

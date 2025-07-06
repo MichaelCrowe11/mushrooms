@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Southwest Mushrooms</title>
+    <style>
+        /* Inline critical CSS for offline page */
+        :root {
+            --clr-primary: #6b46c1;
+            --clr-primary-light: #8b5cf6;
+            --clr-surface: #ffffff;
+            --clr-text: #1f2937;
+            --clr-text-muted: #6b7280;
+            --clr-border: #e5e7eb;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            --border-radius: 0.5rem;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--clr-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-unit);
+        }
+
+        .offline-container {
+            background: var(--clr-surface);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto calc(var(--spacing-unit) * 2);
+            background: var(--clr-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .offline-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-unit);
+            color: var(--clr-text);
+        }
+
+        .offline-message {
+            font-size: 1.125rem;
+            color: var(--clr-text-muted);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            line-height: 1.6;
+        }
+
+        .offline-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-unit);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .button--primary {
+            background: var(--clr-primary);
+            color: white;
+        }
+
+        .button--primary:hover {
+            background: var(--clr-primary-light);
+            transform: translateY(-2px);
+        }
+
+        .button--secondary {
+            background: transparent;
+            color: var(--clr-primary);
+            border: 2px solid var(--clr-primary);
+        }
+
+        .button--secondary:hover {
+            background: var(--clr-primary);
+            color: white;
+        }
+
+        .connection-status {
+            margin-top: calc(var(--spacing-unit) * 2);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .connection-status--offline {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .connection-status--online {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .retry-info {
+            margin-top: calc(var(--spacing-unit) * 1.5);
+            font-size: 0.875rem;
+            color: var(--clr-text-muted);
+        }
+
+        /* Animation for the offline icon */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .offline-icon {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* Responsive design */
+        @media (min-width: 640px) {
+            .offline-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --clr-surface: #1f2937;
+                --clr-text: #f9fafb;
+                --clr-text-muted: #d1d5db;
+                --clr-border: #374151;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <span>📵</span>
+        </div>
+        
+        <h1 class="offline-title">You're Offline</h1>
+        
+        <p class="offline-message">
+            It looks like you've lost your internet connection. Don't worry - once you're back online, 
+            you can continue exploring our amazing mushroom products!
+        </p>
+        
+        <div class="offline-actions">
+            <button onclick="location.reload()" class="button button--primary">
+                Try Again
+            </button>
+            <button onclick="goBack()" class="button button--secondary">
+                Go Back
+            </button>
+        </div>
+        
+        <div id="connectionStatus" class="connection-status connection-status--offline">
+            <span id="statusText">No internet connection</span>
+        </div>
+        
+        <div class="retry-info">
+            <p>This page will automatically refresh when your connection is restored.</p>
+        </div>
+    </div>
+
+    <script>
+        // Connection status monitoring
+        function updateConnectionStatus() {
+            const statusElement = document.getElementById('connectionStatus');
+            const statusText = document.getElementById('statusText');
+            
+            if (navigator.onLine) {
+                statusElement.className = 'connection-status connection-status--online';
+                statusText.textContent = 'Connection restored!';
+                
+                // Auto-reload after a short delay
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            } else {
+                statusElement.className = 'connection-status connection-status--offline';
+                statusText.textContent = 'No internet connection';
+            }
+        }
+
+        // Listen for connection changes
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+
+        // Initial status check
+        updateConnectionStatus();
+
+        // Go back function
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        // Service worker message handling
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (event.data && event.data.type === 'CACHE_UPDATED') {
+                    // Show notification that cached content is available
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #10b981;
+                        color: white;
+                        padding: 1rem;
+                        border-radius: 0.5rem;
+                        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                        z-index: 1000;
+                    `;
+                    notification.textContent = 'Some content is available offline!';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 5000);
+                }
+            });
+        }
+
+        // Periodic retry mechanism
+        let retryCount = 0;
+        const maxRetries = 10;
+        
+        function attemptRetry() {
+            if (retryCount < maxRetries && !navigator.onLine) {
+                retryCount++;
+                
+                // Try to fetch a small resource to test connectivity
+                fetch('/', { 
+                    method: 'HEAD',
+                    cache: 'no-cache'
+                })
+                .then(() => {
+                    // Connection restored
+                    updateConnectionStatus();
+                })
+                .catch(() => {
+                    // Still offline, try again in a few seconds
+                    setTimeout(attemptRetry, 5000 + (retryCount * 1000));
+                });
+            }
+        }
+
+        // Start retry attempts after initial delay
+        setTimeout(attemptRetry, 5000);
+
+        // Analytics for offline usage (will be queued until online)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'offline_page_view', {
+                event_category: 'offline',
+                event_label: window.location.pathname
+            });
+        }
+    </script>
+</body>
+</html>

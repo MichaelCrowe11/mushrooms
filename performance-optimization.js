@@ -199,6 +199,43 @@
     }, true);
   }
 
+  // Enhanced Image Loading Optimization
+  function optimizeImageLoading() {
+    // Implement advanced lazy loading with intersection observer
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          
+          // Load the image
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+          }
+          
+          // Load srcset if available
+          if (img.dataset.srcset) {
+            img.srcset = img.dataset.srcset;
+          }
+          
+          // Remove loading placeholder
+          img.classList.remove('lazy-loading');
+          
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.01
+    });
+
+    // Apply to all lazy images
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      img.classList.add('lazy-loading');
+      imageObserver.observe(img);
+    });
+  }
+
   // Theme Toggle Performance
   function optimizeThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
@@ -284,6 +321,128 @@
     });
   }
 
+  // Enhanced Font Loading Strategy
+  function optimizeFontLoading() {
+    if ('fonts' in document) {
+      // Critical fonts to load immediately
+      const criticalFonts = [
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont'
+      ];
+      
+      // Load critical fonts first
+      Promise.allSettled(
+        criticalFonts.map(font => document.fonts.load(`16px ${font}`))
+      ).then(() => {
+        document.body.classList.add('fonts-loaded');
+      });
+    }
+  }
+
+  // Enhanced Resource Hints
+  function addResourceHints() {
+    const head = document.head;
+    
+    // Preconnect to external domains
+    const externalDomains = [
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com',
+      'https://www.google-analytics.com',
+      'https://cdn.bigcommerce.com'
+    ];
+    
+    externalDomains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      link.crossOrigin = 'anonymous';
+      head.appendChild(link);
+    });
+    
+    // DNS prefetch for less critical domains
+    const prefetchDomains = [
+      'https://www.googletagmanager.com',
+      'https://connect.facebook.net',
+      'https://static.hotjar.com'
+    ];
+    
+    prefetchDomains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'dns-prefetch';
+      link.href = domain;
+      head.appendChild(link);
+    });
+  }
+
+  // Enhanced Service Worker Implementation
+  function initServiceWorker() {
+    if ('serviceWorker' in navigator && 'caches' in window) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registered:', registration);
+          
+          // Update available notification
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // Show update notification
+                showUpdateNotification();
+              }
+            });
+          });
+        })
+        .catch(error => {
+          console.log('ServiceWorker registration failed:', error);
+        });
+    }
+  }
+
+  // Update notification for PWA
+  function showUpdateNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'update-notification';
+    notification.innerHTML = `
+      <div class="update-notification-content">
+        <p>A new version is available!</p>
+        <button onclick="location.reload()" class="button button--primary">Update Now</button>
+        <button onclick="this.parentElement.parentElement.remove()" class="button button--secondary">Later</button>
+      </div>
+    `;
+    document.body.appendChild(notification);
+  }
+
+  // Critical Resource Loading
+  function loadCriticalResources() {
+    // Load critical CSS inline for first paint
+    const criticalCSS = document.getElementById('critical-css');
+    if (!criticalCSS) {
+      // Load critical styles if not already inline
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/assets/css/critical.css';
+      link.id = 'critical-css';
+      document.head.appendChild(link);
+    }
+    
+    // Preload key resources
+    const keyResources = [
+      { href: '/assets/js/theme-bundle.main.js', as: 'script' },
+      { href: '/assets/css/theme.css', as: 'style' },
+      { href: '/assets/img/logo.svg', as: 'image' }
+    ];
+    
+    keyResources.forEach(resource => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = resource.href;
+      link.as = resource.as;
+      if (resource.as === 'script') link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    });
+  }
+
   // Initialize all optimizations
   function init() {
     // Use requestIdleCallback for non-critical optimizations
@@ -308,6 +467,11 @@
     optimizeVideoLoading();
     optimizeGPTLab();
     optimizeThemeToggle();
+    optimizeImageLoading();
+    optimizeFontLoading();
+    addResourceHints();
+    initServiceWorker();
+    loadCriticalResources();
   }
 
   // Initialize when DOM is ready

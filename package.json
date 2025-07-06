@@ -69,10 +69,26 @@
   },
   "scripts": {
     "build": "npx webpack --config webpack.prod.js",
+    "build:analyze": "ANALYZE=true npx webpack --config webpack.prod.js",
     "buildDev": "npx webpack --config webpack.dev.js",
+    "dev": "npx webpack --config webpack.dev.js --watch",
+    "clean": "rm -rf assets/dist",
     "lighthouse": "npx lighthouse --config-path=lighthouse-config.js --quiet --output html --chrome-flags=\"--headless\" $URL",
+    "lighthouse:ci": "npx lighthouse --config-path=lighthouse-config.js --quiet --output json --chrome-flags=\"--headless\" $URL",
     "test": "npx jest",
+    "test:watch": "npx jest --watch",
+    "test:coverage": "npx jest --coverage",
     "stylelint": "npx stylelint **/*.scss",
-    "stylelint:fix": "npx stylelint --fix **/*.scss"
+    "stylelint:fix": "npx stylelint --fix **/*.scss",
+    "eslint": "npx eslint assets/js/**/*.js",
+    "eslint:fix": "npx eslint --fix assets/js/**/*.js",
+    "lint": "npm run stylelint && npm run eslint",
+    "lint:fix": "npm run stylelint:fix && npm run eslint:fix",
+    "bundle": "stencil bundle",
+    "push": "stencil push",
+    "start": "stencil start",
+    "validate": "npm run lint && npm run test",
+    "prebuild": "npm run clean",
+    "postbuild": "echo 'Build completed successfully!'"
   }
 }

@@ -414,139 +414,235 @@ export default class ProductDetails extends ProductDetailsBase {
         // Prevent default
         event.preventDefault();
 
+        // Enhanced validation and user feedback
+        if (!this.validateCartAddition($addToCartBtn)) {
+            return;
+        }
+
         $addToCartBtn
             .val(waitMessage)
-            .prop('disabled', true);
+            .prop('disabled', true)
+            .addClass('button--loading');
 
         this.$overlay.show();
 
-        // Add item to cart
+        // Enhanced loading state with progress indication
+        this.showLoadingState($addToCartBtn, true);
+
+        // Add item to cart with enhanced error handling
         utils.api.cart.itemAdd(normalizeFormData(new FormData(form)), (err, response) => {
             currencySelector(response.data.cart_id);
             const errorMessage = err || response.data.error;
 
             $addToCartBtn
                 .val(originalBtnVal)
-                .prop('disabled', false);
+                .prop('disabled', false)
+                .removeClass('button--loading');
 
             this.$overlay.hide();
+            this.showLoadingState($addToCartBtn, false);
 
-            // Guard statement
+            // Enhanced error handling
             if (errorMessage) {
-                // Strip the HTML from the error message
-                const tmp = document.createElement('DIV');
-                tmp.innerHTML = errorMessage;
-
-                if (!this.checkIsQuickViewChild($addToCartBtn)) {
-                    alertModal().$preModalFocusedEl = $addToCartBtn;
-                }
-
-                return showAlertModal(tmp.textContent || tmp.innerText);
+                this.handleAddToCartError(errorMessage, $addToCartBtn);
+                return;
             }
 
-            // Open preview modal and update content
-            if (this.previewModal) {
-                this.previewModal.open();
-
-                if (window.ApplePaySession) {
-                    this.previewModal.$modal.addClass('apple-pay-supported');
-                }
-
-                if (!this.checkIsQuickViewChild($addToCartBtn)) {
-                    this.previewModal.$preModalFocusedEl = $addToCartBtn;
-                }
-
-                this.updateCartContent(this.previewModal, response.data.cart_item.id);
-            } else {
-                this.$overlay.show();
-                // if no modal, redirect to the cart page
-                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
-            }
+            // Enhanced success handling
+            this.handleAddToCartSuccess(response, $addToCartBtn);
         });
 
         this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
     }
 
     /**
-     * Get cart contents
-     *
-     * @param {String} cartItemId
-     * @param {Function} onComplete
+     * Enhanced validation for cart addition
+     * @param {jQuery} $addToCartBtn - Add to cart button
+     * @returns {boolean} - Validation result
      */
-    getCartContent(cartItemId, onComplete) {
-        const options = {
-            template: 'cart/preview',
-            params: {
-                suggest: cartItemId,
-            },
-            config: {
-                cart: {
-                    suggestions: {
-                        limit: 4,
-                    },
-                },
-            },
-        };
-
-        utils.api.cart.getContent(options, onComplete);
+    validateCartAddition($addToCartBtn) {
+        const $form = $addToCartBtn.closest('form');
+        const $quantityInput = $form.find('[name="qty[]"]');
+        
+        if ($quantityInput.length) {
+            const quantity = parseInt($quantityInput.val(), 10);
+            const min = parseInt($quantityInput.data('quantity-min'), 10) || 1;
+            const max = parseInt($quantityInput.data('quantity-max'), 10);
+            
+            if (quantity < min) {
+                this.showValidationError(`Minimum quantity is ${min}`, $quantityInput);
+                return false;
+            }
+            
+            if (max && quantity > max) {
+                this.showValidationError(`Maximum quantity is ${max}`, $quantityInput);
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     /**
-     * Redirect to url
-     *
-     * @param {String} url
+     * Enhanced error handling for add to cart
+     * @param {string} errorMessage - Error message from API
+     * @param {jQuery} $addToCartBtn - Add to cart button
      */
-    redirectTo(url) {
-        if (this.isRunningInIframe() && !window.iframeSdk) {
-            window.top.location = url;
+    handleAddToCartError(errorMessage, $addToCartBtn) {
+        // Strip HTML from error message
+        const tmp = document.createElement('DIV');
+        tmp.innerHTML = errorMessage;
+        const cleanMessage = tmp.textContent || tmp.innerText;
+
+        // Show user-friendly error message
+        this.showErrorMessage(cleanMessage);
+
+        // Track error for analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'add_to_cart_error', {
+                event_category: 'ecommerce',
+                event_label: cleanMessage,
+                value: 0
+            });
+        }
+
+        // Focus management for accessibility
+        if (!this.checkIsQuickViewChild($addToCartBtn)) {
+            alertModal().$preModalFocusedEl = $addToCartBtn;
+        }
+
+        return showAlertModal(cleanMessage);
+    }
+
+    /**
+     * Enhanced success handling for add to cart
+     * @param {Object} response - API response
+     * @param {jQuery} $addToCartBtn - Add to cart button
+     */
+    handleAddToCartSuccess(response, $addToCartBtn) {
+        // Show success feedback
+        this.showSuccessMessage('Product added to cart!');
+
+        // Track successful add to cart
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'add_to_cart', {
+                event_category: 'ecommerce',
+                event_label: response.data.cart_item.name || 'Product',
+                value: response.data.cart_item.sale_price || 0
+            });
+        }
+
+        // Update cart preview
+        this.updateCartPreview();
+
+        // Open preview modal with enhanced behavior
+        if (this.previewModal) {
+            this.previewModal.open();
+
+            if (window.ApplePaySession) {
+                this.previewModal.$modal.addClass('apple-pay-supported');
+            }
+
+            if (!this.checkIsQuickViewChild($addToCartBtn)) {
+                this.previewModal.$preModalFocusedEl = $addToCartBtn;
+            }
+
+            this.updateCartContent(this.previewModal, response.data.cart_item.id);
         } else {
-            window.location = url;
+            this.$overlay.show();
+            // if no modal, redirect to the cart page
+            this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
         }
     }
 
     /**
-     * Update cart content
-     *
-     * @param {Modal} modal
-     * @param {String} cartItemId
-     * @param {Function} onComplete
+     * Show enhanced loading state
+     * @param {jQuery} $button - Button element
+     * @param {boolean} loading - Loading state
      */
-    updateCartContent(modal, cartItemId, onComplete) {
-        this.getCartContent(cartItemId, (err, response) => {
-            if (err) {
-                return;
-            }
+    showLoadingState($button, loading) {
+        if (loading) {
+            $button.append('<span class="loading-spinner" aria-hidden="true"></span>');
+        } else {
+            $button.find('.loading-spinner').remove();
+        }
+    }
 
-            modal.updateContent(response);
+    /**
+     * Show validation error message
+     * @param {string} message - Error message
+     * @param {jQuery} $field - Form field
+     */
+    showValidationError(message, $field) {
+        // Remove existing error
+        $field.siblings('.form-field-error').remove();
+        
+        // Add new error message
+        const $error = $(`<div class="form-field-error" role="alert">${message}</div>`);
+        $field.after($error);
+        
+        // Focus the field
+        $field.focus();
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => $error.fadeOut(), 5000);
+    }
 
-            // Update cart counter
-            const $body = $('body');
-            const $cartQuantity = $('[data-cart-quantity]', modal.$content);
-            const $cartCounter = $('.navUser-action .cart-count');
-            const quantity = $cartQuantity.data('cartQuantity') || 0;
-            const $promotionBanner = $('[data-promotion-banner]');
-            const $backToShopppingBtn = $('.previewCartCheckout > [data-reveal-close]');
-            const $modalCloseBtn = $('#previewModal > .modal-close');
-            const bannerUpdateHandler = () => {
-                const $productContainer = $('#main-content > .container');
-
-                $productContainer.append('<div class="loadingOverlay pdp-update"></div>');
-                $('.loadingOverlay.pdp-update', $productContainer).show();
-                window.location.reload();
-            };
-
-            $cartCounter.addClass('cart-count--positive');
-            $body.trigger('cart-quantity-update', quantity);
-
-            if (onComplete) {
-                onComplete(response);
-            }
-
-            if ($promotionBanner.length && $backToShopppingBtn.length) {
-                $backToShopppingBtn.on('click', bannerUpdateHandler);
-                $modalCloseBtn.on('click', bannerUpdateHandler);
-            }
+    /**
+     * Show success message
+     * @param {string} message - Success message
+     */
+    showSuccessMessage(message) {
+        const $successMessage = $(`
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <span class="alert-icon" aria-hidden="true">✓</span>
+                ${message}
+                <button type="button" class="alert-close" aria-label="Close">×</button>
+            </div>
+        `);
+        
+        $('body').prepend($successMessage);
+        
+        // Auto-hide after 3 seconds
+        setTimeout(() => $successMessage.fadeOut(() => $successMessage.remove()), 3000);
+        
+        // Manual close
+        $successMessage.find('.alert-close').on('click', () => {
+            $successMessage.fadeOut(() => $successMessage.remove());
         });
+    }
+
+    /**
+     * Show error message
+     * @param {string} message - Error message
+     */
+    showErrorMessage(message) {
+        const $errorMessage = $(`
+            <div class="alert alert-error alert-dismissible" role="alert">
+                <span class="alert-icon" aria-hidden="true">⚠</span>
+                ${message}
+                <button type="button" class="alert-close" aria-label="Close">×</button>
+            </div>
+        `);
+        
+        $('body').prepend($errorMessage);
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => $errorMessage.fadeOut(() => $errorMessage.remove()), 5000);
+        
+        // Manual close
+        $errorMessage.find('.alert-close').on('click', () => {
+            $errorMessage.fadeOut(() => $errorMessage.remove());
+        });
+    }
+
+    /**
+     * Update cart preview in header
+     */
+    updateCartPreview() {
+        if (typeof window.cartPreviewUpdate === 'function') {
+            window.cartPreviewUpdate();
+        }
     }
 
     /**

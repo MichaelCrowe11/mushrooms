@@ -1,0 +1,375 @@
+// =============================================================================
+// ENHANCED ACCESSIBILITY IMPROVEMENTS
+// Additional a11y features beyond the existing system
+// =============================================================================
+
+// SKIP NAVIGATION ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+.skip-navigation {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--interactive-primary);
+  color: var(--text-inverse);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  z-index: var(--z-modal);
+  transform: translateY(-100%);
+  transition: transform 0.3s var(--easing-ease-out);
+  
+  &:focus {
+    transform: translateY(0);
+    top: var(--space-2);
+  }
+  
+  &:hover {
+    background: var(--interactive-primary-hover);
+  }
+}
+
+// ENHANCED FOCUS MANAGEMENT
+// -----------------------------------------------------------------------------
+
+// Focus trap for modals and overlays
+.focus-trap {
+  outline: none;
+}
+
+// Enhanced focus indicators
+:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+// Focus within containers
+.focus-within:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--interactive-primary-rgb), 0.3);
+  border-radius: var(--radius-md);
+}
+
+// SCREEN READER IMPROVEMENTS
+// -----------------------------------------------------------------------------
+
+// Enhanced screen reader only content
+.sr-only-enhanced {
+  @include visually-hidden;
+  
+  // Allow focus for interactive elements
+  &.focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: var(--space-2);
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--surface-primary);
+    border: 2px solid var(--interactive-primary);
+    border-radius: var(--radius-sm);
+  }
+}
+
+// Live region announcements
+.live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// KEYBOARD NAVIGATION ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+// Enhanced tab order management
+.tab-focus-managed {
+  &:focus {
+    outline: 3px solid var(--interactive-primary);
+    outline-offset: 2px;
+    z-index: var(--z-dropdown);
+  }
+}
+
+// Custom focus styles for specific components
+.custom-focus {
+  &:focus-visible {
+    outline: none;
+    box-shadow: 
+      0 0 0 2px var(--surface-primary),
+      0 0 0 4px var(--interactive-primary);
+    border-radius: var(--radius-md);
+  }
+}
+
+// ENHANCED BUTTON ACCESSIBILITY
+// -----------------------------------------------------------------------------
+
+.button-accessible {
+  position: relative;
+  
+  // Loading state with proper announcement
+  &[aria-busy="true"] {
+    pointer-events: none;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: var(--space-3);
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+    
+    .button-text {
+      margin-right: var(--space-6);
+    }
+  }
+  
+  // Disabled state
+  &[aria-disabled="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+// FORM ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+.form-accessible {
+  .form-field {
+    position: relative;
+    
+    // Enhanced error styling
+    &[aria-invalid="true"] {
+      .form-input {
+        border-color: var(--error);
+        box-shadow: 0 0 0 1px var(--error);
+        
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(var(--error-rgb), 0.3);
+        }
+      }
+    }
+    
+    // Success state
+    &.form-field--valid {
+      .form-input {
+        border-color: var(--success);
+        
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(var(--success-rgb), 0.3);
+        }
+      }
+    }
+  }
+  
+  // Enhanced error messages
+  .form-error {
+    color: var(--error);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-1);
+    @include flex-center(var(--space-1));
+    
+    &::before {
+      content: "⚠";
+      font-size: var(--font-size-base);
+      flex-shrink: 0;
+    }
+  }
+  
+  // Required field indicators
+  .required::after {
+    content: "*";
+    color: var(--error);
+    margin-left: var(--space-1);
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+// MODAL ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+.modal-accessible {
+  // Focus management
+  &[aria-modal="true"] {
+    outline: none;
+  }
+  
+  // Backdrop
+  .modal-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  
+  // Enhanced close button
+  .modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: var(--radius-full);
+    @include flex-center;
+    cursor: pointer;
+    transition: all 0.2s var(--easing-ease-out);
+    
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--interactive-primary);
+      outline-offset: 2px;
+    }
+    
+    &::before {
+      content: "×";
+      font-size: var(--font-size-xl);
+      line-height: 1;
+    }
+  }
+}
+
+// NAVIGATION ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+.nav-accessible {
+  // Enhanced dropdown keyboard navigation
+  .dropdown {
+    &[aria-expanded="true"] {
+      .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .dropdown-item {
+      &:focus {
+        background: var(--interactive-primary);
+        color: var(--text-inverse);
+        outline: none;
+      }
+      
+      &[aria-current="page"] {
+        background: var(--surface-secondary);
+        font-weight: var(--font-weight-semibold);
+        
+        &::before {
+          content: "→";
+          margin-right: var(--space-2);
+          color: var(--interactive-primary);
+        }
+      }
+    }
+  }
+  
+  // Breadcrumb improvements
+  .breadcrumb {
+    nav[aria-label="Breadcrumb"] {
+      .breadcrumb-item {
+        &:not(:last-child)::after {
+          content: "/";
+          margin: 0 var(--space-2);
+          color: var(--text-tertiary);
+        }
+      }
+    }
+  }
+}
+
+// COLOR CONTRAST ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+// Ensure sufficient contrast ratios
+.high-contrast-mode {
+  // Force high contrast colors
+  * {
+    color: ButtonText !important;
+    background: ButtonFace !important;
+    border-color: ButtonText !important;
+  }
+  
+  a:link {
+    color: LinkText !important;
+  }
+  
+  a:visited {
+    color: VisitedText !important;
+  }
+  
+  button,
+  input[type="button"],
+  input[type="submit"] {
+    background: ButtonFace !important;
+    color: ButtonText !important;
+    border: 2px solid ButtonText !important;
+  }
+}
+
+// MOTION SENSITIVITY
+// -----------------------------------------------------------------------------
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  // Keep essential loading animations
+  .loading-spinner,
+  .button--loading::after {
+    animation-duration: 1s !important;
+  }
+}
+
+// PRINT ACCESSIBILITY
+// -----------------------------------------------------------------------------
+
+@include print-only {
+  // Ensure good contrast for printing
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  // Show link URLs
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: smaller;
+    color: #666;
+  }
+  
+  // Hide interactive elements
+  button,
+  input,
+  select,
+  textarea,
+  .button,
+  .modal,
+  .dropdown,
+  .tooltip {
+    display: none !important;
+  }
+}
