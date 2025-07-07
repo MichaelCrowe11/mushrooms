@@ -189,10 +189,12 @@
         // Remove loading overlay
         const loadingOverlay = document.getElementById('loading-overlay');
         if (loadingOverlay) {
-          setTimeout(() => {
-            loadingOverlay.style.opacity = '0';
-            setTimeout(() => loadingOverlay.style.display = 'none', 300);
-          }, 500);
+                  setTimeout(function() {
+          loadingOverlay.style.opacity = '0';
+          setTimeout(function() {
+            loadingOverlay.style.display = 'none';
+          }, 300);
+        }, 500);
         }
 
         // Sidebar toggle functionality
@@ -416,7 +418,7 @@
               
               // Handle messages from GPT iframe
               if (event.data.type === 'gpt_ready') {
-                console.log('GPT Lab loaded successfully');
+                // GPT Lab loaded successfully
               } else if (event.data.type === 'gpt_error') {
                 showGPTFallback();
               }

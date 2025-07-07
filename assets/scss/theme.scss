@@ -80,8 +80,9 @@
 
 /* ===== SOUTHWEST MUSHROOMS PREMIUM UI/UX ENHANCEMENTS ===== */
 
-// Custom Properties & Variables
+// Custom Properties & Variables (Optimized)
 :root {
+  /* Colors */
   --primary-color: #2d5016;
   --secondary-color: #8bc34a;
   --accent-color: #ff6b35;
@@ -89,13 +90,31 @@
   --light-bg: #f8f9fa;
   --text-primary: #2c3e50;
   --text-secondary: #7f8c8d;
+  
+  /* Spacing & Layout */
   --border-radius: 12px;
+  --sidebar-width: 280px;
+  --header-height: 80px;
+  
+  /* Shadows (Optimized) */
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.2);
+  
+  /* Transitions */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease-out;
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Gradients (Pre-computed) */
   --gradient-primary: linear-gradient(135deg, #2d5016 0%, #8bc34a 100%);
   --gradient-secondary: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  
+  /* Z-index layers */
+  --z-sidebar: 1000;
+  --z-modal: 2000;
+  --z-toast: 3000;
+  --z-loading: 4000;
 }
 
 // Enhanced Sidebar with Premium Styling
