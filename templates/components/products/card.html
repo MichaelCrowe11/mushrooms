@@ -1,5 +1,5 @@
 <article
-    class="product-card card
+    class="glass-card-enhanced interactive-card product-card hover-lift
     {{#if alternate}} card--alternate{{/if}}
     {{#if stock_level '===' 0}} out-of-stock{{/if}}"
     data-test="card-{{id}}"
@@ -26,65 +26,100 @@
         {{/if}}
     {{/each}}"
     data-product-brand="{{brand.name}}"
+    data-aos="fade-up"
+    data-aos-delay="{{position}}00"
 >
-    <div class="card-body">
-        <div class="card-image">
+    <div class="card-overlay"></div>
+    
+    <div class="card-image">
+        <div class="overlay-effects"></div>
+        
+        <div class="badge-container">
             {{#if stock_level '===' 0}}
                 {{#if theme_settings.pdp_sold_out_label '===' ''}}
-                    <div class="sale-badge">{{lang "page_builder.pdp_sold_out_label"}}</div>
+                    <div class="badge sale floating">{{lang "page_builder.pdp_sold_out_label"}}</div>
                 {{else}}
-                    <div class="sale-badge">{{theme_settings.pdp_sold_out_label}}</div>
+                    <div class="badge sale floating">{{theme_settings.pdp_sold_out_label}}</div>
                 {{/if}}
             {{else}}
                 {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
                     {{#if theme_settings.pdp_sale_badge_label '===' ''}}
-                        <div class="sale-badge">{{lang "page_builder.pdp_sale_badge_label"}}</div>
+                        <div class="badge sale floating">{{lang "page_builder.pdp_sale_badge_label"}}</div>
                     {{else}}
-                        <div class="sale-badge">{{theme_settings.pdp_sale_badge_label}}</div>
+                        <div class="badge sale floating">{{theme_settings.pdp_sale_badge_label}}</div>
                     {{/if}}
                 {{/or}}
-            {{/if}}
-
-            <a href="{{url}}" 
-               class="card-figure__link"
-               aria-label="{{> components/products/product-info}}"
-               data-event-type="product-click">
-                {{> components/common/responsive-img
-                    image=image
-                    class="card-image"
-                    fallback_size=theme_settings.productgallery_size
-                    lazyload=theme_settings.lazyload_mode
-                    default_image=theme_settings.default_image_product
-                }}
-            </a>
-
-            {{#unless hide_product_quick_view}}
-                {{#if theme_settings.show_product_quick_view}}
-                    <div class="quick-view-overlay">
-                        <button type="button" 
-                                class="quick-view-btn" 
-                                data-event-type="product-click" 
-                                data-product-id="{{id}}">
-                            {{lang 'products.quick_view'}}
-                        </button>
-                    </div>
+                {{#if new}}
+                    <div class="badge new floating delay-1">NEW</div>
                 {{/if}}
-            {{/unless}}
+                {{#if featured}}
+                    <div class="badge featured floating delay-2">FEATURED</div>
+                {{/if}}
+            {{/if}}
         </div>
 
+        <a href="{{url}}" 
+           class="card-figure__link"
+           aria-label="{{> components/products/product-info}}"
+           data-event-type="product-click">
+            {{> components/common/responsive-img
+                image=image
+                class="card-image"
+                fallback_size=theme_settings.productgallery_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+            }}
+        </a>
+
+        {{#unless hide_product_quick_view}}
+            {{#if theme_settings.show_product_quick_view}}
+                <div class="quick-view-overlay">
+                    <button type="button" 
+                            class="quick-view-btn liquid-button pulse" 
+                            data-event-type="product-click" 
+                            data-product-id="{{id}}">
+                        {{lang 'products.quick_view'}}
+                    </button>
+                </div>
+            {{/if}}
+        {{/unless}}
+    </div>
+
+    <div class="card-content">
         {{#if brand.name}}
-            <div class="product-tags">
-                <span class="tag">{{brand.name}}</span>
+            <div class="product-tags stagger-animation">
+                <span class="tag hover-glow">{{brand.name}}</span>
+                {{#each tags}}
+                    <span class="tag">{{this}}</span>
+                {{/each}}
             </div>
         {{/if}}
 
         <h3 class="card-title">
             <a aria-label="{{> components/products/product-info}}"
                href="{{url}}"
-               data-event-type="product-click">
+               data-event-type="product-click"
+               class="animated-text glitch"
+               data-text="{{name}}">
                 {{name}}
             </a>
         </h3>
+
+        {{#and rating show_rating}}
+            <div class="rating-container">
+                <div class="stars">
+                    {{#for 1 5}}
+                        <span class="star{{#if (lte this ../rating.rating)}} filled{{/if}}" 
+                              style="--star-index: {{this}};">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                        </span>
+                    {{/for}}
+                </div>
+                <span class="rating-text hover-glow">({{rating.count}})</span>
+            </div>
+        {{/and}}
 
         <div class="card-description">
             {{#if summary}}
@@ -96,18 +131,27 @@
             {{/if}}
         </div>
 
-        {{#and rating show_rating}}
-            <div class="product-rating">
-                <div class="stars">
-                    {{> components/products/ratings rating_target=name rating=rating}}
-                </div>
-                <span class="rating-count">({{rating.count}})</span>
-            </div>
-        {{/and}}
-
-        <div class="card-price">
+        <div class="price-section">
             {{#or customer (unless settings.hide_price_from_guests)}}
-                {{> components/products/price price=price}}
+                <span class="price-current animated-text" data-price="{{price.value}}">
+                    {{#if price.with_tax}}
+                        {{price.with_tax.formatted}}
+                    {{else}}
+                        {{price.without_tax.formatted}}
+                    {{/if}}
+                </span>
+                {{#if price.rrp_with_tax}}
+                    <span class="price-original">{{price.rrp_with_tax.formatted}}</span>
+                    <span class="discount-badge pulse">
+                        {{#getVar "savings"}}
+                            {{subtract price.rrp_with_tax.value price.with_tax.value}}
+                        {{/getVar}}
+                        {{#getVar "percent"}}
+                            {{multiply (divide savings price.rrp_with_tax.value) 100}}
+                        {{/getVar}}
+                        {{round percent}}% OFF
+                    </span>
+                {{/if}}
             {{else}}
                 <span class="price-current">{{> components/common/login-for-pricing}}</span>
             {{/or}}
@@ -118,33 +162,30 @@
                 {{#if has_options}}
                     <a href="{{url}}" 
                        data-event-type="product-click" 
-                       class="btn-quick-add" 
+                       class="btn-primary liquid-button hover-lift" 
                        data-product-id="{{id}}">
                         {{lang 'products.choose_options'}}
                     </a>
-                {{/if}}
-                {{#if pre_order}}
+                {{else if pre_order}}
                     <a href="{{pre_order_add_to_cart_url}}" 
                        data-event-type="product-click" 
-                       class="btn-quick-add">
+                       class="btn-primary liquid-button hover-lift">
                         {{lang 'products.pre_order'}}
                     </a>
-                {{/if}}
-                {{#if add_to_cart_url}}
+                {{else if add_to_cart_url}}
                     <a href="{{add_to_cart_url}}" 
                        data-event-type="product-click" 
                        data-button-type="add-cart" 
-                       class="btn-quick-add">
+                       class="btn-primary liquid-button hover-lift pulse">
                         {{lang 'products.add_to_cart'}}
                     </a>
                     <span class="product-status-message aria-description--hidden">
                         {{lang 'category.add_cart_announcement'}}
                     </span>
-                {{/if}}
-                {{#if out_of_stock_message}}
+                {{else if out_of_stock_message}}
                     <a href="{{url}}" 
                        data-event-type="product-click" 
-                       class="btn-quick-add" 
+                       class="btn-primary liquid-button" 
                        data-product-id="{{id}}">
                         {{out_of_stock_message}}
                     </a>
@@ -152,23 +193,19 @@
             {{else}}
                 <a href="{{url}}" 
                    data-event-type="product-click" 
-                   class="btn-quick-add">
+                   class="btn-primary liquid-button hover-lift">
                     {{lang 'products.view_details'}}
                 </a>
             {{/if}}
             
             {{#if show_compare}}
-                <label class="btn-wishlist" for="compare-{{id}}">
+                <button class="btn-secondary hover-glow magnetic-button" 
+                        data-compare-id="{{id}}"
+                        aria-label="Add to compare">
                     <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    <input type="checkbox" 
-                           name="products[]" 
-                           value="{{id}}" 
-                           id="compare-{{id}}" 
-                           data-compare-id="{{id}}"
-                           style="display: none;">
-                </label>
+                </button>
             {{/if}}
         </div>
 

@@ -1,0 +1,122 @@
+// ============================================
+// ElevenLabs Conversational AI Widget Styles
+// ============================================
+
+// Position the widget in the bottom right corner
+elevenlabs-convai {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important; // Ensure it stays above other elements
+    
+    // Add subtle entrance animation
+    animation: slideInUp 0.5s ease-out;
+    
+    // Mobile adjustments
+    @include breakpoint("small") {
+        bottom: 10px !important;
+        right: 10px !important;
+        transform: scale(0.9); // Slightly smaller on mobile
+    }
+    
+    // Tablet adjustments
+    @include breakpoint("medium") {
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+}
+
+// Add glass morphism effect to match theme
+elevenlabs-convai::part(widget-container) {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+// Style the widget button to match theme
+elevenlabs-convai::part(launch-button) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 
+        0 4px 15px 0 rgba(102, 126, 234, 0.4),
+        0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 
+            0 6px 20px 0 rgba(102, 126, 234, 0.6),
+            0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+}
+
+// Entrance animation
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Hide widget on checkout pages for better UX
+.template-checkout {
+    elevenlabs-convai {
+        display: none !important;
+    }
+}
+
+// Adjust position when cart preview is open
+.has-activeModal {
+    elevenlabs-convai {
+        right: 320px !important; // Move left when cart sidebar is open
+        transition: right 0.3s ease;
+        
+        @include breakpoint("small") {
+            right: 10px !important; // Don't move on mobile
+        }
+    }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+    elevenlabs-convai::part(widget-container) {
+        background: rgba(15, 15, 15, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    elevenlabs-convai::part(launch-button) {
+        background: linear-gradient(135deg, #434343 0%, #000000 100%);
+        box-shadow: 
+            0 4px 15px 0 rgba(255, 255, 255, 0.1),
+            0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    elevenlabs-convai {
+        animation: none;
+    }
+    
+    elevenlabs-convai::part(launch-button) {
+        transition: none;
+    }
+}
+
+// Ensure widget doesn't interfere with mobile navigation
+@include breakpoint("medium", "max") {
+    .sidebar-open ~ .main-content elevenlabs-convai {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+} 

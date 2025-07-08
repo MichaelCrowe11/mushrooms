@@ -1,0 +1,457 @@
+// =============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// Comprehensive improvements for keyboard navigation and screen reader support
+// =============================================================================
+
+// Skip to main content link
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 1rem 2rem;
+  background: var(--interactive-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  
+  &:focus {
+    left: 0;
+  }
+}
+
+// Enhanced focus indicators
+:focus {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--interactive-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.1);
+  border-radius: 4px;
+}
+
+// Button focus states
+.button,
+.btn-primary,
+.btn-secondary,
+button {
+  position: relative;
+  
+  &:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border: 2px dashed currentColor;
+      border-radius: inherit;
+      opacity: 0.5;
+    }
+  }
+}
+
+// Link focus enhancement
+a {
+  &:focus-visible {
+    outline: 2px solid var(--interactive-primary);
+    outline-offset: 4px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+// Form accessibility
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  
+  &.required::after {
+    content: ' *';
+    color: var(--error);
+    font-weight: 700;
+  }
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  &:focus {
+    outline: 3px solid var(--interactive-primary);
+    outline-offset: 0;
+    border-color: var(--interactive-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  }
+  
+  &[aria-invalid="true"] {
+    border-color: var(--error);
+    
+    &:focus {
+      outline-color: var(--error);
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+// Error messages
+.form-field-error {
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  
+  &::before {
+    content: '⚠ ';
+    font-weight: 700;
+  }
+}
+
+// Screen reader only text
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Focus trap for modals
+.modal {
+  &[aria-hidden="false"] {
+    .modal-content {
+      &:focus {
+        outline: none;
+      }
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        border: 3px solid var(--interactive-primary);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 200ms ease;
+      }
+      
+      &:focus-within::before {
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+// Keyboard navigation indicators
+.keyboard-navigating {
+  * {
+    transition: none !important;
+  }
+  
+  :focus {
+    outline: 3px solid var(--interactive-primary) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .glass-card-enhanced,
+  .cart,
+  .cart-totals {
+    border: 2px solid var(--text-primary);
+    background: var(--surface-primary);
+    backdrop-filter: none;
+  }
+  
+  .button,
+  .btn-primary {
+    border: 2px solid currentColor;
+    font-weight: 700;
+  }
+  
+  :focus-visible {
+    outline-width: 4px;
+    outline-style: solid;
+  }
+}
+
+// Color blind friendly indicators
+.status-indicator {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  
+  &.success {
+    color: var(--success);
+    
+    &::before {
+      background: var(--success);
+      box-shadow: inset 0 0 0 2px white;
+    }
+    
+    &::after {
+      content: ' (Success)';
+      @extend .sr-only;
+    }
+  }
+  
+  &.error {
+    color: var(--error);
+    
+    &::before {
+      background: var(--error);
+      position: relative;
+      
+      &::after {
+        content: '×';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: 700;
+      }
+    }
+    
+    &::after {
+      content: ' (Error)';
+      @extend .sr-only;
+    }
+  }
+  
+  &.warning {
+    color: var(--warning);
+    
+    &::before {
+      background: var(--warning);
+      position: relative;
+      
+      &::after {
+        content: '!';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: 700;
+      }
+    }
+    
+    &::after {
+      content: ' (Warning)';
+      @extend .sr-only;
+    }
+  }
+}
+
+// ARIA live regions
+[aria-live="polite"],
+[aria-live="assertive"] {
+  position: relative;
+  
+  &:empty {
+    display: none;
+  }
+}
+
+// Accessible loading states
+.loading-spinner {
+  &::after {
+    content: 'Loading...';
+    @extend .sr-only;
+  }
+}
+
+// Tab panel accessibility
+[role="tablist"] {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 2px solid var(--border-default);
+  
+  [role="tab"] {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 200ms ease;
+    
+    &:hover {
+      background: var(--surface-secondary);
+    }
+    
+    &:focus-visible {
+      outline-offset: -4px;
+    }
+    
+    &[aria-selected="true"] {
+      border-bottom-color: var(--interactive-primary);
+      color: var(--interactive-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+[role="tabpanel"] {
+  padding: 1.5rem 0;
+  
+  &[hidden] {
+    display: none;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// Accessible tooltips
+[role="tooltip"] {
+  position: absolute;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+// Improved table accessibility
+table {
+  border-collapse: collapse;
+  width: 100%;
+  
+  caption {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  th {
+    background: var(--surface-secondary);
+    font-weight: 700;
+    text-align: left;
+    padding: 1rem;
+    
+    &[scope="col"] {
+      border-bottom: 2px solid var(--border-strong);
+    }
+    
+    &[scope="row"] {
+      border-right: 2px solid var(--border-strong);
+    }
+  }
+  
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-default);
+  }
+  
+  &:focus-within {
+    outline: 2px solid var(--interactive-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Accessible navigation menu
+.nav-menu {
+  [aria-expanded] {
+    &::after {
+      content: '▼';
+      display: inline-block;
+      margin-left: 0.5em;
+      transition: transform 200ms ease;
+    }
+    
+    &[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+  }
+  
+  [aria-current="page"] {
+    font-weight: 700;
+    color: var(--interactive-primary);
+    
+    &::before {
+      content: '▸ ';
+      display: inline-block;
+      margin-right: 0.25em;
+    }
+  }
+}
+
+// Reduce motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .parallax-layer {
+    transform: none !important;
+  }
+  
+  .glass-card-enhanced {
+    &:hover {
+      transform: none !important;
+    }
+  }
+}
+
+// Print styles for accessibility
+@media print {
+  .no-print,
+  .modal,
+  .sidebar,
+  .scroll-to-top,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+  
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+} 

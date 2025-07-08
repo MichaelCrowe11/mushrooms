@@ -1,0 +1,549 @@
+// =============================================================================
+// ENHANCED GLASS MORPHISM CARDS - Ultra Premium Design System
+// Exponentially improved glass effects, perfect alignment, and advanced animations
+// =============================================================================
+
+@import "../design-system/variables";
+@import "../design-system/mixins";
+
+// Advanced Glass Morphism Mixin with Multiple Layers
+@mixin ultra-glass-morphism(
+  $opacity: 0.92,
+  $blur: 24px,
+  $border-opacity: 0.3,
+  $shadow-layers: 5
+) {
+  position: relative;
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur) saturate(180%);
+  -webkit-backdrop-filter: blur($blur) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, $border-opacity);
+  
+  // Multi-layer shadow system for depth
+  $shadows: ();
+  @for $i from 1 through $shadow-layers {
+    $offset: $i * 4px;
+    $blur: $i * 8px;
+    $opacity: 0.1 - ($i * 0.02);
+    $shadows: append($shadows, 0 $offset $blur rgba(0, 0, 0, $opacity), comma);
+  }
+  box-shadow: $shadows, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  
+  // Glass refraction effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  
+  // Animated shimmer effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    transform: rotate(45deg) translateY(100%);
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.320, 1);
+    pointer-events: none;
+    opacity: 0;
+  }
+  
+  &:hover::after {
+    transform: rotate(45deg) translateY(-100%);
+    opacity: 1;
+  }
+  
+  // Dark theme adjustments
+  [data-theme="dark"] & {
+    background: rgba(20, 20, 20, $opacity);
+    border-color: rgba(255, 255, 255, $border-opacity * 0.5);
+    
+    &::before {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+    }
+  }
+}
+
+// Enhanced Product Grid Container
+.enhanced-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem 0;
+  align-items: start;
+  
+  // Responsive grid adjustments
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+}
+
+// Ultra Enhanced Glass Card Component
+.glass-card-enhanced {
+  @include ultra-glass-morphism();
+  
+  // Perfect sizing and alignment
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.320, 1);
+  
+  // 3D perspective on hover
+  &:hover {
+    transform: translateY(-16px) scale(1.02) rotateX(2deg);
+    
+    .card-image {
+      img {
+        transform: scale(1.12) rotate(1deg);
+      }
+      
+      .overlay-effects {
+        opacity: 1;
+      }
+    }
+    
+    .card-content {
+      transform: translateZ(20px);
+    }
+  }
+  
+  // Enhanced image container with parallax effect
+  .card-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.23, 1, 0.320, 1);
+      filter: brightness(1.05) contrast(1.05);
+    }
+    
+    // Overlay effects layer
+    .overlay-effects {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      opacity: 0;
+      transition: opacity 400ms ease;
+      pointer-events: none;
+    }
+    
+    // Floating badges with animation
+    .badge-container {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 2;
+      
+      .badge {
+        @include ultra-glass-morphism(0.95, 12px, 0.4, 3);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.75px;
+        animation: float 3s ease-in-out infinite;
+        
+        &.sale {
+          background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+          color: white;
+          animation-delay: 0.2s;
+        }
+        
+        &.new {
+          background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+          color: white;
+          animation-delay: 0.4s;
+        }
+        
+        &.featured {
+          background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(109, 40, 217, 0.95));
+          color: white;
+          animation-delay: 0.6s;
+        }
+      }
+    }
+  }
+  
+  // Perfect content alignment with flex
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.320, 1);
+    
+    // Title with perfect height
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      height: 3.5rem; // Fixed height for 2 lines
+      margin-bottom: 0.875rem;
+      color: var(--text-primary, #1f2937);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color 300ms ease;
+      
+      &:hover {
+        color: var(--interactive-primary, #6366f1);
+      }
+    }
+    
+    // Enhanced rating with animation
+    .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      height: 1.5rem;
+      
+      .stars {
+        display: flex;
+        gap: 0.25rem;
+        
+        .star {
+          width: 20px;
+          height: 20px;
+          color: #fbbf24;
+          transition: all 200ms ease;
+          
+          &:hover {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 8px #fbbf24);
+          }
+          
+          &.filled {
+            animation: star-pulse 2s ease-in-out infinite;
+            animation-delay: calc(var(--star-index) * 0.1s);
+          }
+        }
+      }
+      
+      .rating-text {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #6b7280);
+        font-weight: 600;
+        background: rgba(107, 114, 128, 0.1);
+        padding: 0.125rem 0.5rem;
+        border-radius: 12px;
+      }
+    }
+    
+    // Perfect description height
+    .card-description {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--text-secondary, #4b5563);
+      height: 2.8125rem; // Fixed height for 2 lines
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    // Enhanced price section with animations
+    .price-section {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      
+      .price-current {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--interactive-primary, #6366f1);
+        position: relative;
+        
+        // Animated glow effect
+        &::after {
+          content: attr(data-price);
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: inherit;
+          filter: blur(8px);
+          opacity: 0.5;
+          animation: price-glow 2s ease-in-out infinite;
+        }
+      }
+      
+      .price-original {
+        font-size: 1.125rem;
+        color: var(--text-muted, #9ca3af);
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+      
+      .discount-badge {
+        @include ultra-glass-morphism(0.9, 8px, 0.2, 2);
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
+        color: white;
+        padding: 0.375rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+    }
+    
+    // Action buttons at the bottom
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 0.75rem;
+      
+      .btn-primary {
+        flex: 1;
+        @include ultra-glass-morphism(0.95, 8px, 0.3, 3);
+        background: linear-gradient(135deg, var(--interactive-primary, #6366f1), var(--interactive-primary-dark, #4f46e5));
+        color: white;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 0.9375rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 300ms cubic-bezier(0.23, 1, 0.320, 1);
+        
+        // Ripple effect on click
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s, height 0.6s;
+        }
+        
+        &:active::before {
+          width: 300px;
+          height: 300px;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+      }
+      
+      .btn-secondary {
+        @include ultra-glass-morphism(0.85, 8px, 0.4, 2);
+        padding: 1rem;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 300ms ease;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.95);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes star-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+}
+
+@keyframes price-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Loading skeleton for smooth experience
+.glass-card-skeleton {
+  @include ultra-glass-morphism(0.8, 16px, 0.2, 2);
+  min-height: 580px;
+  border-radius: 20px;
+  overflow: hidden;
+  
+  .skeleton-image {
+    height: 280px;
+    background: linear-gradient(90deg, #f0f4f8 25%, #e5eaef 50%, #f0f4f8 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+  
+  .skeleton-content {
+    padding: 1.75rem;
+    
+    .skeleton-line {
+      height: 1rem;
+      background: linear-gradient(90deg, #f0f4f8 25%, #e5eaef 50%, #f0f4f8 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      
+      &.title {
+        height: 1.5rem;
+        width: 80%;
+      }
+      
+      &.description {
+        height: 0.875rem;
+        width: 100%;
+        
+        &:last-of-type {
+          width: 60%;
+        }
+      }
+      
+      &.price {
+        height: 2rem;
+        width: 40%;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .glass-card-enhanced {
+    min-height: 520px;
+    
+    .card-image {
+      height: 240px;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+      
+      .card-title {
+        font-size: 1.125rem;
+        height: 3.15rem;
+      }
+      
+      .price-section {
+        .price-current {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+} 

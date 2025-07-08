@@ -52,6 +52,13 @@
 @import "components/openai-sidebar";  // Main navigation sidebar
 @import "components/cards";           // Modern card components
 @import "components/alerts";          // Enhanced alert system
+@import "components/enhanced-glass-cards"; // Ultra premium glass morphism cards
+@import "components/enhanced-checkout"; // Premium checkout and cart experience
+@import "components/advanced-animations"; // Advanced UI animations and interactions
+@import "components/responsive-grid"; // Enhanced responsive grid system
+@import "components/ui-enhancements"; // UI enhancement styles
+@import "components/performance-optimizations"; // Performance optimization styles
+@import "components/accessibility-enhancements"; // Accessibility improvements
 @import "custom/marketing"; // Custom marketing sections
 
 // LEGACY COMPONENTS
@@ -884,3 +891,8 @@ body.openai-theme {
     transform: none !important;
   }
 }
+
+// ELEVENLABS WIDGET
+// Conversational AI integration
+// -----------------------------------------------------------------------------
+@import "components/elevenlabs-widget";

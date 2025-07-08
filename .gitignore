@@ -103,4 +103,7 @@ temp/
 # BigCommerce / Stencil specific
 stencil.conf.js
 .stencil-cache/
-.stencilignore 
+.stencilignore
+
+# Stencil CLI config (contains API credentials)
+.stencil 

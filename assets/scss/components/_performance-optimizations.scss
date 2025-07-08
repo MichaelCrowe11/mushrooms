@@ -1,0 +1,240 @@
+// =============================================================================
+// PERFORMANCE OPTIMIZATIONS
+// Ensure smooth animations and efficient rendering
+// =============================================================================
+
+// GPU acceleration for animations
+.glass-card-enhanced,
+.interactive-card,
+.hover-lift,
+.floating,
+.parallax-layer,
+.magnetic-button,
+[data-aos] {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+// Optimize image rendering
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  
+  &.card-image {
+    contain: layout style paint;
+  }
+}
+
+// Optimize animations for 60fps
+* {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Reduce animation complexity on low-end devices
+@media (max-width: 768px) {
+  .glass-card-enhanced {
+    &::after {
+      display: none; // Remove shimmer effect on mobile
+    }
+  }
+  
+  .morphing-blob {
+    animation: none;
+  }
+  
+  .parallax-layer {
+    transform: none !important;
+  }
+}
+
+// Optimize scroll performance
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+// Efficient containment
+.productGrid,
+.product-grid,
+.enhanced-product-grid {
+  contain: layout style;
+}
+
+.glass-card-enhanced {
+  contain: layout style paint;
+}
+
+// Reduce paint areas
+.card-content,
+.card-image,
+.card-actions {
+  will-change: auto;
+  contain: layout style;
+}
+
+// Optimize backdrop filters
+@supports (backdrop-filter: blur(1px)) {
+  .glass-card-enhanced,
+  .cart,
+  .cart-totals {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  // Fallback for browsers without backdrop-filter
+  .glass-card-enhanced,
+  .cart,
+  .cart-totals {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Optimize hover states
+@media (hover: hover) {
+  // Only apply hover effects on devices that support hover
+  .hover-lift:hover,
+  .hover-glow:hover,
+  .interactive-card:hover {
+    will-change: transform;
+  }
+}
+
+// Reduce motion for accessibility
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .parallax-layer {
+    transform: none !important;
+  }
+  
+  .floating {
+    animation: none !important;
+  }
+}
+
+// Optimize font loading
+body {
+  font-display: swap;
+}
+
+// Efficient z-index management
+.glass-card-enhanced {
+  isolation: isolate;
+  
+  .badge-container {
+    z-index: 2;
+  }
+  
+  .quick-view-overlay {
+    z-index: 3;
+  }
+}
+
+// Optimize shadows
+.glass-card-enhanced,
+.cart,
+.cart-totals {
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.06);
+    
+  &:hover {
+    box-shadow: 
+      0 10px 15px rgba(0, 0, 0, 0.1),
+      0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+}
+
+// Lazy loading optimization
+[data-src],
+[data-srcset] {
+  display: block;
+  min-height: 200px;
+  background: var(--surface-secondary);
+}
+
+// Critical CSS
+.above-the-fold {
+  // Inline critical styles for above-the-fold content
+  contain: layout style paint;
+}
+
+// Optimize animations on battery saver
+@media (prefers-reduced-transparency: reduce) {
+  .glass-card-enhanced,
+  .ultra-glass-morphism {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.98);
+  }
+}
+
+// Efficient grid rendering
+.productGrid > *,
+.product-grid > *,
+.enhanced-product-grid > * {
+  contain: layout style paint;
+}
+
+// Optimize form inputs
+.form-input,
+.form-select,
+.form-textarea {
+  will-change: auto;
+  
+  &:focus {
+    will-change: border-color, box-shadow;
+  }
+}
+
+// Efficient animation batching
+.stagger-animation > * {
+  will-change: opacity, transform;
+  
+  &.revealed {
+    will-change: auto;
+  }
+}
+
+// Optimize loading states
+.skeleton-loading {
+  will-change: background-position;
+  contain: layout style paint;
+}
+
+// Memory optimization for large lists
+.product-list {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+// Optimize modals
+.modal {
+  will-change: auto;
+  
+  &.show {
+    will-change: opacity, transform;
+  }
+  
+  .modal-content {
+    contain: layout style paint;
+  }
+} 
