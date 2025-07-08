@@ -15,6 +15,32 @@
     "home": {
         "heading": "Home"
     },
+    "widgets": {
+        "quick_actions": "Quick Actions",
+        "education": "Education",
+        "categories": "Categories",
+        "ai_tools": "AI & Tools",
+        "status": "Status",
+        "home": "Home",
+        "search": "Search Products",
+        "cart": "Shopping Cart",
+        "wishlist": "Wishlist",
+        "business_blueprint": "Mushroom Business Starter Blueprint",
+        "liquid_cultures": "Liquid Cultures",
+        "desert_grow_kit_duo": "Desert Grow Kit Duo",
+        "gourmet_chef_sampler": "Gourmet Chef Sampler",
+        "focus_immunity_pair": "Focus & Immunity Tincture Pair",
+        "crowe_curated_starter": "Crowe Curated Starter Business",
+        "substrate_bundle": "Substrate Starter Bundle",
+        "mycelium_grain_spawn": "Mycelium Grain Spawn",
+        "crowe_logic_gpt": "Crowe Logic GPT",
+        "crowe_logic_apps": "Crowe Logic Apps",
+        "calculator": "Calculator",
+        "orders": "Recent Orders",
+        "notifications": "Notifications",
+        "help": "Help & Support",
+        "theme_toggle": "Toggle Theme"
+    },
     "blog": {
         "recent_posts": "Recent Posts",
         "label": "Blog",

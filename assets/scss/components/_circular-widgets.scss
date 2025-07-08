@@ -1,0 +1,676 @@
+// =============================================================================
+// CIRCULAR WIDGETS COMPONENT
+// Beautiful small circular widgets for sidebar navigation
+// Inspired by modern design patterns with accessibility features
+// =============================================================================
+
+// CIRCULAR WIDGET BASE
+// -----------------------------------------------------------------------------
+
+.circular-widget {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  border: 2px solid var(--border-subtle);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-fast) var(--easing-ease-out);
+  cursor: pointer;
+  overflow: hidden;
+  
+  // Glass morphism effect
+  @include frosted-glass(light);
+  
+  // Focus and accessibility
+  @include focus-visible;
+  
+  // Hover effects
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: var(--interactive-primary);
+    color: var(--text-inverse);
+    border-color: var(--interactive-primary);
+    box-shadow: 0 8px 25px rgba(var(--interactive-primary-rgb), 0.3);
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  // Icon inside widget (supports both SVG and images)
+  .widget-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: all var(--duration-fast) var(--easing-ease-out);
+    object-fit: contain;
+    
+    // SVG styling
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    // Image styling for BigCommerce hosted images
+    &[src] {
+      border-radius: 2px;
+      filter: brightness(1) contrast(1);
+      
+      // PNG image optimization
+      &[src*=".png"] {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 2px;
+      }
+      
+      .circular-widget:hover & {
+        filter: brightness(1.1) contrast(1.1);
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  // Text label (if needed)
+  .widget-text {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  // Badge indicator
+  .widget-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    background: var(--status-error);
+    color: var(--text-inverse);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--surface-primary);
+    z-index: 1;
+    
+    &.badge-success {
+      background: var(--status-success);
+    }
+    
+    &.badge-warning {
+      background: var(--status-warning);
+    }
+    
+    &.badge-info {
+      background: var(--interactive-secondary);
+    }
+  }
+  
+  // Status indicator dot
+  .status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-success);
+    border: 2px solid var(--surface-primary);
+    
+    &.status-offline {
+      background: var(--text-tertiary);
+    }
+    
+    &.status-busy {
+      background: var(--status-error);
+    }
+    
+    &.status-away {
+      background: var(--status-warning);
+    }
+    
+    // Premium status indicator for curated bundles
+    &--premium {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+      animation: premiumPulse 2s ease-in-out infinite;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: premiumGlow 2s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+// WIDGET SIZES
+// -----------------------------------------------------------------------------
+
+.circular-widget {
+  // Small widgets (32px)
+  &--sm {
+    width: 32px;
+    height: 32px;
+    
+    .widget-icon {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .widget-badge {
+      width: 12px;
+      height: 12px;
+      font-size: 8px;
+      top: -2px;
+      right: -2px;
+    }
+    
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      bottom: 1px;
+      right: 1px;
+    }
+  }
+  
+  // Medium widgets (48px) - default
+  &--md {
+    width: 48px;
+    height: 48px;
+  }
+  
+  // Large widgets (64px)
+  &--lg {
+    width: 64px;
+    height: 64px;
+    
+    .widget-icon {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .widget-badge {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      top: -6px;
+      right: -6px;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      bottom: 3px;
+      right: 3px;
+    }
+  }
+}
+
+// WIDGET VARIANTS
+// -----------------------------------------------------------------------------
+
+.circular-widget {
+  // Primary variant
+  &--primary {
+    background: var(--interactive-primary);
+    color: var(--text-inverse);
+    border-color: var(--interactive-primary);
+    
+    &:hover {
+      background: var(--interactive-primary-hover);
+      border-color: var(--interactive-primary-hover);
+    }
+  }
+  
+  // Secondary variant
+  &--secondary {
+    background: var(--interactive-secondary);
+    color: var(--text-inverse);
+    border-color: var(--interactive-secondary);
+    
+    &:hover {
+      background: var(--interactive-secondary-hover);
+      border-color: var(--interactive-secondary-hover);
+    }
+  }
+  
+  // Success variant
+  &--success {
+    background: var(--status-success);
+    color: var(--text-inverse);
+    border-color: var(--status-success);
+    
+    &:hover {
+      background: var(--status-success-hover, #059669);
+      border-color: var(--status-success-hover, #059669);
+    }
+  }
+  
+  // Warning variant
+  &--warning {
+    background: var(--status-warning);
+    color: var(--text-inverse);
+    border-color: var(--status-warning);
+    
+    &:hover {
+      background: var(--status-warning-hover, #d97706);
+      border-color: var(--status-warning-hover, #d97706);
+    }
+  }
+  
+  // Error variant
+  &--error {
+    background: var(--status-error);
+    color: var(--text-inverse);
+    border-color: var(--status-error);
+    
+    &:hover {
+      background: var(--status-error-hover, #dc2626);
+      border-color: var(--status-error-hover, #dc2626);
+    }
+  }
+  
+  // Ghost variant (transparent)
+  &--ghost {
+    background: transparent;
+    border-color: var(--border-default);
+    
+    &:hover {
+      background: var(--surface-secondary);
+      border-color: var(--interactive-primary);
+    }
+  }
+  
+  // Gradient variant
+  &--gradient {
+    background: linear-gradient(135deg, var(--interactive-primary) 0%, var(--interactive-secondary) 100%);
+    border-color: transparent;
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--interactive-primary-hover) 0%, var(--interactive-secondary-hover) 100%);
+      transform: translateY(-3px) scale(1.08);
+    }
+  }
+}
+
+// WIDGET GROUPS
+// -----------------------------------------------------------------------------
+
+.widget-group {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+  
+  &--vertical {
+    flex-direction: column;
+  }
+  
+  &--compact {
+    gap: var(--space-1);
+  }
+  
+  &--spaced {
+    gap: var(--space-4);
+  }
+}
+
+// SIDEBAR WIDGET CONTAINER
+// -----------------------------------------------------------------------------
+
+.sidebar-widgets {
+  padding: var(--space-4) var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  
+  .widget-section {
+    margin-bottom: var(--space-4);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .widget-section-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-2);
+    text-align: center;
+  }
+  
+  .widget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    gap: var(--space-2);
+    justify-items: center;
+    
+    &--compact {
+      grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
+      gap: var(--space-1);
+    }
+    
+    &--two-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    &--three-columns {
+      grid-template-columns: repeat(3, 1fr);
+      
+      // Responsive adjustment for smaller screens
+      @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    &--four-columns {
+      grid-template-columns: repeat(4, 1fr);
+      
+      // Responsive adjustments
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    &--categories {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      
+      // Responsive adjustments for 7 widgets
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    &--one-column {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      max-width: 80px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// ANIMATED WIDGETS
+// -----------------------------------------------------------------------------
+
+.circular-widget {
+  // Pulse animation for notifications
+  &--pulse {
+    animation: widget-pulse 2s ease-in-out infinite;
+  }
+  
+  // Rotate animation for loading states
+  &--rotating {
+    .widget-icon {
+      animation: widget-rotate 1s linear infinite;
+    }
+  }
+  
+  // Bounce animation for attention
+  &--bounce {
+    animation: widget-bounce 1s ease-in-out infinite;
+  }
+  
+  // Glow effect for active states
+  &--glow {
+    box-shadow: 0 0 20px rgba(var(--interactive-primary-rgb), 0.6);
+    animation: widget-glow 2s ease-in-out infinite alternate;
+  }
+}
+
+// WIDGET ANIMATIONS
+// -----------------------------------------------------------------------------
+
+@keyframes widget-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes widget-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes widget-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes widget-glow {
+  from {
+    box-shadow: 0 0 20px rgba(var(--interactive-primary-rgb), 0.4);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(var(--interactive-primary-rgb), 0.8);
+  }
+}
+
+// RESPONSIVE BEHAVIOR
+// -----------------------------------------------------------------------------
+
+@media (max-width: 768px) {
+  .circular-widget {
+    width: 40px;
+    height: 40px;
+    
+    .widget-icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    &--lg {
+      width: 56px;
+      height: 56px;
+      
+      .widget-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  
+  .sidebar-widgets {
+    padding: var(--space-3) var(--space-2);
+    
+    .widget-grid {
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    }
+  }
+}
+
+// DARK THEME ADJUSTMENTS
+// -----------------------------------------------------------------------------
+
+[data-theme='dark'] {
+  .circular-widget {
+    background: var(--surface-elevated);
+    border-color: var(--border-subtle);
+    
+    &:hover {
+      background: var(--interactive-primary);
+      border-color: var(--interactive-primary);
+    }
+    
+    &--ghost {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-default);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--interactive-primary);
+      }
+    }
+  }
+}
+
+// ACCESSIBILITY ENHANCEMENTS
+// -----------------------------------------------------------------------------
+
+// High contrast mode
+@include high-contrast {
+  .circular-widget {
+    border: 3px solid ButtonText !important;
+    
+    &:hover,
+    &:focus {
+      background: Highlight !important;
+      color: HighlightText !important;
+      border-color: Highlight !important;
+    }
+  }
+}
+
+// Reduced motion
+@include reduced-motion {
+  .circular-widget {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+    
+    &--pulse,
+    &--bounce,
+    &--glow {
+      animation: none;
+    }
+    
+    &--rotating .widget-icon {
+      animation: none;
+    }
+  }
+}
+
+// Focus management
+.circular-widget {
+  &:focus-visible {
+    outline: 2px solid var(--interactive-primary);
+    outline-offset: 2px;
+  }
+}
+
+// TOOLTIP INTEGRATION
+// -----------------------------------------------------------------------------
+
+.circular-widget {
+  &[data-tooltip] {
+    position: relative;
+    
+    &::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--duration-fast) var(--easing-ease-out);
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--border-subtle);
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--surface-elevated);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--duration-fast) var(--easing-ease-out);
+      z-index: 1001;
+    }
+    
+    &:hover::after,
+    &:hover::before,
+    &:focus::after,
+    &:focus::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+// PREMIUM ANIMATIONS
+// -----------------------------------------------------------------------------
+
+@keyframes premiumPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes premiumGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}

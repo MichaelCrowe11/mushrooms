@@ -1,0 +1,119 @@
+{{!
+  ANIMATED SWM LOADER COMPONENT
+  Beautiful loading animation using the Southwest Mushrooms logo
+  Can be used for page loading, AJAX requests, and transitions
+}}
+
+<div class="swm-loader" id="swm-loader" aria-hidden="true">
+    <div class="swm-loader__backdrop"></div>
+    <div class="swm-loader__container">
+        <div class="swm-loader__logo">
+            <!-- SWM Logo Animation -->
+            <div class="swm-logo-animated">
+                <img src="{{cdn 'swm-loader.svg'}}" 
+                     alt="Southwest Mushrooms Loading" 
+                     class="swm-logo-svg">
+            </div>
+        </div>
+        
+        <!-- Loading Text -->
+        <div class="swm-loader__text">
+            <span class="loading-text" data-text="Loading">Loading</span>
+            <div class="loading-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="swm-loader__progress">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay for page transitions -->
+<div class="swm-loader--overlay" id="swm-loader-overlay">
+    <div class="swm-loader__container">
+        <div class="swm-loader__logo">
+            <div class="swm-logo-animated swm-logo-animated--large">
+                <img src="{{cdn 'swm-loader.svg'}}" 
+                     alt="Southwest Mushrooms" 
+                     class="swm-logo-svg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// SWM Loader JavaScript
+(function() {
+    'use strict';
+    
+    const SWMLoader = {
+        loader: null,
+        overlay: null,
+        
+        init() {
+            this.loader = document.getElementById('swm-loader');
+            this.overlay = document.getElementById('swm-loader-overlay');
+            this.bindEvents();
+        },
+        
+        show(type = 'default') {
+            const element = type === 'overlay' ? this.overlay : this.loader;
+            if (element) {
+                element.classList.add('swm-loader--active');
+                element.setAttribute('aria-hidden', 'false');
+            }
+        },
+        
+        hide(type = 'default') {
+            const element = type === 'overlay' ? this.overlay : this.loader;
+            if (element) {
+                element.classList.remove('swm-loader--active');
+                element.setAttribute('aria-hidden', 'true');
+            }
+        },
+        
+        bindEvents() {
+            // Show loader on page load
+            window.addEventListener('load', () => {
+                setTimeout(() => this.hide(), 500);
+            });
+            
+            // Show loader on form submissions
+            document.addEventListener('submit', (e) => {
+                if (e.target.tagName === 'FORM') {
+                    this.show();
+                }
+            });
+            
+            // Show loader on AJAX requests
+            if (window.fetch) {
+                const originalFetch = window.fetch;
+                window.fetch = function(...args) {
+                    SWMLoader.show();
+                    return originalFetch.apply(this, args)
+                        .finally(() => {
+                            setTimeout(() => SWMLoader.hide(), 300);
+                        });
+                };
+            }
+        }
+    };
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => SWMLoader.init());
+    } else {
+        SWMLoader.init();
+    }
+    
+    // Expose globally
+    window.SWMLoader = SWMLoader;
+})();
+</script> 
