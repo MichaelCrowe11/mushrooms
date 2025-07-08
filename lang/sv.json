@@ -715,6 +715,7 @@
         }
     },
     "products": {
+        "grid_aria_label": "Product grid",
         "current_stock": "Nuvarande lager:",
         "quantity": "Kvantitet:",
         "change_product_options": "Ändra alternativ för {name}",

@@ -715,6 +715,7 @@
         }
     },
     "products": {
+        "grid_aria_label": "Product grid",
         "current_stock": "現在の在庫:",
         "quantity": "数量:",
         "change_product_options": "{name}のオプションを変更する",

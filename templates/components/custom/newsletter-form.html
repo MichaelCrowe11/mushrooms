@@ -1,0 +1,90 @@
+<div class="glass-card newsletter-form">
+  <div class="newsletter-form__header">
+    <h3 class="newsletter-form__title glass-text">
+      {{#if title}}
+        {{title}}
+      {{else}}
+        Stay Updated on Mushroom Cultivation
+      {{/if}}
+    </h3>
+    
+    {{#if description}}
+    <p class="newsletter-form__description glass-text">{{description}}</p>
+    {{else}}
+    <p class="newsletter-form__description glass-text">
+      Get the latest tips, techniques, and product updates delivered to your inbox.
+    </p>
+    {{/if}}
+  </div>
+  
+  <form class="newsletter-form__form" action="{{newsletter_action}}" method="post" data-newsletter-form>
+    <div class="newsletter-form__input-group">
+      <input type="email" 
+             name="email" 
+             class="glass-input newsletter-form__input" 
+             placeholder="Enter your email address"
+             required
+             aria-label="Email address for newsletter subscription">
+      
+      <button type="submit" 
+              class="glass-btn glass-btn--primary newsletter-form__submit"
+              data-button-state="default">
+        <span data-button-text>Subscribe</span>
+        <span data-button-loading style="display: none;">Subscribing...</span>
+      </button>
+    </div>
+    
+    <div class="newsletter-form__privacy">
+      <p class="glass-text" style="font-size: 0.875em; opacity: 0.8;">
+        We respect your privacy. Unsubscribe at any time.
+      </p>
+    </div>
+    
+    <div class="newsletter-form__message" style="display: none;" role="status" aria-live="polite">
+      <!-- Success/error messages will appear here -->
+    </div>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const newsletterForms = document.querySelectorAll('[data-newsletter-form]');
+  
+  newsletterForms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('[data-button-state]');
+      const buttonText = submitBtn.querySelector('[data-button-text]');
+      const buttonLoading = submitBtn.querySelector('[data-button-loading]');
+      const messageDiv = form.querySelector('.newsletter-form__message');
+      const emailInput = form.querySelector('input[name="email"]');
+      
+      // Show loading state
+      buttonText.style.display = 'none';
+      buttonLoading.style.display = 'inline';
+      submitBtn.disabled = true;
+      
+      // Simulate form submission (replace with actual implementation)
+      setTimeout(function() {
+        // Reset button state
+        buttonText.style.display = 'inline';
+        buttonLoading.style.display = 'none';
+        submitBtn.disabled = false;
+        
+        // Show success message
+        messageDiv.innerHTML = '<p class="glass-text glass-accent" style="margin: 0;">Thank you for subscribing!</p>';
+        messageDiv.style.display = 'block';
+        
+        // Clear form
+        emailInput.value = '';
+        
+        // Hide message after 5 seconds
+        setTimeout(function() {
+          messageDiv.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    });
+  });
+});
+</script>

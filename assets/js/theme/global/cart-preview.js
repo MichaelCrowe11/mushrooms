@@ -1,6 +1,7 @@
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
+import cartCelebration from './cart-celebration';
 
 export const CartPreviewEvents = {
     close: 'closed.fndtn.dropdown',
@@ -19,6 +20,7 @@ export default function (secureBaseUrl, cartId) {
         $cartDropdown.addClass('apple-pay-supported');
     }
 
+    let lastQuantity = 0;
     $body.on('cart-quantity-update', (event, quantity) => {
         $cart.attr('aria-label', (_, prevValue) => prevValue.replace(/\d+/, quantity));
 
@@ -34,6 +36,11 @@ export default function (secureBaseUrl, cartId) {
         if (utils.tools.storage.localStorageAvailable()) {
             localStorage.setItem('cart-quantity', quantity);
         }
+        // Fire celebration only if cart quantity increased
+        if (quantity > lastQuantity) {
+            cartCelebration();
+        }
+        lastQuantity = quantity;
     });
 
     $cart.on('click', event => {

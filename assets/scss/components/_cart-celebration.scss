@@ -1,0 +1,51 @@
+/* SWM cart celebration ---------------------------------------------------- */
+:root {
+  --swm-gold: #f7d77a;
+  --swm-brown: #b38a46;
+}
+
+@keyframes swm-pop   { 0% {transform:scale(.7)} 60% {transform:scale(1.1)} 100% {transform:scale(1)} }
+@keyframes swm-halo  { 0% {r:75; opacity:.9} 100% {r:120; opacity:0} }
+@keyframes swm-bob   { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-2px)} }
+@keyframes swm-spore {
+  0% {opacity:1; transform:translate(-50%,0) scale(.8);}
+  100% {opacity:0; transform:translate(-50%,-80px) scale(1);}
+}
+
+.cartCelebration {
+  position: fixed;
+  bottom: 84px;                /* just above mini-cart bubble */
+  right: 24px;
+  width: 150px; height: 150px;
+  pointer-events:none;
+  z-index: 9000;
+  animation: swm-pop .8s cubic-bezier(.25,.7,.35,1) forwards;
+
+  svg { width:100%; height:100%; }
+
+  /* halo circle inside SVG */
+  #halo {
+    fill:none;
+    stroke:var(--swm-gold);
+    stroke-width:12;
+    stroke-opacity:.55;
+    animation: swm-halo .8s ease-out forwards;
+    transform-origin:center;
+  }
+
+  /* lion's mane group has id="mane" in SVG */
+  #mane { animation: swm-bob 2s ease-in-out infinite 250ms; }
+
+  /* confetti spores (generated below) */
+  .spore {
+    position:absolute;
+    top:50%; left:50%;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--swm-gold);
+    animation: swm-spore .8s ease-out forwards;
+  }
+  .spore:nth-child(1){animation-delay:.1s; left:40%;}
+  .spore:nth-child(2){animation-delay:.2s; left:60%;}
+  .spore:nth-child(3){animation-delay:.15s;left:50%; width:6px;height:6px;}
+}

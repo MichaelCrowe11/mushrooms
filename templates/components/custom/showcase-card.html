@@ -1,0 +1,39 @@
+<div class="glass-card showcase-card">
+  <div class="showcase-card__icon">
+    {{#if icon}}
+      <span aria-hidden="true">{{icon}}</span>
+    {{else}}
+      <span aria-hidden="true">🍄</span>
+    {{/if}}
+  </div>
+  
+  <div class="showcase-card__content">
+    {{#if title}}
+    <h3 class="showcase-card__title glass-text">{{title}}</h3>
+    {{/if}}
+    
+    {{#if description}}
+    <p class="showcase-card__description glass-text">{{description}}</p>
+    {{/if}}
+    
+    {{#if features}}
+    <ul class="showcase-card__features">
+      {{#each features}}
+      <li class="glass-text">{{this}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+    
+    {{#if link}}
+    <div class="showcase-card__action">
+      <a href="{{link.url}}" class="glass-btn glass-btn--primary">
+        {{#if link.text}}
+          {{link.text}}
+        {{else}}
+          Learn More
+        {{/if}}
+      </a>
+    </div>
+    {{/if}}
+  </div>
+</div>

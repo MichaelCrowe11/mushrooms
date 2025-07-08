@@ -715,6 +715,7 @@
         }
     },
     "products": {
+        "grid_aria_label": "Product grid",
         "current_stock": "Stock actuel :",
         "quantity": "Quantité :",
         "change_product_options": "Modifier les options pour {name}",

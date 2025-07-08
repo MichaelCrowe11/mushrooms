@@ -1,0 +1,84 @@
+/* Glass card for product rows – 320 × 460 @ 1× */
+.product-card--glass {
+  --card-w: 20rem;          /* fluid: clamp for later */
+  width: var(--card-w);
+  max-width: 100%;
+  aspect-ratio: 20 / 29;    /* ≈ 320 × 460 */
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.25rem 1rem 1.5rem 1rem;
+  border-radius: 1.25rem;
+  background: var(--glass-fill);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid rgba(255,255,255,.25); /* inner stroke */
+  transition: transform .3s ease, box-shadow .3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  min-width: 0;
+  min-height: 0;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.25);
+  }
+
+  .card-img {
+    flex: 0 0 auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1rem;
+    background: #111;
+    // Enhanced image quality
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    width: 100%;
+    height: auto;
+    transition: transform var(--transition-fast);
+    min-width: 0;
+    min-height: 0;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    border: 2px solid rgba(255,255,255,0.10);
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .card-title   { font: 600 1.1rem/1.3 var(--font); color: var(--text); }
+  .card-price   { font: 500 1rem/1.2 var(--font); color: var(--accent); }
+  .card-desc    { font: 400 .9rem/1.4 var(--font); color: var(--text-sub); }
+
+  .btn-glass {
+    margin-top: auto;
+    display: inline-flex;
+    align-self: flex-start;
+    padding: .65rem 1.5rem;
+    font: 600 .85rem/1 var(--font);
+    color: var(--text);
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+    transition: background .2s, color .2s;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+
+    &:hover { background: var(--text); color: var(--bg); }
+  }
+
+  @media (max-width: 600px) {
+    gap: .5rem;
+    padding: .75rem .5rem 1rem .5rem;
+    border-radius: 1rem;
+
+    .card-img { border-radius: .75rem; }
+    .btn-glass { font-size: .95rem; padding: .5rem 1.1rem; }
+  }
+}
+
+/* XS – full-width swipe; XL – larger cards */
+@media (min-width: 1024px) {
+  .product-card--glass { --card-w: 18rem; }
+}

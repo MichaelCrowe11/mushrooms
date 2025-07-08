@@ -1,0 +1,66 @@
+:root {
+  --swm-gold:   #f7d77a;
+  --swm-glass:  rgba(255,255,255,.08);
+  --swm-size:   64px;
+}
+
+.header-logoWrap {
+  width:var(--swm-size); height:var(--swm-size); position:relative;
+  isolation:isolate;
+  cursor:pointer;
+}
+
+.header-logoWrap svg {
+  width:100%; height:100%; display:block;
+  transform-origin:center;
+}
+
+@keyframes swm-entry      { 0%{transform:scale(.8)} 65%{transform:scale(1.05)} 100%{transform:scale(1)} }
+@keyframes swm-plate      { 0%{transform:translateY(-8px); opacity:.0} 100%{transform:none; opacity:1} }
+@keyframes swm-flare      { 0%{r:0; opacity:.9} 100%{r:150; opacity:0} }
+@keyframes swm-shine-scan { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+@keyframes swm-stalk-par  { 0%{transform:translateY(0)} 100%{transform:translateY(6px)} }
+
+.header-logoWrap.loaded #glass {
+  fill:var(--swm-glass);
+  filter:blur(8px);
+  animation:swm-plate .8s ease-out forwards;
+}
+.header-logoWrap.loaded #artwork  { animation:swm-entry .8s cubic-bezier(.25,.7,.35,1) forwards; }
+.header-logoWrap.loaded #flare {
+  fill:none; stroke:var(--swm-gold); stroke-width:14; stroke-opacity:.55;
+  animation:swm-flare .7s ease-out forwards;
+}
+
+.header-logoWrap::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(60deg,transparent 0%,rgba(255,255,255,.35) 40%,transparent 80%);
+  mix-blend-mode:screen;
+  opacity:0; pointer-events:none;
+}
+.header-logoWrap:hover::after {
+  opacity:1; animation:swm-shine-scan .6s ease-out forwards;
+}
+
+@media (min-width:992px){
+  body[data-scroll] .header-logoWrap #stalks {
+    animation:swm-stalk-par 1s linear both;
+    animation-timeline: scroll(root);
+    animation-range:0 400px;
+  }
+}
+
+.header-logoWrap:focus-visible {
+  outline:2px solid var(--swm-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-logoWrap.loaded #glass,
+  .header-logoWrap.loaded #artwork,
+  .header-logoWrap.loaded #flare,
+  .header-logoWrap::after,
+  body[data-scroll] .header-logoWrap #stalks {
+    animation: none !important;
+    transition: none !important;
+  }
+}

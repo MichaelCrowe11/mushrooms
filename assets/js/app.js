@@ -1,6 +1,7 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
 import Global from './theme/global';
+import logoEntry from './theme/global/logo-entry';
 
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
@@ -71,6 +72,9 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 if (loadGlobal) {
                     Global.load(context);
                 }
+
+                // Animated logo entry
+                logoEntry();
 
                 const importPromises = [];
 

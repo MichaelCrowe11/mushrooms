@@ -1,0 +1,15 @@
+{{!--
+  title           – section label
+  products        – array passed from page
+--}}
+<section class="product-row">
+  <div class="row-head flex-between">
+    <h2 class="h3">{{title}}</h2>
+  </div>
+
+  <div class="row-track scroll-x snap gap-4">
+    {{#each products}}
+      {{> components/custom/product-card-glass product=this}}
+    {{/each}}
+  </div>
+</section>

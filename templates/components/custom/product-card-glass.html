@@ -1,0 +1,41 @@
+{{!-- Usage: {{> components/custom/product-card-glass product=p }} --}}
+<article class="product-card--glass snap-center">
+  <pre style="font-size:10px;max-width:100%;overflow-x:auto;background:#fff;color:#111;border-radius:6px;padding:4px 8px;margin-bottom:6px;">{{{JSONstringify product}}}</pre>
+  <a href="{{product.url}}">
+    {{#if product.images.[0].data}}
+      <img
+        class="card-img lazyload"
+        data-sizes="auto"
+        src="{{cdn 'img/ProductDefault.gif'}}"
+        data-src="{{getImage product.images.[0] 'original'}}"
+        width="600" height="600"
+        alt="{{product.name}}">
+    {{else if product.image}}
+      <img
+        class="card-img lazyload"
+        data-sizes="auto"
+        src="{{cdn 'img/ProductDefault.gif'}}"
+        data-src="{{getImage product.image 'original'}}"
+        width="600" height="600"
+        alt="{{product.name}}">
+    {{else}}
+      <img
+        class="card-img"
+        src="{{cdn 'img/ProductDefault.gif'}}"
+        width="600" height="600"
+        alt="Image coming soon">
+    {{/if}}
+  </a>
+
+  <h3 class="card-title">
+    <a href="{{product.url}}">{{product.name}}</a>
+  </h3>
+
+  <p class="card-price">{{product.price.formatted}}</p>
+
+  {{#if product.custom_description}}
+    <p class="card-desc">{{product.custom_description}}</p>
+  {{/if}}
+
+  <a href="{{product.url}}" class="btn-glass">View</a>
+</article>
