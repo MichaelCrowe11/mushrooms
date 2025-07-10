@@ -1,0 +1,47 @@
+// =============================================================================
+// Southwest Mushrooms - Main Stylesheet
+// Clean, modular SCSS architecture
+// =============================================================================
+
+// 1. Configuration
+// -----------------------------------------------------------------------------
+@import "config/variables";
+@import "config/functions";
+@import "config/mixins";
+
+// 2. Base
+// -----------------------------------------------------------------------------
+@import "base/reset";
+@import "base/typography";
+@import "base/global";
+
+// 3. Layout
+// -----------------------------------------------------------------------------
+@import "layout/sidebar";
+@import "layout/main-content";
+@import "layout/grid";
+
+// 4. Components
+// -----------------------------------------------------------------------------
+@import "components/glass-card";
+@import "components/product-card";
+@import "components/buttons";
+@import "components/forms";
+@import "components/circular-widgets";
+@import "components/navigation";
+
+// 5. Utilities
+// -----------------------------------------------------------------------------
+@import "utilities/spacing";
+@import "utilities/text";
+@import "utilities/visibility";
+@import "utilities/animations";
+
+// 6. Theme variations
+// -----------------------------------------------------------------------------
+@import "themes/light";
+@import "themes/dark";
+
+// 7. Vendor overrides
+// -----------------------------------------------------------------------------
+@import "vendor/bigcommerce"; 

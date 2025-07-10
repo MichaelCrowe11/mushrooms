@@ -1,0 +1,76 @@
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<header class="header" role="banner">
+    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
+    {{> components/common/navigation}}
+
+    {{#if page_type '===' 'default'}}
+        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+            <a class="header-logoWrap" href="{{urls.home}}">
+                {{!-- Inline SVG with optimizations --}}
+                <svg class="swm-header-svg" role="img" aria-label="{{settings.store_name}} - Premium Mushroom Cultures & Grow Kits" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+                    {{!-- Background circle with glass effect --}}
+                    <circle cx="40" cy="40" r="35" fill="url(#glass-gradient)" opacity="0.9"/>
+                    
+                    {{!-- Mushroom icon --}}
+                    <g class="mushroom-icon" transform="translate(20, 20)">
+                        <path d="M20 10 Q10 5 5 15 Q0 25 5 30 L15 30 Q20 25 25 30 L35 30 Q40 25 35 15 Q30 5 20 10" 
+                              fill="currentColor" 
+                              stroke="none"
+                              class="mushroom-cap"/>
+                        <rect x="15" y="28" width="10" height="15" rx="2" fill="currentColor" class="mushroom-stem"/>
+                    </g>
+                    
+                    {{!-- Text --}}
+                    <text x="85" y="35" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" fill="currentColor">
+                        Southwest Mushrooms
+                    </text>
+                    <text x="85" y="55" font-family="Inter, system-ui, sans-serif" font-size="12" fill="currentColor" opacity="0.8">
+                        Premium Cultures & Grow Kits
+                    </text>
+                    
+                    {{!-- Gradient definition --}}
+                    <defs>
+                        <linearGradient id="glass-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0.2);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0.05);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                
+                {{!-- Fallback for no-SVG support --}}
+                <noscript>
+                    <img src="{{cdn 'img/logo-fallback.png'}}" alt="{{settings.store_name}}">
+                </noscript>
+            </a>
+        </h1>
+    {{else}}
+        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+            <a class="header-logoWrap" href="{{urls.home}}">
+                {{!-- Same SVG for non-homepage --}}
+                <svg class="swm-header-svg" role="img" aria-label="{{settings.store_name}} - Premium Mushroom Cultures & Grow Kits" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+                    {{!-- Reuse same SVG content --}}
+                    <use href="#swm-logo-content"/>
+                </svg>
+            </a>
+        </div>
+    {{/if}}
+    <div class="navPages-container" id="menu" data-menu>
+        {{> components/common/navigation-menu}}
+    </div>
+    {{{region name="header_navigation_bottom--global"}}}
+</header>
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}} 

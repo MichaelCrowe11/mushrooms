@@ -1,11 +1,12 @@
 {
+  "normalStoreUrl": "https://store-qe8ntvzzrw.mybigcommerce.com",
+  "port": 3000,
+  "username": "stencil",
+  "token": "djv3ty5lislrj22kuzx36rvpvupfk1c",
   "customLayouts": {
     "brand": {},
     "category": {},
     "page": {},
     "product": {}
-  },
-  "normalStoreUrl": "https://www.southwestmushrooms.com",
-  "port": "3000",
-  "packageManager": "npm"
+  }
 }

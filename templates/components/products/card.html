@@ -27,8 +27,8 @@
     {{/or}}"
 >
     <figure class="card-figure">
-        {{#if stock_level '===' 0}}
-            {{#if theme_settings.pdp_sold_out_label '===' ''}}
+            {{#if stock_level '===' 0}}
+                {{#if theme_settings.pdp_sold_out_label '===' ''}}
                 {{> components/products/product-badge
                     badge-type='sold-out'
                     badge_view=theme_settings.product_sold_out_badges
@@ -41,27 +41,27 @@
                     badge_label=theme_settings.pdp_sold_out_label
                 }}
             {{/if}}
-        {{else}}
-            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
-                {{#if theme_settings.pdp_sale_badge_label '===' ''}}
+            {{else}}
+                {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                    {{#if theme_settings.pdp_sale_badge_label '===' ''}}
                     {{> components/products/product-badge
                         badge-type='sale'
                         badge_view=theme_settings.product_sale_badges
                         badge_label=(lang "page_builder.pdp_sale_badge_label")
                     }}
-                {{else}}
+                    {{else}}
                     {{> components/products/product-badge
                         badge-type='sale'
                         badge_view=theme_settings.product_sale_badges
                         badge_label=theme_settings.pdp_sale_badge_label
                     }}
-                {{/if}}
-            {{/or}}
-        {{/if}}
+                    {{/if}}
+                {{/or}}
+            {{/if}}
 
-        <a href="{{url}}"
-           class="card-figure__link"
-           aria-label="{{> components/products/product-info}}"
+            <a href="{{url}}" 
+               class="card-figure__link"
+               aria-label="{{> components/products/product-info}}"
            data-event-type="product-click"
         >
             <div class="card-img-container">
@@ -73,12 +73,12 @@
                     default_image=theme_settings.default_image_product
                 }}
             </div>
-        </a>
+            </a>
 
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
-                {{#unless hide_product_quick_view}}
-                    {{#if theme_settings.show_product_quick_view}}
+            {{#unless hide_product_quick_view}}
+                {{#if theme_settings.show_product_quick_view}}
                         <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                     {{/if}}
                 {{/unless}}
@@ -102,7 +102,7 @@
                         <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
                     {{/if}}
                 {{/if}}
-            </div>
+        </div>
         </figcaption>
     </figure>
     <div class="card-body">

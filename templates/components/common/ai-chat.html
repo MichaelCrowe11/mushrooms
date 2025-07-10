@@ -1,0 +1,121 @@
+{{!-- 
+    AI Chat Interface - Michael Crowe Mycology Assistant
+    Premium chat experience for mushroom cultivation support
+--}}
+
+<div class="ai-chat-widget" id="aiChatWidget" data-state="minimized">
+    {{!-- Chat Toggle Button --}}
+    <button class="ai-chat-toggle" id="aiChatToggle" aria-label="Open Mycology Assistant">
+        <div class="chat-toggle-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <span class="chat-toggle-text">Mycology Assistant</span>
+        <span class="chat-toggle-badge" data-unread-count></span>
+    </button>
+
+    {{!-- Chat Interface --}}
+    <div class="ai-chat-interface glass-morphism">
+        {{!-- Chat Header --}}
+        <div class="ai-chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <img src="{{cdn 'assets/img/crowe-ai-avatar.png'}}" alt="Crowe AI" />
+                </div>
+                <div class="chat-header-text">
+                    <h3 class="chat-title">Crowe Mycology Assistant</h3>
+                    <p class="chat-status">
+                        <span class="status-dot status-dot--online"></span>
+                        Online - Here to help
+                    </p>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button class="chat-action-btn" data-action="minimize" aria-label="Minimize chat">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 9h10v2H5z"/>
+                    </svg>
+                </button>
+                <button class="chat-action-btn" data-action="close" aria-label="Close chat">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M14.95 5.05a.75.75 0 00-1.06 0L10 8.94 6.11 5.05a.75.75 0 10-1.06 1.06L8.94 10l-3.89 3.89a.75.75 0 101.06 1.06L10 11.06l3.89 3.89a.75.75 0 101.06-1.06L11.06 10l3.89-3.89a.75.75 0 000-1.06z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        {{!-- Chat Messages --}}
+        <div class="ai-chat-messages" id="chatMessages">
+            {{!-- Welcome Message --}}
+            <div class="chat-message chat-message--ai">
+                <div class="message-avatar">
+                    <img src="{{cdn 'assets/img/crowe-ai-avatar.png'}}" alt="AI" />
+                </div>
+                <div class="message-content">
+                    <p class="message-text">
+                        Welcome to Southwest Mushrooms! I'm your personal mycology assistant, trained by Michael Crowe. 
+                        How can I help you grow amazing mushrooms today?
+                    </p>
+                    <div class="message-suggestions">
+                        <button class="suggestion-chip" data-suggestion="beginner">I'm new to mushroom growing</button>
+                        <button class="suggestion-chip" data-suggestion="desert">Growing in desert climate</button>
+                        <button class="suggestion-chip" data-suggestion="troubleshoot">Troubleshoot my grow</button>
+                        <button class="suggestion-chip" data-suggestion="products">Product recommendations</button>
+                    </div>
+                </div>
+                <span class="message-time">Just now</span>
+            </div>
+        </div>
+
+        {{!-- Quick Actions --}}
+        <div class="ai-chat-quick-actions">
+            <button class="quick-action-btn" data-action="catalog">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M2 2h12v12H2V2zm1 1v10h10V3H3z"/>
+                </svg>
+                Browse Catalog
+            </button>
+            <button class="quick-action-btn" data-action="guides">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 1.5A6.5 6.5 0 1014.5 8 6.508 6.508 0 008 1.5zM8 13a5 5 0 110-10 5 5 0 010 10zm.75-7.75v4.5a.75.75 0 01-1.5 0v-4.5a.75.75 0 011.5 0zM8 4a1 1 0 110-2 1 1 0 010 2z"/>
+                </svg>
+                Growing Guides
+            </button>
+            <button class="quick-action-btn" data-action="contact">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 2c-4.418 0-8 1.79-8 4v1h16v-1c0-2.21-3.582-4-8-4z"/>
+                </svg>
+                Expert Help
+            </button>
+        </div>
+
+        {{!-- Chat Input --}}
+        <div class="ai-chat-input">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    class="chat-input-field" 
+                    placeholder="Ask me anything about mushroom cultivation..."
+                    rows="1"
+                    data-max-rows="4"
+                ></textarea>
+                <div class="chat-input-actions">
+                    <button class="input-action-btn" data-action="attach" aria-label="Attach image">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 4.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm0 1.5a.5.5 0 01.5.5v1.5H12a.5.5 0 010 1h-1.5v1.5a.5.5 0 01-1 0V10.5H8a.5.5 0 010-1h1.5V8a.5.5 0 01.5-.5z"/>
+                        </svg>
+                    </button>
+                    <button class="input-action-btn input-action-btn--send" data-action="send" aria-label="Send message">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.925 5.025l14.96-4.98a.5.5 0 01.628.628l-4.98 14.96a.5.5 0 01-.925.095l-2.214-5.535a2 2 0 00-1.186-1.186l-5.535-2.214a.5.5 0 01.095-.925l.157-.043z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <p class="chat-input-hint">Powered by Crowe Mycology AI • Your cultivation expert</p>
+        </div>
+    </div>
+</div>
+
+{{!-- Mobile Chat Overlay --}}
+<div class="ai-chat-overlay" id="aiChatOverlay"></div> 

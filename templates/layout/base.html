@@ -1,250 +1,189 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ locale_name }}">
-  <head>
+<head>
+    <!-- =============================================================
+         Southwest Mushrooms · BigCommerce Stencil Theme
+         -------------------------------------------------------------
+         • Clean, minimal head section
+         • Optimized asset loading
+         • Glass morphism design system
+    ============================================================= -->
     <title>{{ head.title }}</title>
-    {{{ resourceHints }}}
     {{{ head.meta_tags }}}
     {{{ head.config }}}
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Premium mushroom cultures, grow kits, and extracts from Southwest Mushrooms. Expert cultivation guidance and high-quality products for mushroom enthusiasts.">
-    <meta name="keywords" content="mushroom cultures, grow kits, mushroom extracts, Lion's Mane, Reishi, Cordyceps, mushroom cultivation, Southwest Mushrooms">
-    <meta name="author" content="Southwest Mushrooms">
-    <meta name="robots" content="index, follow">
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS for immediate rendering */
+        body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5}
+        .glass-sidebar{position:fixed;top:0;left:0;width:320px;height:100vh;background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000}
+        .main-content{margin-left:320px;min-height:100vh;transition:margin-left 0.3s ease}
+        .sidebar-logo{display:block;width:120px;height:auto}
+        .mobile-toggle{display:none;position:fixed;top:20px;left:20px;z-index:1001;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);border:none;padding:10px;border-radius:12px}
+        @media(max-width:991px){
+            .glass-sidebar{transform:translateX(-100%);transition:transform 0.3s ease}
+            .glass-sidebar.active{transform:translateX(0)}
+            .main-content{margin-left:0}
+            .mobile-toggle{display:flex;align-items:center;gap:10px}
+        }
+        /* Prevent layout shift for images */
+        img{max-width:100%;height:auto}
+        .sidebar-logo,.mobile-logo{width:120px;height:40px;object-fit:contain}
+    </style>
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ head.title }}">
-    <meta property="og:description" content="Premium mushroom cultures, grow kits, and extracts from Southwest Mushrooms. Expert cultivation guidance and high-quality products.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ settings.secure_base_url }}{{ page_url }}">
-    <meta property="og:image" content="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Southwest Mushrooms">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ head.title }}">
-    <meta name="twitter:description" content="Premium mushroom cultures, grow kits, and extracts from Southwest Mushrooms.">
-    <meta name="twitter:image" content="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884">
-    
-    <!-- Additional Meta Tags -->
-    <meta name="theme-color" content="#2d5016">
-    <meta name="msapplication-TileColor" content="#2d5016">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Southwest Mushrooms">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ settings.secure_base_url }}{{ page_url }}">
-    
-    {{#block "head"}}{{/block}}
-
-    <link href="{{{ head.favicon }}}" rel="shortcut icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script nonce="{{nonce}}">document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
-    {{> components/common/polyfill-script }}
-    <script nonce="{{nonce}}">window.consentManagerTranslations=`{{{langJson 'consent_manager'}}}`;</script>
-
-    {{!-- LazySizes config / async head bundle --}}
-    <script nonce="{{nonce}}">window.lazySizesConfig={loadMode:1};</script>
-    <script nonce="{{nonce}}" async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
-
-    {{getFontsCollection font-display='block'}}
-    <script nonce="{{nonce}}" async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
-
-    {{{stylesheet '/assets/css/theme.css'}}}
-    
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="{{ head.cdn_url }}" crossorigin>
+    <link rel="preconnect" href="https://cdn11.bigcommerce.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
-    {{{head.scripts}}}
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png" as="image" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="{{ cdn 'assets/css/theme.css' }}" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Styles -->
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    {{{ stylesheet '/assets/css/theme.css' }}}
 
-    {{~inject 'zoomSize' theme_settings.zoom_size}}
-    {{~inject 'productSize' theme_settings.product_size}}
-    {{~inject 'genericError' (lang 'common.generic_error')}}
-    {{~inject 'urls' urls}}
-    {{~inject 'secureBaseUrl' settings.secure_base_url}}
-    {{~inject 'cartId' cart_id}}
-    {{~inject 'template' template}}
-    {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
-    {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
-    {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
-    {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
-    {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
-    {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
-    {{~inject 'giftWrappingRemoveMessage' (lang 'cart.gift_wrapping.remove_confirm')}}
-  </head>
-  <body class="glass-text">
-    <!-- Mobile Toggle Button -->
-    <button id="sidebar-toggle" class="mobile-toggle glass-btn" aria-label="Toggle menu">
-      <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884" 
-           alt="Southwest Mushrooms" 
-           class="mobile-logo"
-           style="width: 32px; height: 32px;">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
+    <!-- Async Scripts -->
+    {{{ head.scripts }}}
 
-    <!-- Fixed Sidebar Navigation -->
-    <aside class="glass-sidebar" aria-label="Main navigation" id="sidebar-nav" aria-hidden="true">
-      <div class="glass-sidebar__header">
-        <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png?t=1751756884" 
-             alt="Southwest Mushrooms" 
-             class="brand-logo"
-             style="max-width: 180px; height: auto;">
-        <div style="margin: 1.25rem 0 0.5rem 0; text-align: center;">
-          <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/untitled-design.png?t=1744348936" 
-               alt="Michael Crowe" 
-               style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--accent); margin-bottom: 0.25rem;">
-          <div style="font-size: 0.72em; opacity: 0.8; line-height: 1.3; margin-top: 0.1rem;">
-            <strong style="color: var(--accent);">Crowe Logic</strong><br>
-            Architected by <strong>Michael Crowe</strong>
-          </div>
-        </div>
-        <!-- Sidebar Close Button -->
-        <button id="sidebar-close" class="sidebar-close glass-btn" aria-label="Close menu">&times;</button>
-      </div>
-      
-      <!-- Theme Toggle -->
-      <div class="theme-toggle-container">
-        <button id="theme-toggle" class="theme-toggle-btn glass-btn" aria-label="Toggle dark mode" aria-pressed="false">
-          <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="5" fill="currentColor"/>
-            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" fill="currentColor"/>
-          </svg>
-          <span class="theme-text">Theme</span>
-        </button>
-      </div>
-      
-      <nav class="glass-sidebar__nav">
-        <ul class="glass-nav">
-          <li class="glass-nav__item">
-            <a href="/" class="glass-nav__link" aria-label="Go to homepage">
-              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" fill="currentColor"/>
-              </svg>
-              <span class="nav-text">Home</span>
+    {{!-- Google Analytics --}}
+    {{#if google_analytics_id}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{google_analytics_id}}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{google_analytics_id}}');
+        </script>
+    {{/if}}
+
+    {{{ snippets }}}
+</head>
+<body data-theme="light">
+    <!-- Skip to main content link for accessibility -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- =============================================================
+         Glass Morphism Sidebar
+    ============================================================= -->
+    <aside class="glass-sidebar openai-sidebar" data-state="expanded">
+        <!-- Brand -->
+        <header class="glass-sidebar__header">
+            <a href="{{ urls.home }}" class="sidebar-brand">
+                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png"
+                     alt="Southwest Mushrooms"
+                     class="sidebar-logo"
+                     width="120"
+                     height="40"
+                     fetchpriority="high"
+                     decoding="async">
             </a>
-          </li>
-          <li class="glass-nav__item">
-            <a href="/cultures" class="glass-nav__link" aria-label="Browse mushroom cultures">
-              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM7 9C7 6.24 9.24 4 12 4S17 6.24 17 9C17 12.88 12 17.77 12 17.77S7 12.88 7 9Z" fill="currentColor"/>
-                <circle cx="12" cy="9" r="2.5" fill="currentColor"/>
-              </svg>
-              <span class="nav-text">Cultures</span>
-            </a>
-          </li>
-          <li class="glass-nav__item">
-            <a href="/grow-kits" class="glass-nav__link" aria-label="View grow kits">
-              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/>
-                <path d="M19 15L19.75 17.25L22 18L19.75 18.75L19 21L18.25 18.75L16 18L18.25 17.25L19 15Z" fill="currentColor"/>
-                <path d="M5 15L5.75 17.25L8 18L5.75 18.75L5 21L4.25 18.75L2 18L4.25 17.25L5 15Z" fill="currentColor"/>
-              </svg>
-              <span class="nav-text">Grow Kits</span>
-            </a>
-          </li>
-          <li class="glass-nav__item">
-            <a href="/tinctures" class="glass-nav__link" aria-label="Shop extracts">
-              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 3L8 21L12 19L16 21L12 3Z" fill="currentColor"/>
-                <ellipse cx="12" cy="10" rx="7" ry="2" fill="currentColor" opacity="0.6"/>
-                <ellipse cx="12" cy="14" rx="4" ry="1" fill="currentColor" opacity="0.4"/>
-              </svg>
-              <span class="nav-text">Extracts</span>
-            </a>
-          </li>
-          <li class="glass-nav__item">
-            <a href="/blog" class="glass-nav__link" aria-label="Read blog">
-              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z" fill="currentColor"/>
-                <path d="M7 7H17V9H7V7Z" fill="currentColor"/>
-                <path d="M7 11H17V13H7V11Z" fill="currentColor"/>
-                <path d="M7 15H14V17H7V15Z" fill="currentColor"/>
-              </svg>
-              <span class="nav-text">Blog</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      
-      <div class="glass-sidebar__footer">
-        <div style="text-align: center; padding: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1);">
-          <!-- Widget slot -->
-          <div id="custom-widget-slot" style="margin-bottom: var(--space-md); text-align: left;">
-            {{> components/custom/widget }}
-          </div>
-        </div>
-      </div>
+            <button class="sidebar-toggle" aria-label="Toggle sidebar">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="glass-sidebar__nav" aria-label="Primary navigation">
+            {{> components/common/sidebar-navigation}}
+            
+            <!-- Circular Widgets -->
+            {{> components/common/circular-widgets}}
+        </nav>
+
+        <!-- Footer -->
+        <footer class="glass-sidebar__footer">
+            <div class="social-links">
+                {{#if social_media}}
+                    {{#each social_media}}
+                        <a href="{{ url }}" aria-label="{{ name }}" target="_blank" rel="noopener noreferrer">
+                            {{> components/common/icon name=icon}}
+                        </a>
+                    {{/each}}
+                {{/if}}
+            </div>
+            
+            <button class="theme-toggle-widget" data-widget-action="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon-light">☀️</span>
+                <span class="theme-icon-dark" style="display: none;">🌙</span>
+                <span class="theme-text">Theme</span>
+            </button>
+            
+            <p class="sidebar-footer-text">© <span data-year></span> {{ settings.store_name }}</p>
+        </footer>
     </aside>
 
-    <!-- Cart Icon - Positioned below header elements -->
-    <div class="cart-icon-container glass-card" style="position: fixed; top: 120px; right: var(--space-lg); z-index: var(--z-sticky); width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all var(--transition-fast);">
-      <a href="{{urls.cart}}" aria-label="View cart" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--color-text); width: 100%; height: 100%;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="transition: all var(--transition-fast);">
-          <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V16.5M9 19.5C9.8 19.5 10.5 20.2 10.5 21S9.8 22.5 9 22.5 7.5 21.8 7.5 21 8.2 19.5 9 19.5ZM20 19.5C20.8 19.5 21.5 20.2 21.5 21S20.8 22.5 20 22.5 18.5 21.8 18.5 21 19.2 19.5 20 19.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="cart-count" style="position: absolute; top: -8px; right: -8px; background: var(--accent); color: var(--color-bg); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 600; display: none;" id="cart-count">{{cart.quantity}}</span>
-      </a>
-    </div>
+    <!-- Mobile Toggle (fixed position) -->
+    <button class="mobile-toggle" aria-label="Open menu">
+        <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png"
+             alt="Southwest Mushrooms"
+             class="mobile-logo"
+             width="120"
+             height="40"
+             loading="eager"
+             decoding="async">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
 
-    <!-- Main Content Area -->
-    <main style="margin-left: 320px; min-height: 100vh;">
-      {{> components/common/header }}
-      {{> components/common/body }}
-      {{> components/common/footer }}
+    <!-- =============================================================
+         Main Content Area
+    ============================================================= -->
+    <main id="main-content" class="main-content" role="main">
+        {{!-- Header with logo (from surgical fix) --}}
+        {{> components/common/header}}
+        
+        {{!-- Dynamic page content --}}
+        <div class="page-content">
+            {{{ body }}}
+        </div>
+        
+        {{!-- Footer --}}
+        {{> components/common/footer}}
     </main>
 
-    <!-- Mobile Overlay -->
-    <div class="glass-overlay" id="mobile-overlay" style="display: none;">
-      <div class="glass-overlay__content">
-        <button style="position: absolute; top: var(--space-md); right: var(--space-md); background: none; border: none; font-size: 2em; color: var(--color-text); cursor: pointer;" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
-        <!-- Mobile nav content would go here -->
-      </div>
-    </div>
+    <!-- =============================================================
+         Product Card Template (for dynamic rendering)
+    ============================================================= -->
+    <template id="tpl-product-card">
+        <article class="product-card glass-card">
+            <figure class="product-media">
+                <img loading="lazy" alt="">
+            </figure>
+            <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-price"></p>
+                <button class="btn btn-primary add-to-cart" data-product-id="">
+                    Add to Cart
+                </button>
+            </div>
+        </article>
+    </template>
 
-    <!-- Loader Overlay - Theme-aware loading screen -->
-    <div id="loader-overlay" class="loader-overlay">
-      <img src="/assets/icons/loader-logo.svg" alt="Loading..." class="loader-logo" />
-    </div>
-
-    <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
-
-    <!-- Enhanced JavaScript -->
-    <script nonce="{{nonce}}">window.__webpack_public_path__="{{cdn 'assets/dist/'}}";</script>
-    <script id="theme-bundle-main" nonce="{{nonce}}" src="{{cdn 'assets/dist/theme-bundle.main.js'}}" onload="onThemeBundleMain()"></script>
-    <script nonce="{{nonce}}" src="{{cdn 'assets/js/theme-toggle.js'}}"></script>
-
-    <!-- Stencil Bootstrap -->
-    <script nonce="{{nonce}}">
-      var stencilJsContext = {{{JSONstringify jsContext}}};
-      function onThemeBundleMain(){
-        if (typeof window.stencilBootstrap === 'function') {
-          window.stencilBootstrap("{{page_type}}", stencilJsContext).load();
-        } else {
-          console.warn('stencilBootstrap not available, retrying...');
-          setTimeout(onThemeBundleMain, 100);
-        }
-      }
+    <!-- =============================================================
+         Scripts
+    ============================================================= -->
+    <script>window.__webpack_public_path__ = "{{ cdn 'assets/dist/' }}";</script>
+    <script src="{{cdn 'assets/dist/theme-bundle.main.js' }}" defer></script>
+    
+    {{!-- BigCommerce remote scripts --}}
+    {{{ footer.scripts }}}
+    
+    {{!-- AI Chat Interface --}}
+    {{> components/common/ai-chat}}
+    
+    {{!-- Initialize year dynamically --}}
+    <script>
+        document.querySelector('[data-year]').textContent = new Date().getFullYear();
     </script>
-
-    {{{footer.scripts}}}
-    <script nonce="{{nonce}}">
-      document.addEventListener('DOMContentLoaded', function() {
-        window.addEventListener('load', function() {
-          var loader = document.getElementById('loader-overlay');
-          if (loader) loader.style.display = 'none';
-        });
-      });
-    </script>
-  </body>
+</body>
 </html>

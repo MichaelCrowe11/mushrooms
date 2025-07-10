@@ -33,30 +33,44 @@
     }
 }
 
+// =============================================================================
+// HEADER OVERRIDES
+// More compact and professional header design
+// =============================================================================
+
+// Main header container
 .header {
-    background-color: $header-bg;
-    border-bottom: container("border");
-    height: $header-height;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: zIndex("higher");
-
-    @include breakpoint("medium") {
-        border-bottom: container("border");
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        overflow: visible;
-        position: relative;
+    padding: 1rem 0;  // Reduced vertical padding
+    
+    @media (max-width: 768px) {
+        padding: 0.75rem 0;
     }
+}
 
-    &.is-open {
-        height: 100%;
+// Logo container adjustments
+.header-logo {
+    // Center the logo properly
+    text-align: center;
+    
+    // Adjust spacing
+    &--left {
+        text-align: left;
+    }
+    
+    &--right {
+        text-align: right;
+    }
+}
 
-        @include breakpoint("medium") {
-            height: auto;
-        }
+// Make the entire header more compact
+.navPages-container {
+    padding: 0.5rem 0;  // Reduce nav padding
+}
+
+// Adjust navigation spacing
+.navPages-item {
+    > .navPages-action {
+        padding: 0.75rem 1rem;  // More compact nav items
     }
 }
 

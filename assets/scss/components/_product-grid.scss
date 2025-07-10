@@ -1,0 +1,44 @@
+.crowe-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5, 1.5rem);
+  margin-block: var(--space-8, 3rem);
+
+  .card {
+    @include frosted-glass();          // keeps glass aesthetic :-)
+    transition: transform .2s ease;
+    overflow: hidden;
+    
+    &:hover { 
+      transform: translateY(-4px); 
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    // Enhance product images within cards
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    &:hover .card-img-container::after {
+      opacity: 1;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .crowe-apps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3, 1rem);
+  }
+} 

@@ -4,17 +4,17 @@
   Provides quick access to key features and status indicators
 }}
 
-<div class="sidebar-widgets">
+<div class="sidebar-widgets swm-widgets">
     <!-- Quick Actions Section -->
     <div class="widget-section">
         <h4 class="widget-section-title">{{lang 'widgets.quick_actions' fallback='Quick Actions'}}</h4>
         <div class="widget-grid widget-grid--four-columns">
             <!-- Home Widget -->
-            <a href="https://www.southwestmushrooms.com" 
+            <a href="{{urls.home}}" 
                class="circular-widget circular-widget--primary" 
                data-tooltip="{{lang 'widgets.home' fallback='Home'}}"
                aria-label="{{lang 'widgets.home' fallback='Southwest Mushrooms Home'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/home-widget.png?t=1751991253" 
+                <img src="{{cdn 'assets/img/widgets/home-widget.png'}}" 
                      alt="Southwest Mushrooms Home" 
                      class="widget-icon"
                      loading="lazy">
@@ -67,11 +67,11 @@
         <h4 class="widget-section-title">{{lang 'widgets.education' fallback='Education'}}</h4>
         <div class="widget-grid widget-grid--one-column">
             <!-- Mushroom Business Starter Blueprint -->
-            <a href="https://southwestmushrooms.com/mushroom-business-starter-blueprint-90-day-grow-to-income-manual/" 
+            <a href="/mushroom-business-starter-blueprint-90-day-grow-to-income-manual/" 
                class="circular-widget circular-widget--gradient circular-widget--lg" 
                data-tooltip="{{lang 'widgets.business_blueprint' fallback='Mushroom Business Starter Blueprint'}}"
                aria-label="{{lang 'widgets.business_blueprint' fallback='Mushroom Business Starter Blueprint - 90-Day Manual'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/swm21.png?t=1751984579" 
+                <img src="{{cdn 'assets/img/widgets/business-blueprint.png'}}" 
                      alt="Mushroom Business Starter Blueprint" 
                      class="widget-icon"
                      loading="lazy">
@@ -85,11 +85,11 @@
         <h4 class="widget-section-title">{{lang 'widgets.categories' fallback='Categories'}}</h4>
         <div class="widget-grid widget-grid--categories">
             <!-- Liquid Cultures -->
-            <a href="https://southwestmushrooms.com/cultures/cultures/" 
+            <a href="/cultures/cultures/" 
                class="circular-widget circular-widget--gradient" 
                data-tooltip="{{lang 'widgets.liquid_cultures' fallback='Liquid Cultures'}}"
                aria-label="{{lang 'widgets.liquid_cultures' fallback='Liquid Cultures'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/lc.png?t=1751701889" 
+                <img src="{{cdn 'assets/img/widgets/liquid-cultures.png'}}" 
                      alt="Liquid Cultures" 
                      class="widget-icon"
                      loading="lazy">
@@ -97,11 +97,11 @@
             </a>
             
             <!-- Desert Grow Kit Duo -->
-            <a href="https://southwestmushrooms.com/mushroom-grow-kits/" 
+            <a href="/mushroom-grow-kits/" 
                class="circular-widget circular-widget--success" 
                data-tooltip="{{lang 'widgets.desert_grow_kit_duo' fallback='Desert Grow Kit Duo'}}"
                aria-label="{{lang 'widgets.desert_grow_kit_duo' fallback='Desert Grow Kit Duo'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/320w/image-manager/swm2.png?t=1751984607" 
+                <img src="{{cdn 'assets/img/widgets/desert-grow-kit.png'}}" 
                      alt="Desert Grow Kit Duo" 
                      class="widget-icon"
                      loading="lazy">
@@ -109,11 +109,11 @@
             </a>
             
             <!-- Gourmet Chef Sampler -->
-            <a href="https://southwestmushrooms.com/gourmet-chef-sampler/" 
+            <a href="/gourmet-chef-sampler/" 
                class="circular-widget circular-widget--warning" 
                data-tooltip="{{lang 'widgets.gourmet_chef_sampler' fallback='Gourmet Chef Sampler'}}"
                aria-label="{{lang 'widgets.gourmet_chef_sampler' fallback='Gourmet Chef Sampler'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/swm17.png?t=1751984649" 
+                <img src="{{cdn 'assets/img/widgets/gourmet-chef.png'}}" 
                      alt="Gourmet Chef Sampler" 
                      class="widget-icon"
                      loading="lazy">
@@ -121,11 +121,11 @@
             </a>
             
             <!-- Focus & Immunity Tincture Pair -->
-            <a href="https://southwestmushrooms.com/focus-immunity-tincture-pair/" 
+            <a href="/focus-immunity-tincture-pair/" 
                class="circular-widget circular-widget--secondary" 
                data-tooltip="{{lang 'widgets.focus_immunity_pair' fallback='Focus & Immunity Tincture Pair'}}"
                aria-label="{{lang 'widgets.focus_immunity_pair' fallback='Focus & Immunity Tincture Pair'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/swm3.png?t=1751984584" 
+                <img src="{{cdn 'assets/img/widgets/tincture-pair.png'}}" 
                      alt="Focus & Immunity Tincture Pair" 
                      class="widget-icon"
                      loading="lazy">
@@ -133,11 +133,11 @@
             </a>
             
             <!-- Crowe Curated Starter Business -->
-            <a href="https://southwestmushrooms.com/crowe-curated-starter-business/" 
+            <a href="/crowe-curated-starter-business/" 
                class="circular-widget circular-widget--primary" 
                data-tooltip="{{lang 'widgets.crowe_curated_starter' fallback='Crowe Curated Starter Business'}}"
                aria-label="{{lang 'widgets.crowe_curated_starter' fallback='Crowe Curated Starter Business'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/crowe-curated.png?t=1751983285" 
+                <img src="{{cdn 'assets/img/widgets/crowe-curated.png'}}" 
                      alt="Crowe Curated Starter Business" 
                      class="widget-icon"
                      loading="lazy">
@@ -145,11 +145,11 @@
             </a>
             
             <!-- Substrate Starter Bundle -->
-            <a href="https://southwestmushrooms.com/substrate-starter-bundle-all-three-pellets-3-x-5-lb/" 
+            <a href="/substrate-starter-bundle-all-three-pellets-3-x-5-lb/" 
                class="circular-widget circular-widget--warning" 
                data-tooltip="{{lang 'widgets.substrate_bundle' fallback='Substrate Starter Bundle'}}"
                aria-label="{{lang 'widgets.substrate_bundle' fallback='Substrate Starter Bundle - All Three Pellets'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/swm22.png?t=1751984664" 
+                <img src="{{cdn 'assets/img/widgets/substrate-bundle.png'}}" 
                      alt="Substrate Starter Bundle" 
                      class="widget-icon"
                      loading="lazy">
@@ -157,11 +157,11 @@
             </a>
             
             <!-- Mycelium Grain Spawn -->
-            <a href="https://southwestmushrooms.com/mycelium-grain-spawn/" 
+            <a href="/mycelium-grain-spawn/" 
                class="circular-widget circular-widget--success" 
                data-tooltip="{{lang 'widgets.mycelium_grain_spawn' fallback='Mycelium Grain Spawn'}}"
                aria-label="{{lang 'widgets.mycelium_grain_spawn' fallback='Mycelium Grain Spawn'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/grainspawn.png?t=1751991723" 
+                <img src="{{cdn 'assets/img/widgets/grain-spawn.png'}}" 
                      alt="Mycelium Grain Spawn" 
                      class="widget-icon"
                      loading="lazy">
@@ -178,8 +178,10 @@
             <a href="https://buy.stripe.com/28E28q72g5k5aBhcLcg7e01" 
                class="circular-widget circular-widget--primary circular-widget--glow" 
                data-tooltip="{{lang 'widgets.crowe_logic_gpt' fallback='Crowe Logic GPT'}}"
-               aria-label="{{lang 'widgets.crowe_logic_gpt' fallback='Crowe Logic GPT - Michael\'s Assistant'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/michaelsassitant.png?t=1751990755" 
+               aria-label="{{lang 'widgets.crowe_logic_gpt' fallback='Crowe Logic GPT - Michael\'s Assistant'}}"
+               target="_blank"
+               rel="noopener noreferrer">
+                <img src="{{cdn 'assets/img/widgets/crowe-logic-gpt.png'}}" 
                      alt="Crowe Logic GPT" 
                      class="widget-icon"
                      loading="lazy">
@@ -187,11 +189,11 @@
             </a>
             
             <!-- Crowe Logic Apps -->
-            <a href="https://southwestmushrooms.com/apps/" 
+            <a href="/apps/" 
                class="circular-widget circular-widget--ghost" 
                data-tooltip="{{lang 'widgets.crowe_logic_apps' fallback='Crowe Logic Apps'}}"
                aria-label="{{lang 'widgets.crowe_logic_apps' fallback='Crowe Logic Apps - Coming Soon'}}">
-                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/img-0604.png?t=1751772775" 
+                <img src="{{cdn 'assets/img/widgets/crowe-logic-apps.png'}}" 
                      alt="Crowe Logic Apps" 
                      class="widget-icon"
                      loading="lazy">
@@ -203,7 +205,7 @@
                     class="circular-widget circular-widget--ghost" 
                     data-tooltip="{{lang 'widgets.calculator' fallback='Calculator'}}"
                     aria-label="{{lang 'widgets.calculator' fallback='Quick Calculator'}}"
-                    onclick="toggleCalculator()">
+                    data-widget-action="calculator">
                 <span class="widget-icon">
                     <svg viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1.5 2a.5.5 0 000 1h5a.5.5 0 000-1h-5zM6 7a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
@@ -237,7 +239,7 @@
                     class="circular-widget circular-widget--sm circular-widget--ghost" 
                     data-tooltip="{{lang 'widgets.notifications' fallback='Notifications'}}"
                     aria-label="{{lang 'widgets.notifications' fallback='View Notifications'}}"
-                    onclick="toggleNotifications()">
+                    data-widget-action="notifications">
                 <span class="widget-icon">
                     <svg viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.94 32.94 0 003.256.508 3.5 3.5 0 006.972 0 32.933 32.933 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z" clip-rule="evenodd"/>
@@ -265,7 +267,7 @@
                     class="circular-widget circular-widget--sm circular-widget--ghost theme-toggle-widget" 
                     data-tooltip="{{lang 'widgets.theme_toggle' fallback='Toggle Theme'}}"
                     aria-label="{{lang 'widgets.theme_toggle' fallback='Toggle Dark/Light Theme'}}"
-                    onclick="toggleTheme()">
+                    data-widget-action="theme-toggle">
                 <span class="widget-icon">
                     <svg class="theme-icon-light" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.061l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.061l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.061 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06l-1.06-1.06a.75.75 0 10-1.061 1.06l1.06 1.06z"/>
@@ -277,56 +279,4 @@
             </button>
         </div>
     </div>
-</div>
-
-<!-- Widget JavaScript for Interactivity -->
-<script>
-function toggleCalculator() {
-    // Simple calculator toggle functionality
-    console.log('Calculator widget clicked');
-    // Add your calculator implementation here
-}
-
-function toggleNotifications() {
-    // Notifications toggle functionality
-    console.log('Notifications widget clicked');
-    // Add your notifications implementation here
-}
-
-function toggleTheme() {
-    // Theme toggle functionality
-    const body = document.body;
-    const currentTheme = body.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Update theme toggle icon
-    const lightIcon = document.querySelector('.theme-icon-light');
-    const darkIcon = document.querySelector('.theme-icon-dark');
-    
-    if (newTheme === 'dark') {
-        lightIcon.style.display = 'none';
-        darkIcon.style.display = 'block';
-    } else {
-        lightIcon.style.display = 'block';
-        darkIcon.style.display = 'none';
-    }
-}
-
-// Initialize theme on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    
-    // Update theme toggle icon based on current theme
-    const lightIcon = document.querySelector('.theme-icon-light');
-    const darkIcon = document.querySelector('.theme-icon-dark');
-    
-    if (savedTheme === 'dark') {
-        lightIcon.style.display = 'none';
-        darkIcon.style.display = 'block';
-    }
-});
-</script> 
+</div> 

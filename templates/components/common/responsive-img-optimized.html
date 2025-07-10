@@ -1,0 +1,30 @@
+{{!--
+Optimized responsive image component with WebP/AVIF support for better performance.
+Based on the original responsive-img.html but with modern image format support.
+--}}
+<img {{#if image}}{{!-- Get the default image for legacy browsers that do not support srcset
+--}}src="{{getImageSrcset image 1x=(default fallback_size '160w')}}?format=avif,webp&quality=85" alt="{{image.alt}}" title="{{image.alt}}" {{!--
+  Allow lazysizes to generate the 'sizes' attribute automatically --}}data-sizes="auto"
+  {{#unless lazyload '==' 'disabled'}}
+    {{#if lazyload '==' 'lazyload+lqip'}}
+    {{!-- If we want a LQIP, include it as the default srcset (will be overwritten by lazysizes) --}}
+    srcset="{{getImageSrcset image 1x=(default lqip_size '80w')}}?format=webp&quality=50"
+    {{else}}
+      {{!-- If we don't want a LQIP, use a 1px transparent gif for the stand-in image
+            This requires no additional network request, so it's fast --}}
+    srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+    {{/if}}
+{{/unless}}
+{{!-- If lazyloading is disabled, just use "srcset". If it is not disabled, use "data-srcset" so lazysizes will use
+      this after page load --}}
+{{!--
+Generate the srcset string using the default sizes defined in the helper. This will allow the browser to
+pick the best-sized image based on its own understanding of how it will render the page.
+Add WebP/AVIF format support for better compression
+--}}
+{{#unless lazyload '==' 'disabled'}}data-{{/unless}}srcset="{{getImageSrcset image use_default_sizes=true }}?format=avif,webp&quality=85"
+{{else if default_image}}src="{{cdn default_image}}?format=avif,webp&quality=85" alt="{{lang 'products.card_default_image_alt'}}"{{/if}}
+class="{{#unless lazyload '==' 'disabled'}}lazyload{{/unless}}{{#if class}} {{class}}{{/if}}"
+{{!-- Always add loading="lazy" for native browser lazy loading support --}}
+loading="lazy"
+{{otherAttributes}} /> 

@@ -1,0 +1,69 @@
+.openai-sidebar {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100dvh;
+  z-index: var(--z-sidebar, 1000);
+  transition: width var(--sidebar-transition);
+
+  // 1️⃣ Main translucent plate
+  &::before {
+    content: '';
+    @include frosted-glass(heavy);
+    position: absolute;
+    inset: 0;
+    height: 200%;        // overlap to grab nearby pixels
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 0 50%, transparent 50%);
+  }
+
+  // 2️⃣ Brighter edge at the bottom
+  &::after {
+    --edge: 6px;
+    content: '';
+    @include frosted-glass();                // lighter blur
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    height: var(--edge);
+    transform: translateY(100%);
+    mask-image: linear-gradient(to bottom, black 0 var(--edge), transparent var(--edge));
+  }
+
+  // Content container
+  &__content {
+    position: relative;
+    padding: var(--space-4);
+    height: 100%;
+    overflow-y: auto;
+    @include custom-scrollbar();
+  }
+
+  // Collapsed state
+  &.collapsed {
+    width: var(--sidebar-width-collapsed);
+    
+    .openai-sidebar__content {
+      padding: var(--space-2);
+    }
+  }
+}
+
+/* Progressive enhancement — fall back to solid colour if backdrop-filter unsupported */
+@supports not (backdrop-filter: blur(1px)) {
+  .openai-sidebar { 
+    background: rgba(255,255,255,.95); 
+  }
+}
+
+// Adjust main content area when sidebar is present
+.main-content {
+  margin-left: var(--sidebar-width);
+  transition: margin-left var(--sidebar-transition);
+  
+  .sidebar-collapsed & {
+    margin-left: var(--sidebar-width-collapsed);
+  }
+} 

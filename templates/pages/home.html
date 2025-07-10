@@ -4,54 +4,213 @@ products:
   top_sellers: { limit: {{theme_settings.homepage_top_products_count}} }
   new:         { limit: {{theme_settings.homepage_new_products_count}} }
 ---
-{{#partial "hero"}}{{/partial}}
+{{#partial "hero"}}
+  {{!-- Premium Hero Section --}}
+  <section class="hero-premium">
+    <div class="hero-background">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Cultivating Excellence in Desert Mycology</h1>
+      <p class="hero-subtitle">Premium mushroom cultures, grow kits, and expertise for the Southwest's unique climate</p>
+      <div class="hero-actions">
+        <a href="/cultures" class="btn-hero btn-hero--primary">Explore Cultures</a>
+        <a href="/learn" class="btn-hero btn-hero--secondary">Start Learning</a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Discover More</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+      </svg>
+    </div>
+  </section>
+{{/partial}}
 
 {{#partial "page"}}
   <main class="main full">
-
-    {{#if products.featured}}
-      {{> components/custom/product-row
-          title="Featured Cultures"
-          products=products.featured }}
-    {{/if}}
-
-    {{#if products.top_sellers}}
-      {{> components/custom/product-row
-          title="Popular Picks"
-          products=products.top_sellers }}
-    {{/if}}
-
-    {{#if products.new}}
-      {{> components/custom/product-row
-          title="Fresh Arrivals"
-          products=products.new }}
-    {{/if}}
-
-    {{{region name="home_below_new_products"}}}
-
-    {{!-- glass showcase (unchanged) --}}
-    <section class="showcase glass blk">
-      <div class="container grid-3 gap-6">
-        {{> components/custom/showcase-card icon="🍄" title="Lion's Mane" text="Dried slices & gourmet kits." href="/cultures/lions-mane"}}
-        {{> components/custom/showcase-card icon="🍄" title="Reishi"        text="Immortality tinctures."     href="/cultures/reishi"}}
-        {{> components/custom/showcase-card icon="🍄" title="Cordyceps"     text="Endurance militaris."       href="/cultures/cordyceps"}}
-      </div>
-    </section>
-
-    <section class="cta-band glass blk">
-      <div class="container ctr">
-        <h2 class="h3 mb-2">Ready to grow something extraordinary?</h2>
-        <p class="mb-6">Join thousands of desert mycologists.</p>
-        <div class="flex gap-4 ctr">
-          <a href="/cultures"  class="btn-outline">Browse Cultures</a>
-          <a href="/grow-kits" class="btn-outline">View Kits</a>
+    {{!-- Mission Statement --}}
+    <section class="mission-section">
+      <div class="container">
+        <div class="mission-content">
+          <h2 class="mission-title">Our Mission</h2>
+          <p class="mission-text">
+            Southwest Mushrooms is dedicated to democratizing mushroom cultivation in arid climates. 
+            We provide premium cultures, comprehensive education, and unwavering support to help you 
+            succeed in growing extraordinary mushrooms, regardless of your environment.
+          </p>
+          <div class="mission-stats">
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Years of Excellence</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Happy Cultivators</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">99%</span>
+              <span class="stat-label">Success Rate</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="newsletter glass blk">
+    {{!-- Featured Products with Premium Design --}}
+    {{#if products.featured}}
+      <section class="products-showcase products-showcase--featured">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Featured Cultures</h2>
+            <p class="section-subtitle">Hand-selected strains proven to thrive in desert conditions</p>
+          </div>
+          {{> components/custom/product-row
+              title=""
+              products=products.featured }}
+        </div>
+      </section>
+    {{/if}}
+
+    {{!-- Value Propositions --}}
+    <section class="value-props">
       <div class="container">
-        {{> components/custom/newsletter-form }}
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="value-icon">🧬</div>
+            <h3 class="value-title">Premium Genetics</h3>
+            <p class="value-text">Meticulously selected and tested strains for optimal yields and potency</p>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌵</div>
+            <h3 class="value-title">Desert Adapted</h3>
+            <p class="value-text">Specialized techniques for successful cultivation in arid climates</p>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">📚</div>
+            <h3 class="value-title">Expert Education</h3>
+            <p class="value-text">Comprehensive guides, videos, and personal support from mycology experts</p>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🚀</div>
+            <h3 class="value-title">Fast Shipping</h3>
+            <p class="value-text">Same-day processing with climate-controlled packaging</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{#if products.top_sellers}}
+      <section class="products-showcase products-showcase--bestsellers">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Community Favorites</h2>
+            <p class="section-subtitle">Trusted by thousands of successful cultivators</p>
+          </div>
+          {{> components/custom/product-row
+              title=""
+              products=products.top_sellers }}
+        </div>
+      </section>
+    {{/if}}
+
+    {{!-- Premium Glass Showcase --}}
+    <section class="showcase-premium">
+      <div class="container">
+        <h2 class="showcase-title">Start Your Journey</h2>
+        <div class="showcase-grid">
+          <div class="showcase-card showcase-card--large">
+            <div class="showcase-image">
+              <span class="showcase-badge">Most Popular</span>
+            </div>
+            <div class="showcase-content">
+              <h3>Complete Grow Kits</h3>
+              <p>Everything you need to start growing gourmet mushrooms at home</p>
+              <a href="/grow-kits" class="btn-showcase">Shop Kits</a>
+            </div>
+          </div>
+          <div class="showcase-card">
+            <div class="showcase-image"></div>
+            <div class="showcase-content">
+              <h3>Liquid Cultures</h3>
+              <p>Premium mycelium cultures ready for inoculation</p>
+              <a href="/cultures" class="btn-showcase">Browse Cultures</a>
+            </div>
+          </div>
+          <div class="showcase-card">
+            <div class="showcase-image"></div>
+            <div class="showcase-content">
+              <h3>Education Hub</h3>
+              <p>Master techniques with our comprehensive guides</p>
+              <a href="/learn" class="btn-showcase">Start Learning</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{#if products.new}}
+      <section class="products-showcase products-showcase--new">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">New Arrivals</h2>
+            <p class="section-subtitle">Latest additions to our premium collection</p>
+          </div>
+          {{> components/custom/product-row
+              title=""
+              products=products.new }}
+        </div>
+      </section>
+    {{/if}}
+
+    {{{region name="home_below_new_products"}}}
+
+    {{!-- Testimonials --}}
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="testimonials-title">What Our Community Says</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Southwest Mushrooms transformed my gardening hobby into a thriving business. Their support is unmatched!"</p>
+            <div class="testimonial-author">- Sarah M., Phoenix</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The quality of their cultures is exceptional. I've never had such consistent results."</p>
+            <div class="testimonial-author">- David L., Tucson</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Their desert-specific guides made all the difference. Finally, success in our climate!"</p>
+            <div class="testimonial-author">- Maria G., Albuquerque</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{!-- Premium CTA --}}
+    <section class="cta-premium">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to Grow Something Extraordinary?</h2>
+          <p class="cta-subtitle">Join thousands of successful cultivators across the Southwest</p>
+          <div class="cta-actions">
+            <a href="/account/create" class="btn-cta btn-cta--primary">Get Started Today</a>
+            <a href="/contact-us" class="btn-cta btn-cta--secondary">Talk to an Expert</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{!-- Newsletter with Premium Design --}}
+    <section class="newsletter-premium">
+      <div class="container">
+        <div class="newsletter-content">
+          <h2 class="newsletter-title">Stay Connected</h2>
+          <p class="newsletter-subtitle">Get exclusive cultivation tips, new product alerts, and special offers</p>
+          {{> components/custom/newsletter-form }}
+        </div>
       </div>
     </section>
 

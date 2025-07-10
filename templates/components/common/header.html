@@ -19,17 +19,19 @@
     {{#if page_type '===' 'default'}}
         <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
             <a class="header-logoWrap" href="{{urls.home}}">
-                <svg aria-label="{{settings.store_name}} logo">
-                    <use href="{{cdn 'img/swm-header.svg'}}#root"/>
-                </svg>
+                {{!-- Using img tag for better compatibility --}}
+                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png" 
+                     alt="Southwest Mushrooms - Premium Mushroom Cultures & Grow Kits" 
+                     class="header-logo__img">
             </a>
         </h1>
     {{else}}
         <div class="header-logo header-logo--{{theme_settings.logo-position}}">
             <a class="header-logoWrap" href="{{urls.home}}">
-                <svg aria-label="{{settings.store_name}} logo">
-                    <use href="{{cdn 'img/swm-header.svg'}}#root"/>
-                </svg>
+                {{!-- Using img tag for better compatibility --}}
+                <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png" 
+                     alt="Southwest Mushrooms - Premium Mushroom Cultures & Grow Kits" 
+                     class="header-logo__img">
             </a>
         </div>
     {{/if}}

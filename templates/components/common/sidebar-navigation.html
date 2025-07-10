@@ -1,0 +1,123 @@
+{{!--
+    SIDEBAR NAVIGATION COMPONENT
+    Clean navigation for glass morphism sidebar
+--}}
+
+<ul class="sidebar-nav-list">
+    {{!-- Home --}}
+    <li class="sidebar-nav-item">
+        <a href="{{ urls.home }}" class="sidebar-nav-link {{#if page_type '===' 'default'}}sidebar-nav-link--active{{/if}}">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="sidebar-nav-text">Home</span>
+        </a>
+    </li>
+
+    {{!-- Shop Categories --}}
+    <li class="sidebar-nav-item sidebar-nav-item--has-dropdown">
+        <a href="{{ urls.all_products }}" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+            </svg>
+            <span class="sidebar-nav-text">Shop</span>
+        </a>
+        <ul class="sidebar-dropdown">
+            {{#each categories}}
+                <li class="sidebar-dropdown-item">
+                    <a href="{{ url }}" class="sidebar-dropdown-link">{{ name }}</a>
+                </li>
+            {{/each}}
+            <li class="sidebar-dropdown-item">
+                <a href="{{ urls.all_products }}" class="sidebar-dropdown-link sidebar-dropdown-link--all">
+                    View All Products
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    {{!-- Grow Kits --}}
+    <li class="sidebar-nav-item">
+        <a href="/grow-kits/" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a4 4 0 01-4 4 4 4 0 01-4-4 3.99 3.99 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L4.447 6.894a1 1 0 11.894-1.788l1.599.8L11 4.323V3a1 1 0 011-1h-2z"/>
+            </svg>
+            <span class="sidebar-nav-text">Grow Kits</span>
+        </a>
+    </li>
+
+    {{!-- Cultures --}}
+    <li class="sidebar-nav-item">
+        <a href="/cultures/" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H4v10a2 2 0 002 2h8a2 2 0 002-2V5h-2a1 1 0 100-2 2 2 0 012 2v10a4 4 0 01-4 4H6a4 4 0 01-4-4V5z"/>
+            </svg>
+            <span class="sidebar-nav-text">Cultures</span>
+        </a>
+    </li>
+
+    {{!-- Education --}}
+    <li class="sidebar-nav-item">
+        <a href="/learn/" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+            </svg>
+            <span class="sidebar-nav-text">Learn</span>
+        </a>
+    </li>
+
+    {{!-- About --}}
+    <li class="sidebar-nav-item">
+        <a href="/about/" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+            </svg>
+            <span class="sidebar-nav-text">About</span>
+        </a>
+    </li>
+
+    {{!-- Contact --}}
+    <li class="sidebar-nav-item">
+        <a href="/contact-us/" class="sidebar-nav-link">
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            <span class="sidebar-nav-text">Contact</span>
+        </a>
+    </li>
+
+    {{!-- Account/Login --}}
+    <li class="sidebar-nav-item sidebar-nav-item--divider"></li>
+    {{#if customer}}
+        <li class="sidebar-nav-item">
+            <a href="{{ urls.account.index }}" class="sidebar-nav-link">
+                <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                </svg>
+                <span class="sidebar-nav-text">My Account</span>
+            </a>
+        </li>
+    {{else}}
+        <li class="sidebar-nav-item">
+            <a href="{{ urls.auth.login }}" class="sidebar-nav-link">
+                <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"/>
+                </svg>
+                <span class="sidebar-nav-text">Login</span>
+            </a>
+        </li>
+    {{/if}}
+
+    {{!-- Cart --}}
+    <li class="sidebar-nav-item">
+        <a href="{{ urls.cart }}" class="sidebar-nav-link" data-cart-preview>
+            <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+            </svg>
+            <span class="sidebar-nav-text">Cart</span>
+            <span class="cart-quantity-badge" data-cart-quantity></span>
+        </a>
+    </li>
+</ul> 
