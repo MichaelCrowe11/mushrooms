@@ -1,0 +1,485 @@
+// Floating Navigation Orb System
+// Ultra Glass Design Implementation
+
+@import 'ultra-glass-system';
+
+.floating-nav-system {
+    position: fixed;
+    bottom: map-get($space, 'large');
+    right: map-get($space, 'large');
+    z-index: 1040;
+    transition: all 0.3s map-get($easings, 'smooth');
+    
+    // Only show on mobile/tablet
+    @media (min-width: 1025px) {
+        display: none;
+    }
+    
+    // Hide when footer is visible
+    &.hidden-for-footer {
+        transform: translateY(100px);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+// Primary navigation orb
+.primary-orb {
+    @include glass-orb(60px, rgba(76, 175, 80, 0.3));
+    position: relative;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s map-get($easings, 'smooth');
+    z-index: 10;
+    
+    .orb-icon {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+    }
+    
+    .orb-glow {
+        position: absolute;
+        inset: -15px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(76, 175, 80, 0.2) 0%,
+            transparent 70%
+        );
+        animation: pulse-glow 3s ease-in-out infinite;
+        pointer-events: none;
+    }
+    
+    &:hover {
+        transform: scale(1.1);
+        
+        .orb-icon svg {
+            transform: rotate(90deg);
+        }
+    }
+    
+    &:active {
+        transform: scale(0.95);
+    }
+    
+    // Expanded state
+    .expanded & {
+        @include ultra-glass('intense');
+        transform: scale(1.1);
+        
+        .orb-icon svg {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+// Satellite orbs container
+.satellite-orbs {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    
+    .expanded & {
+        pointer-events: auto;
+    }
+}
+
+// Individual satellite orbs
+.satellite-orb {
+    @include glass-orb(48px, rgba(255, 255, 255, 0.2));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s map-get($easings, 'bounce');
+    transition-delay: var(--orb-delay, 0ms);
+    
+    // Orbital positioning
+    $orb-distance: 80px;
+    @for $i from 0 through 5 {
+        &:nth-child(#{$i + 1}) {
+            --angle: #{$i * 60}deg;
+            --x: #{$orb-distance * cos($i * 60)};
+            --y: #{$orb-distance * sin($i * 60)};
+        }
+    }
+    
+    &.visible {
+        transform: translate(
+            calc(-50% + var(--x) * 1px),
+            calc(-50% + var(--y) * 1px)
+        ) scale(1);
+        opacity: 1;
+    }
+    
+    .orb-icon {
+        font-size: 20px;
+        line-height: 1;
+    }
+    
+    .orb-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: #ff4444;
+        color: white;
+        border-radius: 10px;
+        padding: 2px 6px;
+        font-size: 10px;
+        font-weight: 600;
+        min-width: 18px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+    }
+    
+    .orb-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        @include ultra-glass('standard');
+        padding: map-get($space, 'tiny') map-get($space, 'small');
+        border-radius: 8px;
+        font-size: map-get($type-scale, 'small');
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+    
+    &:hover {
+        transform: translate(
+            calc(-50% + var(--x) * 1px),
+            calc(-50% + var(--y) * 1px)
+        ) scale(1.15);
+        @include ultra-glass('elevated');
+        
+        .orb-tooltip {
+            opacity: 1;
+        }
+    }
+    
+    &.touching {
+        transform: translate(
+            calc(-50% + var(--x) * 1px),
+            calc(-50% + var(--y) * 1px)
+        ) scale(0.9);
+    }
+}
+
+// Ripple effect
+.orb-ripple-effect {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.4) 0%,
+        transparent 70%
+    );
+    transform: scale(0);
+    opacity: 1;
+    animation: orb-ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes orb-ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+// Search overlay with glass effect
+.search-overlay-glass {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    @include ultra-glass('ultra');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .search-container {
+        width: 90%;
+        max-width: 600px;
+        @include ultra-glass('elevated');
+        padding: map-get($space, 'large');
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        transform: translateY(20px);
+        transition: transform 0.3s map-get($easings, 'glass-in');
+        
+        .active & {
+            transform: translateY(0);
+        }
+    }
+    
+    .search-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: map-get($space, 'medium');
+        
+        h2 {
+            font-size: map-get($type-scale, 'h2');
+            margin: 0;
+        }
+        
+        .search-close {
+            @include glass-orb(40px);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            &:hover {
+                transform: scale(1.1) rotate(90deg);
+            }
+        }
+    }
+    
+    .search-form {
+        display: flex;
+        gap: map-get($space, 'small');
+        margin-bottom: map-get($space, 'large');
+        
+        input[type="search"] {
+            flex: 1;
+            padding: map-get($space, 'medium');
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: map-get($type-scale, 'body');
+            color: #333;
+            backdrop-filter: blur(10px);
+            
+            &::placeholder {
+                color: rgba(51, 51, 51, 0.6);
+            }
+            
+            &:focus {
+                outline: none;
+                border-color: rgba(76, 175, 80, 0.5);
+                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            }
+        }
+        
+        button[type="submit"] {
+            @include ultra-glass('elevated');
+            padding: map-get($space, 'medium');
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+    
+    .search-suggestions {
+        h3 {
+            font-size: map-get($type-scale, 'h3');
+            margin-bottom: map-get($space, 'small');
+        }
+        
+        .suggestion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: map-get($space, 'small');
+            
+            a {
+                @include ultra-glass('subtle');
+                padding: map-get($space, 'tiny') map-get($space, 'small');
+                border-radius: 20px;
+                text-decoration: none;
+                color: #333;
+                font-size: map-get($type-scale, 'small');
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    @include ultra-glass('standard');
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+}
+
+// Chat interface with glass
+.ultra-chat-container {
+    position: fixed;
+    bottom: map-get($space, 'large');
+    right: map-get($space, 'large');
+    width: 350px;
+    max-width: 90vw;
+    z-index: 1045;
+    
+    .ultra-chat-interface {
+        @include ultra-glass('elevated');
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+    
+    .chat-header {
+        @include ultra-glass('standard');
+        padding: map-get($space, 'medium');
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        h3 {
+            margin: 0;
+            font-size: map-get($type-scale, 'h3');
+        }
+        
+        .chat-close {
+            @include glass-orb(32px);
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            &:hover {
+                transform: scale(1.1) rotate(90deg);
+            }
+        }
+    }
+    
+    .chat-body {
+        height: 400px;
+        overflow-y: auto;
+        padding: map-get($space, 'medium');
+        
+        .chat-message {
+            margin-bottom: map-get($space, 'medium');
+            
+            &.bot p {
+                @include ultra-glass('subtle');
+                padding: map-get($space, 'small') map-get($space, 'medium');
+                border-radius: 1rem 1rem 1rem 0;
+                margin: 0;
+            }
+            
+            &.user p {
+                @include ultra-glass('standard');
+                padding: map-get($space, 'small') map-get($space, 'medium');
+                border-radius: 1rem 1rem 0 1rem;
+                margin: 0 0 0 auto;
+                max-width: 80%;
+            }
+        }
+    }
+    
+    .chat-input {
+        @include ultra-glass('subtle');
+        padding: map-get($space, 'medium');
+        display: flex;
+        gap: map-get($space, 'small');
+        
+        input {
+            flex: 1;
+            padding: map-get($space, 'small');
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #333;
+            
+            &:focus {
+                outline: none;
+                border-color: rgba(76, 175, 80, 0.5);
+            }
+        }
+        
+        button {
+            @include ultra-glass('elevated');
+            padding: map-get($space, 'small') map-get($space, 'medium');
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .floating-nav-system {
+        bottom: map-get($space, 'medium');
+        right: map-get($space, 'medium');
+    }
+    
+    .satellite-orb {
+        --orb-distance: 70px;
+    }
+    
+    .ultra-chat-container {
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        
+        .ultra-chat-interface {
+            border-radius: 1rem 1rem 0 0;
+        }
+    }
+} 

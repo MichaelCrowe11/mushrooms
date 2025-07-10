@@ -15,9 +15,12 @@ import svgInjector from './global/svg-injector';
 import SvgAnimations from './common/svg-animations';
 import CircularWidgets from './common/circular-widgets';
 import Sidebar from './common/sidebar';
+import MobileSidebar from './common/mobile-sidebar';
+import FloatingNavigation from './common/floating-navigation';
 import AIChat from './common/ai-chat';
 import PerformanceMonitor from './common/performance-monitor';
 import LazyLoad from './common/lazy-load';
+import QuickCheckout from './common/quick-checkout';
 
 export default class Global extends PageManager {
     onReady() {
@@ -45,6 +48,9 @@ export default class Global extends PageManager {
         new SvgAnimations();
         new CircularWidgets();
         new Sidebar();
+        new MobileSidebar();
+        new FloatingNavigation();
         new AIChat();
+        new QuickCheckout();
     }
 }

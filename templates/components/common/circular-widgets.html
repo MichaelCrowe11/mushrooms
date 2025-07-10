@@ -11,12 +11,12 @@
         <div class="widget-grid widget-grid--four-columns">
             <!-- Home Widget -->
             <a href="{{urls.home}}" 
-               class="circular-widget circular-widget--primary" 
+               class="circular-widget circular-widget--primary circular-widget--logo" 
                data-tooltip="{{lang 'widgets.home' fallback='Home'}}"
                aria-label="{{lang 'widgets.home' fallback='Southwest Mushrooms Home'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%234CAF50' opacity='0.1'/%3E%3Cpath d='M40 65V45c0-11 9-20 20-20s20 9 20 20v20h-10V45c0-6-4-10-10-10s-10 4-10 10v20H40zm-5 5h50v20H35V70z' fill='%234CAF50'/%3E%3C/svg%3E" 
+                <img src="{{cdn 'assets/img/southwest-mushrooms-logo.svg'}}" 
                      alt="Southwest Mushrooms Home" 
-                     class="widget-icon"
+                     class="widget-icon widget-icon--logo"
                      loading="lazy">
                 <span class="status-dot"></span>
             </a>
@@ -85,84 +85,98 @@
         <h4 class="widget-section-title">{{lang 'widgets.categories' fallback='Categories'}}</h4>
         <div class="widget-grid widget-grid--categories">
             <!-- Liquid Cultures -->
-            <a href="/cultures/cultures/" 
-               class="circular-widget circular-widget--gradient" 
+            <a href="/cultures/cultures/"
+               class="circular-widget circular-widget--gradient"
                data-tooltip="{{lang 'widgets.liquid_cultures' fallback='Liquid Cultures'}}"
-               aria-label="{{lang 'widgets.liquid_cultures' fallback='Liquid Cultures'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%232196F3' opacity='0.1'/%3E%3Cpath d='M45 30v20L30 80c-2 4 0 10 5 10h50c5 0 7-6 5-10L75 50V30h-30zm10 10h10v15l15 25H40l15-25V40z' fill='%232196F3'/%3E%3C/svg%3E" 
-                     alt="Liquid Cultures" 
+               aria-label="{{lang 'widgets.liquid_cultures' fallback='Liquid Cultures'}}"
+               data-product-url="/cultures/cultures/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%232196F3' opacity='0.1'/%3E%3Cpath d='M45 30v20L30 80c-2 4 0 10 5 10h50c5 0 7-6 5-10L75 50V30h-30zm10 10h10v15l15 25H40l15-25V40z' fill='%232196F3'/%3E%3C/svg%3E"
+                     alt="Liquid Cultures"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot"></span>
             </a>
             
             <!-- Desert Grow Kit Duo -->
-            <a href="/mushroom-grow-kits/" 
-               class="circular-widget circular-widget--success" 
+            <a href="/mushroom-grow-kits/"
+               class="circular-widget circular-widget--success"
                data-tooltip="{{lang 'widgets.desert_grow_kit_duo' fallback='Desert Grow Kit Duo'}}"
-               aria-label="{{lang 'widgets.desert_grow_kit_duo' fallback='Desert Grow Kit Duo'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%234CAF50' opacity='0.1'/%3E%3Cpath d='M30 40v40c0 5 5 10 10 10h40c5 0 10-5 10-10V40c0-5-5-10-10-10H40c-5 0-10 5-10 10zm10 0h40v40H40V40zm10 10v20h20V50H50z' fill='%234CAF50'/%3E%3C/svg%3E" 
-                     alt="Desert Grow Kit Duo" 
+               aria-label="{{lang 'widgets.desert_grow_kit_duo' fallback='Desert Grow Kit Duo'}}"
+               data-product-url="/mushroom-grow-kits/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%234CAF50' opacity='0.1'/%3E%3Cpath d='M30 40v40c0 5 5 10 10 10h40c5 0 10-5 10-10V40c0-5-5-10-10-10H40c-5 0-10 5-10 10zm10 0h40v40H40V40zm10 10v20h20V50H50z' fill='%234CAF50'/%3E%3C/svg%3E"
+                     alt="Desert Grow Kit Duo"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot status-dot--premium"></span>
             </a>
             
             <!-- Gourmet Chef Sampler -->
-            <a href="/gourmet-chef-sampler/" 
-               class="circular-widget circular-widget--warning" 
+            <a href="/gourmet-chef-sampler/"
+               class="circular-widget circular-widget--warning"
                data-tooltip="{{lang 'widgets.gourmet_chef_sampler' fallback='Gourmet Chef Sampler'}}"
-               aria-label="{{lang 'widgets.gourmet_chef_sampler' fallback='Gourmet Chef Sampler'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23FF9800' opacity='0.1'/%3E%3Cpath d='M60 30c-11 0-20 9-20 20 0 5 2 10 5 13v27h30V63c3-3 5-8 5-13 0-11-9-20-20-20zm0 10c6 0 10 4 10 10s-4 10-10 10-10-4-10-10 4-10 10-10z' fill='%23FF9800'/%3E%3C/svg%3E" 
-                     alt="Gourmet Chef Sampler" 
+               aria-label="{{lang 'widgets.gourmet_chef_sampler' fallback='Gourmet Chef Sampler'}}"
+               data-product-url="/gourmet-chef-sampler/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23FF9800' opacity='0.1'/%3E%3Cpath d='M60 30c-11 0-20 9-20 20 0 5 2 10 5 13v27h30V63c3-3 5-8 5-13 0-11-9-20-20-20zm0 10c6 0 10 4 10 10s-4 10-10 10-10-4-10-10 4-10 10-10z' fill='%23FF9800'/%3E%3C/svg%3E"
+                     alt="Gourmet Chef Sampler"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot status-dot--premium"></span>
             </a>
             
             <!-- Focus & Immunity Tincture Pair -->
-            <a href="/focus-immunity-tincture-pair/" 
-               class="circular-widget circular-widget--secondary" 
+            <a href="/focus-immunity-tincture-pair/"
+               class="circular-widget circular-widget--secondary"
                data-tooltip="{{lang 'widgets.focus_immunity_pair' fallback='Focus & Immunity Tincture Pair'}}"
-               aria-label="{{lang 'widgets.focus_immunity_pair' fallback='Focus & Immunity Tincture Pair'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23673AB7' opacity='0.1'/%3E%3Cpath d='M45 30h10v10h10V30h10v30c0 20-15 30-15 30s-15-10-15-30V30zm5 20c0 5 5 15 10 20 5-5 10-15 10-20V40H50v10z' fill='%23673AB7'/%3E%3C/svg%3E" 
-                     alt="Focus & Immunity Tincture Pair" 
+               aria-label="{{lang 'widgets.focus_immunity_pair' fallback='Focus & Immunity Tincture Pair'}}"
+               data-product-url="/focus-immunity-tincture-pair/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23673AB7' opacity='0.1'/%3E%3Cpath d='M45 30h10v10h10V30h10v30c0 20-15 30-15 30s-15-10-15-30V30zm5 20c0 5 5 15 10 20 5-5 10-15 10-20V40H50v10z' fill='%23673AB7'/%3E%3C/svg%3E"
+                     alt="Focus & Immunity Tincture Pair"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot status-dot--premium"></span>
             </a>
             
             <!-- Crowe Curated Starter Business -->
-            <a href="/crowe-curated-starter-business/" 
-               class="circular-widget circular-widget--primary" 
+            <a href="/crowe-curated-starter-business/"
+               class="circular-widget circular-widget--primary"
                data-tooltip="{{lang 'widgets.crowe_curated_starter' fallback='Crowe Curated Starter Business'}}"
-               aria-label="{{lang 'widgets.crowe_curated_starter' fallback='Crowe Curated Starter Business'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%233F51B5' opacity='0.1'/%3E%3Cpath d='M60 30l-20 20v30h15V65h10v15h15V50L60 30zm0 15l10 10v15h-5V55H55v15h-5V45l10-10z' fill='%233F51B5'/%3E%3C/svg%3E" 
-                     alt="Crowe Curated Starter Business" 
+               aria-label="{{lang 'widgets.crowe_curated_starter' fallback='Crowe Curated Starter Business'}}"
+               data-product-url="/crowe-curated-starter-business/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%233F51B5' opacity='0.1'/%3E%3Cpath d='M60 30l-20 20v30h15V65h10v15h15V50L60 30zm0 15l10 10v15h-5V55H55v15h-5V45l10-10z' fill='%233F51B5'/%3E%3C/svg%3E"
+                     alt="Crowe Curated Starter Business"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot status-dot--premium"></span>
             </a>
             
             <!-- Substrate Starter Bundle -->
-            <a href="/substrate-starter-bundle-all-three-pellets-3-x-5-lb/" 
-               class="circular-widget circular-widget--warning" 
+            <a href="/substrate-starter-bundle-all-three-pellets-3-x-5-lb/"
+               class="circular-widget circular-widget--warning"
                data-tooltip="{{lang 'widgets.substrate_bundle' fallback='Substrate Starter Bundle'}}"
-               aria-label="{{lang 'widgets.substrate_bundle' fallback='Substrate Starter Bundle - All Three Pellets'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23795548' opacity='0.1'/%3E%3Cpath d='M35 70h50v10H35V70zm5-10h40v10H40V60zm10-10h20v10H50V50zm5-10h10v10H55V40z' fill='%23795548'/%3E%3C/svg%3E" 
-                     alt="Substrate Starter Bundle" 
+               aria-label="{{lang 'widgets.substrate_bundle' fallback='Substrate Starter Bundle - All Three Pellets'}}"
+               data-product-url="/substrate-starter-bundle-all-three-pellets-3-x-5-lb/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%23795548' opacity='0.1'/%3E%3Cpath d='M35 70h50v10H35V70zm5-10h40v10H40V60zm10-10h20v10H50V50zm5-10h10v10H55V40z' fill='%23795548'/%3E%3C/svg%3E"
+                     alt="Substrate Starter Bundle"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot status-dot--premium"></span>
             </a>
             
             <!-- Mycelium Grain Spawn -->
-            <a href="/mycelium-grain-spawn/" 
-               class="circular-widget circular-widget--success" 
+            <a href="/mycelium-grain-spawn/"
+               class="circular-widget circular-widget--success"
                data-tooltip="{{lang 'widgets.mycelium_grain_spawn' fallback='Mycelium Grain Spawn'}}"
-               aria-label="{{lang 'widgets.mycelium_grain_spawn' fallback='Mycelium Grain Spawn'}}">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%238BC34A' opacity='0.1'/%3E%3Ccircle cx='45' cy='45' r='5' fill='%238BC34A'/%3E%3Ccircle cx='60' cy='40' r='5' fill='%238BC34A'/%3E%3Ccircle cx='75' cy='45' r='5' fill='%238BC34A'/%3E%3Ccircle cx='50' cy='60' r='5' fill='%238BC34A'/%3E%3Ccircle cx='70' cy='60' r='5' fill='%238BC34A'/%3E%3Ccircle cx='45' cy='75' r='5' fill='%238BC34A'/%3E%3Ccircle cx='60' cy='80' r='5' fill='%238BC34A'/%3E%3Ccircle cx='75' cy='75' r='5' fill='%238BC34A'/%3E%3C/svg%3E" 
-                     alt="Mycelium Grain Spawn" 
+               aria-label="{{lang 'widgets.mycelium_grain_spawn' fallback='Mycelium Grain Spawn'}}"
+               data-product-url="/mycelium-grain-spawn/"
+               data-quick-checkout="true">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='%238BC34A' opacity='0.1'/%3E%3Ccircle cx='45' cy='45' r='5' fill='%238BC34A'/%3E%3Ccircle cx='60' cy='40' r='5' fill='%238BC34A'/%3E%3Ccircle cx='75' cy='45' r='5' fill='%238BC34A'/%3E%3Ccircle cx='50' cy='60' r='5' fill='%238BC34A'/%3E%3Ccircle cx='70' cy='60' r='5' fill='%238BC34A'/%3E%3Ccircle cx='45' cy='75' r='5' fill='%238BC34A'/%3E%3Ccircle cx='60' cy='80' r='5' fill='%238BC34A'/%3E%3Ccircle cx='75' cy='75' r='5' fill='%238BC34A'/%3E%3C/svg%3E"
+                     alt="Mycelium Grain Spawn"
                      class="widget-icon"
                      loading="lazy">
                 <span class="status-dot"></span>

@@ -312,3 +312,50 @@
     }
   }
 }
+
+// Size variations
+.circular-widget--lg {
+    width: 72px;
+    height: 72px;
+    
+    .widget-icon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.circular-widget--sm {
+    width: 40px;
+    height: 40px;
+    
+    .widget-icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+// Logo widget special styling
+.circular-widget--logo {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    overflow: visible;
+    
+    .widget-icon--logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        border-color: rgba(212, 165, 116, 0.5); // Gold accent from logo
+    }
+    
+    // Remove default background on primary variant for logo
+    &.circular-widget--primary {
+        background: transparent;
+    }
+}

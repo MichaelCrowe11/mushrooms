@@ -59,20 +59,20 @@
                 {{/or}}
             {{/if}}
 
-            <a href="{{url}}" 
+            <a href="{{url}}"
                class="card-figure__link"
                aria-label="{{> components/products/product-info}}"
-           data-event-type="product-click"
-        >
-            <div class="card-img-container">
-                {{> components/common/responsive-img
-                    image=image
-                    class="card-image"
-                    fallback_size=theme_settings.productgallery_size
-                    lazyload=theme_settings.lazyload_mode
-                    default_image=theme_settings.default_image_product
-                }}
-            </div>
+               data-event-type="product-click">
+                <div class="card-img-container">
+                    {{> components/common/responsive-img
+                        image=image
+                        class="card-image lazyload"
+                        fallback_size=theme_settings.productgallery_size
+                        lazyload=theme_settings.lazyload_mode
+                        default_image=theme_settings.default_image_product
+                        otherAttributes='loading="lazy"'
+                    }}
+                </div>
             </a>
 
         <figcaption class="card-figcaption">
