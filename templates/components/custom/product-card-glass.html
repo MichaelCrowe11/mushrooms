@@ -3,18 +3,21 @@
   <a href="{{url}}" class="card-link">
     {{#if image}}
       <img
-        class="card-img lazyload"
-        data-sizes="auto"
-        src="{{cdn 'img/loading.svg'}}"
+        class="card-img lazy-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f0f0f0'/%3E%3C/svg%3E"
         data-src="{{getImage image 'product_size' (cdn 'img/ProductDefault.gif')}}"
-        width="300" height="300"
-        alt="{{name}}">
+        width="300" 
+        height="300"
+        alt="{{name}}"
+        loading="lazy">
     {{else}}
       <img
         class="card-img"
         src="{{cdn 'img/ProductDefault.gif'}}"
-        width="300" height="300"
-        alt="{{name}}">
+        width="300" 
+        height="300"
+        alt="{{name}}"
+        loading="eager">
     {{/if}}
   </a>
 

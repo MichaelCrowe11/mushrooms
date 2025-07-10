@@ -72,7 +72,7 @@
     <!-- =============================================================
          Glass Morphism Sidebar
     ============================================================= -->
-    <aside class="glass-sidebar openai-sidebar" data-state="expanded">
+    <aside class="glass-sidebar openai-sidebar" data-state="expanded" id="glass-sidebar">
         <!-- Brand -->
         <header class="glass-sidebar__header">
             <a href="{{ urls.home }}" class="sidebar-brand">
@@ -84,7 +84,7 @@
                      fetchpriority="high"
                      decoding="async">
             </a>
-            <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <button class="sidebar-toggle" aria-label="Toggle sidebar" id="sidebar-toggle-btn">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -95,8 +95,10 @@
         <nav class="glass-sidebar__nav" aria-label="Primary navigation">
             {{> components/common/sidebar-navigation}}
             
-            <!-- Circular Widgets -->
-            {{> components/common/circular-widgets}}
+            <!-- Circular Widgets - Always visible on mobile for product navigation -->
+            <div class="sidebar-widgets-container">
+                {{> components/common/circular-widgets}}
+            </div>
         </nav>
 
         <!-- Footer -->
@@ -121,8 +123,11 @@
         </footer>
     </aside>
 
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <!-- Mobile Toggle (fixed position) -->
-    <button class="mobile-toggle" aria-label="Open menu">
+    <button class="mobile-toggle" aria-label="Open menu" id="mobile-menu-toggle">
         <img src="https://cdn11.bigcommerce.com/s-qe8ntvzzrw/images/stencil/original/image-manager/southwest-mushrooms-logo-design.png"
              alt="Southwest Mushrooms"
              class="mobile-logo"

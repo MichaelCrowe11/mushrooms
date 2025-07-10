@@ -293,6 +293,86 @@
     }
 }
 
+// Circular widgets container in sidebar
+.sidebar-widgets-container {
+    padding: 1rem;
+    
+    // Mobile specific styles
+    @media (max-width: 991px) {
+        padding: 1.5rem;
+        
+        .sidebar-widgets {
+            width: 100%;
+            
+            .widget-section {
+                margin-bottom: 1.5rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            
+            .widget-section-title {
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: #666;
+                margin-bottom: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            
+            // Adjust grid for mobile
+            .widget-grid {
+                &--four-columns {
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 0.75rem;
+                }
+                
+                &--categories {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1rem;
+                }
+                
+                &--three-columns {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 0.75rem;
+                }
+                
+                &--one-column {
+                    grid-template-columns: 1fr;
+                    gap: 0.75rem;
+                }
+            }
+            
+            // Make circular widgets more touch-friendly on mobile
+            .circular-widget {
+                width: 60px;
+                height: 60px;
+                
+                &--lg {
+                    width: 80px;
+                    height: 80px;
+                }
+                
+                &--sm {
+                    width: 48px;
+                    height: 48px;
+                }
+                
+                // Enhance tap feedback
+                &:active {
+                    transform: scale(0.95);
+                }
+            }
+        }
+    }
+    
+    // Hide on desktop (widgets are shown elsewhere)
+    @media (min-width: 992px) {
+        display: block; // Keep visible on desktop too
+    }
+}
+
 // Overlay for mobile
 .sidebar-overlay {
     position: fixed;
