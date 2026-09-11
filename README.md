@@ -1,168 +1,61 @@
-# Southwest Mushrooms - CroweOS Design Theme
+# mushrooms
 
-A premium BigCommerce theme powered by CroweOS Systems and built by Michael Crowe, featuring modern UI/UX, AI-powered assistance, and comprehensive mushroom cultivation resources.
+BigCommerce Stencil theme for the Southwest Mushrooms online store, forked from the Cornerstone theme in July 2025.
 
-## 🌟 Features
+## Status
 
-### **CroweOS Design System**
-- **Responsive Design**: Mobile-first approach with perfect scaling across all devices
-- **Dark Mode Toggle**: Seamless theme switching with localStorage persistence
-- **Modern UI/UX**: Premium gradients, glass-morphism, and interactive elements
-- **Accessibility**: WCAG 2.1 compliant with proper ARIA labels and keyboard navigation
-- **Custom Icons**: Professional SVG icon system
+archived
 
-### **AI Integration**
-- **Crowe GPT Lab**: AI-powered mushroom cultivation assistant
-- **Iframe Integration**: Secure, performant AI chat interface
-- **Theme Synchronization**: AI interface adapts to site theme
-- **Error Handling**: Graceful fallbacks and user-friendly error messages
+Development stopped on 2025-07-08 (last commit on `main`, per `git log`). The code is kept for reference. Southwest Mushrooms was a mushroom farm in Phoenix. The farm closed in February 2025. This theme was built in July 2025, after the farm closed.
 
-### **Content Pages**
-- **Video Gallery**: Lazy-loaded YouTube videos with placeholders
-- **Facility Tour**: Hero video section on homepage
-- **Product Showcase**: Featured products with enhanced styling
-- **Testimonials**: Customer reviews and success stories
+## Install and first run
 
-### **Performance Optimizations**
-- **Lazy Loading**: Images and videos load on demand
-- **Minified Assets**: Optimized CSS and JavaScript
-- **CDN Integration**: Fast content delivery
-- **Caching Strategy**: Efficient resource management
+Not maintained. No supported install path.
 
-## 🚀 Quick Start
-
-### **Prerequisites**
-- BigCommerce store with API access
-- Node.js (for development)
-- Git for version control
-
-### **Installation**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/MichaelCrowe11/mushrooms.git
-   cd mushrooms
-   ```
-
-2. Install dependencies (if using Stencil CLI):
-   ```bash
-   npm install
-   ```
-
-3. Configure your BigCommerce store settings in `config.json`
-
-4. Upload theme to BigCommerce via admin panel
-
-## 📁 Project Structure
+What was tried on 2026-09-10 with Node v26.5.0 and npm 11.17.0:
 
 ```
-mushrooms/
-├── assets/
-│   ├── scss/           # Stylesheets with modern CSS
-│   ├── js/            # JavaScript functionality
-│   └── icons/         # SVG icons and assets
-├── templates/         # Handlebars templates
-│   ├── layout/        # Base layout templates
-│   ├── pages/         # Page-specific templates
-│   └── components/    # Reusable components
-├── config/           # Configuration files
-└── docs/            # Documentation
+npm ci --ignore-scripts
+# fails: ERESOLVE, eslint-config-airbnb@19 wants eslint 7 or 8, package.json pins eslint ^9
+
+npm ci --ignore-scripts --legacy-peer-deps
+# added 1348 packages in 5s
+
+npm run build
+# fails: Module not found: Can't resolve 'foundation-sites/js/foundation/foundation'
+
+npm test
+# Test Suites: 13 failed, 13 total (SyntaxError: Cannot use import statement outside a module)
 ```
 
-## 🎨 Customization
+Nothing builds or passes tests from the checked-in lockfile.
 
-### **Colors & Branding**
-The theme uses CSS custom properties for easy customization:
-```scss
-:root {
-  --primary-color: #2d5016;      // Southwest Mushrooms green
-  --secondary-color: #8bc34a;    // Light green accent
-  --accent-color: #ff8c42;       // Orange highlight
-  --dark-bg: #1a1a1a;           // Dark theme background
-  --light-bg: #f8f9fa;          // Light theme background
-}
-```
+## What runs today
 
-### **GPT Lab Configuration**
-Configure the AI assistant in `config/gpt-security.json`:
-```json
-{
-  "gpt_lab": {
-    "iframe_url": "https://app.crowelogic.ai/embed",
-    "allowed_origins": ["https://app.crowelogic.ai"],
-    "timeout_ms": 10000
-  }
-}
-```
+Nothing is maintained.
 
-## 🔧 Development
+What the repository holds:
 
-### **Local Development**
-1. Install Stencil CLI: `npm install -g @bigcommerce/stencil-cli`
-2. Start development server: `stencil start`
-3. Watch for changes: `stencil bundle`
+- `templates/` : 211 Handlebars templates (components, layout, pages) for a Stencil storefront.
+- `assets/scss/` : 225 SCSS files. `assets/js/` : 97 JavaScript files, including the Cornerstone theme scripts and the added `performance-optimization.js`, `sw.js` service worker and `offline.html`.
+- `lang/` : 20 storefront language files.
+- `config.json`, `schema.json`, `manifest.json` : theme settings for the BigCommerce theme editor. Theme name in `config.json` is "Southwest Mushrooms - CroweOS Design", version 1.4.0.
+- `meta/` : five theme preview screenshots.
+- `swm-header.svg` : the store header graphic (1.8 MB).
+- About 45 Markdown status reports and checklists from the July 2025 deploy, plus three shell scripts for the Stencil CLI.
+- `CHANGELOG.md` : the upstream Cornerstone changelog.
 
-### **Building for Production**
-```bash
-stencil bundle
-stencil download
-```
+Three pull requests were open on 2026-09-10 (a Dependabot bump, a performance branch, and a compare request). They are left as they were.
 
-## 📱 Responsive Breakpoints
+## Limits
 
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px  
-- **Desktop**: 1024px - 1440px
-- **Large Desktop**: > 1440px
+- This is a storefront theme. It contains no cultivation, food-safety or health guidance and must not be read as any.
+- Templates embed a chat iframe from `app.crowelogic.ai`. That host did not resolve on 2026-09-10. The chat code is not part of this repository.
+- `secrets.stencil.json` holds a Stencil access token committed in 2025. Treat it as exposed and rotate it in the BigCommerce control panel before using this repository for anything.
+- The store URL in `config.stencil.json` still resolves, but the page served there on 2026-09-10 carried none of this theme's BigCommerce asset paths. Do not assume the live site runs this code.
 
-## 🔒 Security
+## License and contact
 
-- **CORS Protection**: Restricted iframe origins
-- **XSS Prevention**: Sanitized user inputs
-- **Content Security Policy**: Frame-src restrictions
-- **API Key Management**: Secure environment variables
+No license file. `package.json` declares MIT but no LICENSE file is present in the repository.
 
-## 🧪 Testing
-
-### **Browser Testing**
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-### **Device Testing**
-- iPhone (iOS 14+)
-- Android (Chrome)
-- iPad (Safari)
-- Desktop (all major browsers)
-
-## 📈 Performance Metrics
-
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📄 License
-
-This project is proprietary to Southwest Mushrooms. All rights reserved.
-
-## 🆘 Support
-
-For technical support or questions:
-- **Email**: michael@southwestmushrooms.online
-- **Documentation**: See `/docs` folder
-- **Issues**: Create an issue on GitHub
-
----
-
-**Built with ❤️ for Southwest Mushrooms**
-
-*Last updated: December 2024*
+Contact: michael@crowelogic.com
