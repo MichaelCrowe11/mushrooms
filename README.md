@@ -50,7 +50,7 @@ Three pull requests were open on 2026-09-10 (a Dependabot bump, a performance br
 ## Limits
 
 - This is a storefront theme. It contains no cultivation, food-safety or health guidance and must not be read as any.
-- Templates embed a chat iframe from `app.crowelogic.ai`. That host did not resolve on 2026-09-10. The chat code is not part of this repository.
+- `templates/pages/gpt-lab.html` embeds a chat iframe from an external Crowe Logic host named in `config/gpt-security.json`. That host did not resolve in DNS on 2026-09-10. The chat code is not part of this repository.
 - `secrets.stencil.json` holds a Stencil access token committed in 2025. Treat it as exposed and rotate it in the BigCommerce control panel before using this repository for anything.
 - The store URL in `config.stencil.json` still resolves, but the page served there on 2026-09-10 carried none of this theme's BigCommerce asset paths. Do not assume the live site runs this code.
 
